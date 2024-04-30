@@ -30,7 +30,34 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">歡迎使用PetPals!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/submit-your-login-form" method="post">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" class="form-control" name="username">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" class="form-control" name="password">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
         <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <span class="nav-item">
           <a
@@ -70,10 +97,12 @@
               <img class="icon2" src="../images/dog.png" >
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">帳號設定</a></li>
-              <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">登出</a></li>
+                <li><a class="dropdown-item" href="#">帳號設定</a></li>
+                <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">登出</a></li>
+                <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">登入</a></li>
+
             </ul>
           </li>
         </div>
