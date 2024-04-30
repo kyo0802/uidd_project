@@ -59,10 +59,10 @@
     list-style-type: none;
 }
 
-/* Modal base */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    display: none; 
+    position: fixed; 
     left: 0;
     top: 0;
     width: 100%; 
@@ -89,24 +89,7 @@
     border: 1px solid #888;
 
     width: 400px; 
-    height: 600px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 553px; 
     z-index: 11;
 }
 
-
-
-
-
-    @keyframes slideDown {
-        0% {
-          transform: translateY(-10%);
-        }
-        100% {
-          transform: translateY(0);
-        }
-      }
-      
-      .modal-dialog {
-        animation: slideDown 0.3s ease-out;
-      }
