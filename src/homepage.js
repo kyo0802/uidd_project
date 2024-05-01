@@ -39,11 +39,11 @@ function goBack() {
     }
 }
 document.getElementById('loginModal').addEventListener('hidden.bs.modal', function () {
-    // Resets to the first step and hides all special icons
+
     showStep('1');
-    resetIcons();  // This function will hide all icons
-    userRole = 'none';  // Reset the user role
-    activeStepId = '1';  // Reset the active step ID
+    resetIcons();  
+    userRole = 'none';  
+    activeStepId = '1';  
 });
 function updateIconsDisplay(stepNumber) {
     var icons = [
@@ -59,14 +59,12 @@ function updateIconsDisplay(stepNumber) {
         document.getElementById('progressicon10')
     ];
 
-    // Hide all icons initially
     icons.forEach(icon => { if (icon) icon.style.display = 'none'; });
 
-    // Decide which icons to show based on the step number and role
+
     let displayIcons = [];
     switch (stepNumber) {
         case '1':
-            // No icons for step 1
             break;
         case '1.5':
             displayIcons = [1, 2, 0];
@@ -90,7 +88,6 @@ function updateIconsDisplay(stepNumber) {
             return;
     }
 
-    // Show only the selected icons
     displayIcons.forEach(index => {
         if (icons[index]) {
             icons[index].style.display = 'block';
@@ -98,7 +95,6 @@ function updateIconsDisplay(stepNumber) {
     });
 }
 
-// Call updateIconsDisplay every time a new step is shown
 function showStep(stepNumber) {
     var steps = document.querySelectorAll('.active-step, .inactive-step');
     steps.forEach(function(step) {
@@ -112,8 +108,8 @@ function showStep(stepNumber) {
         currentStep.style.display = 'block';
         currentStep.classList.add('active-step');
         currentStep.classList.remove('inactive-step');
-        activeStepId = stepNumber;  // 更新当前步骤
-        updateIconsDisplay(stepNumber);  // 更新图标显示
+        activeStepId = stepNumber;  
+        updateIconsDisplay(stepNumber);  
     } else {
         console.error('Step not found: step' + stepNumber);
     }
