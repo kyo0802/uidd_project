@@ -93,3 +93,120 @@
     z-index: 11;
 }
 
+.inactive-step {
+    display: none;
+  }
+  
+  .active-step {
+    display: block;
+  }
+
+    .modal-header,
+    .modal-footer {
+        border: none; 
+    }
+    .modal-header {
+        position: relative; 
+    }
+    .close {
+        background-size: cover; 
+        background-color: transparent; 
+        width: 20px; 
+        height: 20px; 
+        border: none; 
+        outline: none; 
+        overflow: hidden; 
+        position: absolute;
+        right: 18px;
+        top: 18px;    
+        padding: 0;   
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+    }
+    .signback {
+        background-size: cover; 
+        background-color: transparent; 
+        width: 20px; 
+        height: 20px; 
+        border: none; 
+        outline: none; 
+        overflow: hidden; 
+        position: absolute;
+        left: 18px;
+        top: 18px;    
+        padding: 0;   
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+    }
+#progressicon1{
+    position: absolute;
+    top: 25px;  
+    left: 35%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon2{
+    position: absolute;
+    top: 25px;  
+    left: 50%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon3{
+    position: absolute;
+    top: 25px;  
+    left: 65%; 
+    transform: translateX(-50%); 
+  
+}
+#progressicon4{
+    position: absolute;
+    top: 25px;  
+    left: 35%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon5{
+    position: absolute;
+    top: 25px;  
+    left: 50%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon6{
+    position: absolute;
+    top: 25px;  
+    left: 65%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon7{
+    position: absolute;
+    top: 25px;  
+    left: 43%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon8{
+    position: absolute;
+    top: 25px;  
+    left: 57%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon9{
+    position: absolute;
+    top: 25px;  
+    left: 43%;  
+    transform: translateX(-50%); 
+
+}
+#progressicon10{
+    position: absolute;
+    top: 25px;  
+    left: 57%;  
+    transform: translateX(-50%); 
+
+}
