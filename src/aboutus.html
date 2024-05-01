@@ -57,14 +57,24 @@
         <div class="navbar-items">
           <a class="navbar-brand ms-5" href="./homepage.html">主頁</a>
           <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
-          <img class="icon" src="../images/icon.png" >
+          <img class="icon" src="../images/aboutus/icon.png" >
           <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
           <a class="navbar-brand ms-8 nav-link active" aria-current="page" href="./aboutus.html">About Us</a>
         </div>
         <div class="icon-container">
-          <img class="icon2" src="../images/notification.png" >
-          <img class="icon2" src="../images/like.png" >
-          <img class="icon2" src="../images/dog.png" >  
+          <img class="icon2" src="../images/aboutus/notification.png" >
+          <img class="icon2" src="../images/aboutus/like.png" >
+          <span class="nav-item">
+            <a
+              id="login-btn"
+              class="btn button btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              href="#login"
+              ><img class="icon2" src="../images/aboutus/dog.png">
+              </a>
+          </span>
+            
         </div>
       </div>
     </nav>
@@ -77,9 +87,8 @@
       aria-hidden="true"
     >
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">歡迎回來</h5>
+        <div class="modal-content"> 
+          <div class="modal-header">              
             <button
               type="button"
               class="btn-close"
@@ -89,48 +98,32 @@
           </div>
 
           <div class="modal-body">
+            <div class="login_icon_container">
+              <img class="login_icon" src="../images/aboutus/login_register/icon1.png"/>
+            </div>            
+            <div class="login_title">歡迎使用PetPals!</div>
             <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
-                </div>
-                <div class="col -12" align="left">
-                  Email address
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
+              <div class="row justify-content-center">    
+                <input type="account" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
+                <div id="password_block">
+                  <div class="input_box">
+                    <input type="password" class="form-control" id="password" placeholder="密碼">
                   </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Password
+                  <!--
+                  <div class="eye_icon">
+                    <img class="invisible_btn" src="../images/aboutus/login_register/invisible.png"/>
+                  </div>-->
                 </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
+                <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
                 <a href="./homepage.html/">
-                  <button>登入</button>
-              </a>
-
-
+                  <button class="btn btn-yellow reg_button">登入</button>
+                  <hr>
+                </a>                
+                <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
+                <div class="small_word" id="supplyment">為您的寵物建立屬於自己的社交帳號!</div>
               </div>
             </div>
           </div>
-
-          <div class="modal-footer">
-            <span>還未加入寵物社群
-              <a href="">立即加入</a>
-            </span>
-          </div>
-
         </div>
       </div>
     </div>
@@ -139,62 +132,119 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel2" align="center">建立帳戶</h5>
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal" data-bs-toggle="modal"><img src="../images/aboutus/login_register/back.png"></button>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+
           <div class="modal-body">
+            <div class="login_icon_container">
+              <img class="reg_icon" src="../images/aboutus/login_register/icon1.png"/>
+            </div>
             <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
+              <div class= "row justify-content-center">    
+                <div class="reg_title">
+                  註冊
                 </div>
-
-                <div class="col -12" align="left">
-                姓名
+                <div class="reg_content">
+                  Petpals為您的寵物制定最完美的散步規畫，
+                  <br>
+                  並找到最適合牠的寵物玩伴。
                 </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Email
-                  </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                  </nav>
-                <div class="col -12" align="left">
-                密碼
-               </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                   </nav>
                 
-               <button type="button" class="btn btn-primary">註冊 </button>
+                <div class="container-fluid" style="display: flex;">
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search">
+                  </form>
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search">
+                  </form>
+                </div>
+              
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search">
+                  </form>
+                  
+                </div>
+            
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search">
+                  </form>
+                </div>
 
-
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
+                  </form>
+                </div>
+                
+               <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
+                
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="modal-footer">
-            <span>已有帳號了?
-              <a href="">登入</a>
-            </span>
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal2" data-bs-toggle="modal"><img src="../images/aboutus/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          
+
+          <div class="modal-body">
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title" style="font-size: 2rem;">
+                  請問您的身分為?
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/aboutus/login_register/feeder.png"/>
+                </div>
+                <div>
+                  <input type="checkbox" class="checkbox" name="feeders">
+                  <label for="feeders">寵物飼主</label>
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/aboutus/login_register/lover.png"/>
+                </div> 
+                <div>
+                  <input type="checkbox" class="checkbox" name="lovers">
+                  <label for="lovers">毛小孩愛好者</label></div>
+                </div>
+                <br><br>
+                <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal4" data-bs-toggle="modal">繼續</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal3" data-bs-toggle="modal"><img src="../images/aboutus/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title" style="font-size: 2rem;">
+                  您的寵物基本資訊
+                </div>
+                
+                <br><br>
+                <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal5" data-bs-toggle="modal">繼續</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -205,7 +255,7 @@
         ABOUT US
       </div>
     </div>
-    <img src="../images/dogs1.png" class="dogs_pic"/>
+    <img src="../images/aboutus/dogs1.png" class="dogs_pic"/>
     
     <div class="main">
       <div class="welcome title">
@@ -219,19 +269,19 @@
     </div>
 
     <div class="image-container">
-      <img src="../images/資產 7.png" alt="Background Image" class="yellow">
+      <img src="../images/aboutus/資產 7.png" alt="Background Image" class="yellow">
       <h2 class="headtext">我們提供的服務</h2>
       <div class="textb">
           <div class="startext">
-              <img src="../images/資產 8.png" alt="Star" class="star">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
               <div class="text">寵物身心健康</div>
           </div>
           <div class="startext">
-              <img src="../images/資產 8.png" alt="Star" class="star">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
               <div class="text">規劃完美旅程</div>
           </div>
           <div class="startext">
-              <img src="../images/資產 8.png" alt="Star" class="star">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
               <div class="text">建立寵物連結</div>
           </div>
       </div>
@@ -247,35 +297,35 @@
       
       <div class="mem_pic">
         <div class="member">
-          <img src="../images/萬楚君.JPG" class="member_pic"/>
+          <img src="../images/aboutus/萬楚君.JPG" class="member_pic"/>
           <div class="name">萬楚君</div>
           <div class="job">前端設計</div>
           <div class="email">c44099051@gs.ncku.edu.tw</div>
         </div>
 
         <div class="member">
-          <img src="../images/莊汶叡.JPG" class="member_pic"/>
+          <img src="../images/aboutus/莊汶叡.JPG" class="member_pic"/>
           <div class="name">莊汶叡</div>
           <div class="job">前端設計</div>
           <div class="email">e24091077@gs.ncku.edu.tw</div>
         </div>
 
         <div class="member">
-          <img src="../images/陳薪媛.jpg" class="member_pic"/>
+          <img src="../images/aboutus/陳薪媛.jpg" class="member_pic"/>
           <div class="name">陳薪媛</div>
           <div class="job">介面設計</div>
           <div class="email">f34106036@gs.ncku.edu.tw</div>
         </div>
         
         <div class="member">
-          <img src="../images/林郁家.JPEG" class="member_pic"/>
+          <img src="../images/aboutus/林郁家.JPEG" class="member_pic"/>
           <div class="name">林郁家</div>
           <div class="job">前端設計</div>
           <div class="email">e24102064@gs.ncku.edu.tw</div>
         </div>
 
         <div class="member">
-          <img src="../images/林新堯.jpg" class="member_pic"/>
+          <img src="../images/aboutus/林新堯.jpg" class="member_pic"/>
           <div class="name">林新堯</div>
           <div class="job">前端設計</div>
           <div class="email">e24096629@gs.ncku.edu.tw</div>
@@ -291,15 +341,14 @@
 
 
     <div class="mainpage">
-      <div align="center"  style="width:100%;height:100%;margin-top:30%;">
-      </div>
+      
       <nav class="navbar navbar-dark fixed-bottom" style="background-color: #003466;">
         <div class="container-fluid">
           <div class="navbar-items1">
             <div class="icon-container">
-              <img class="icon3" src="../images/fb.png">
-              <img class="icon3" src="../images/line.png">
-              <img class="icon3" src="../images/ig.png">
+              <img class="icon3" src="../images/aboutus/fb.png">
+              <img class="icon3" src="../images/aboutus/line.png">
+              <img class="icon3" src="../images/aboutus/ig.png">
             </div>
           </div>
           <div></div>
