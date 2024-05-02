@@ -260,13 +260,38 @@
 </div>
 </div>
           <!-- Step 2: location -->
-          <div id="step2" class="inactive-step" style="display: none;">
-            <div class="mb-3">
-              <label for="location" class="form-label">您的所在區域為?:</label>
-              <input type="location" id="location" class="form-control" name="location">
-              <button class="btn btn-primary mt-3" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
-            </div>
-          </div>
+          <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+            <div class="mb-3" style="position: relative;">
+                <h1 id="title">您的所在區域為?</h1>
+                <h2 id="subtitle">PetPals為您自動化推薦與毛小孩接觸機會</h2>
+                <label for="region" id="label-region" class="form-label">縣市:</label>
+                <select id="region" class="form-control">
+                    <option value="" disabled selected>縣市</option>
+                    <option value="台北市">台北市</option>
+                    <option value="新北市">新北市</option>
+                </select>
+        
+                <label for="district" id="label-district" class="form-label">鄉鎮市區:</label>
+                <select id="district" class="form-control">
+                    <option value="" disabled selected>鄉、鎮、市、區</option>
+                    <option value="中正區">中正區</option>
+                    <option value="板橋區">板橋區</option>
+                </select>
+        
+                <p id="service-notice">開啟訂位服務</p>
+                <p id="ss">自動更新位置及時推薦附近機會</p>
+                <div class="btn-group" id="button-group">
+                    <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                    <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+        
+                    <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                    <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                </div>
+        
+           
+               <button class="btn btn-primary mt-3" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+           </div>
+                     </div>
           <!-- Step 3: end -->
           <div id="step3" class="inactive-step" style="display: none;">
             <p>註冊完成!</p>
@@ -274,7 +299,7 @@
             <button type="submit" class="btn btn-primary mt-3">yay</button>
           </div>
       </div>
-    </div>
+    </div> 
   </div>
 </div>
 <!-- start here -->
