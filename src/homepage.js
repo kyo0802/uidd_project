@@ -114,3 +114,26 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const selects = document.querySelectorAll('.form-control');
+  
+    selects.forEach(select => {
+      styleSelectOption(select);
+      select.addEventListener('change', function () {
+        styleSelectOption(select);
+      });
+    });
+  
+    function styleSelectOption(select) {
+      const selectedOption = select.options[select.selectedIndex];
+      const defaultText = '縣市' || '鄉、鎮、市、區'; // 根据需要调整默认文字
+  
+      // 如果当前选中的是"disabled"选项，则应用特殊样式
+      if (selectedOption.disabled) {
+        select.style.color = '#ADADAD'; // 灰色
+      } else {
+        select.style.color = 'black'; // 或其他颜色
+      }
+    }
+  });
+  
