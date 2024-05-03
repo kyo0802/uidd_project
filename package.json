@@ -1,0 +1,8 @@
+{
+  "name": "uidd_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kyo0802/uidd_project.git",
+  "author": "kyo0802 <e24091077@gs.ncku.edu.tw>",
+  "license": "MIT"
+}

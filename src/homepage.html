@@ -251,32 +251,81 @@
   </div>
 </div>
 <!-- Step 1.5: Additional Form -->
-<div id="step1.5" class="inactive-step" style="display: none;">
+<div id="step15">
+<div id="step1.5" class="inactive-step " style="display: none;">
+  <h3 class="form-heading">您的寵物基本資訊</h3>
+  <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
   <div class="mb-3">
-    <label for="additionalInfo" class="form-label">您的寵物基本資訊:</label>
-    <input type="text" id="additionalInfo" class="form-control" name="additionalInfo">
-    <button class="btn btn-primary mt-3" onclick="showStep('2')" onclick="setstep('2')">繼續註冊</button>
+    <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+    <select id="petGender" class="form-control">
+      <option value=""disabled selected>寵物性別</option>
+      <option value="male">公</option>
+      <option value="female">母</option>
+    </select>
+
+    <select id="petSize" class="form-control">
+      <option value=""disabled selected>寵物體型</option>
+      <option value="small">小型</option>
+      <option value="medium">中型</option>
+      <option value="large">大型</option>
+    </select>
+
+    <select id="petAge" class="form-control">
+      <option value=""disabled selected>寵物年齡</option>
+      <option value="puppy">幼年</option>
+      <option value="adult">成年</option>
+      <option value="senior">老年</option>
+    </select>
+
+    <button class="btn btn-primary mt-3" onclick="showStep('2'); setstep('2');">繼續註冊</button>
   </div>
 </div>
 </div>
           <!-- Step 2: location -->
-          <div id="step2" class="inactive-step" style="display: none;">
-            <div class="mb-3">
-              <label for="location" class="form-label">您的所在區域為?:</label>
-              <input type="location" id="location" class="form-control" name="location">
-              <button class="btn btn-primary mt-3" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
-            </div>
-          </div>
+          <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+            <div class="mb-3" style="position: relative;">
+                <h1 id="title">您的所在區域為?</h1>
+                <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                <select id="region" class="form-control">
+                    <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                    <option value="台北市">台北市</option>
+                    <option value="新北市">新北市</option>
+                </select>
+                <select id="district" class="form-control">
+                    <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                    <option value="中正區">中正區</option>
+                    <option value="板橋區">板橋區</option>
+                </select>
+        
+                <p id="service-notice">開啟訂位服務</p>
+                <p id="ss">自動更新位置及時推薦附近機會</p>
+                <div class="btn-group" id="button-group">
+                  <div class="form-check">
+                      <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                      <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+                  </div>
+                  <div class="form-check">
+                      <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                      <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                  </div>
+              </div>
+              
+        
+           
+               <button class="btn btn-primary mt-3" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+           </div>
+                     </div>
           <!-- Step 3: end -->
           <div id="step3" class="inactive-step" style="display: none;">
             <p>註冊完成!</p>
-            <p>使用PetPals開始你的第一趟旅程</p>
-            <button type="submit" class="btn btn-primary mt-3">yay</button>
+            <p>使用PetPals<br>開始你的第一趟旅程</p>
+            <button type="submit" class="btn btn-primary mt-3"> <img src="../images/dog1.png" alt="Submit"></button>
           </div>
       </div>
-    </div>
+    </div> 
   </div>
-</div>
+</div></div>
 <!-- start here -->
 
 
