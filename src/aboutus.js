@@ -1,4 +1,3 @@
-
 var userRole = 'none';  
 var activeStepId='1';
 
@@ -30,7 +29,6 @@ function goBack() {
             }
             break;
         case '1.5':
-            showStep('1');
             userRole = 'none'; 
             break;
         default:
@@ -113,6 +111,15 @@ function showStep(stepNumber) {
     } else {
         console.error('Step not found: step' + stepNumber);
     }
+    if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
+      $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+      $("button[class='signback']").attr("data-bs-toggle", "modal");
+    }
+    else {
+      $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+      $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+    }
+
 }
 
 
@@ -131,3 +138,24 @@ function showStep(stepNumber) {
       bsModal.show();
     }
   };
+
+    var who;
+    $("input[name=who]").click( function(){
+    if($("input[name=who]:checked")) {
+        $("input[name=who]:checked").each(function() {
+        who = $(this).val();
+        //var next = "#"+who;
+        //$("button[name=who]").attr("data-bs-target", next);
+        })
+    }
+    })
+
+    $("button[name='who']").click(function() {
+    if(who == "register_feeder"){
+        selectRole('a');showStep('1.5');setstep('1.5')
+    }
+    else{
+        selectRole('b');showStep('2');setstep('2')
+    }
+    })
+
