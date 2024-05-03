@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>寵物社群</title>
+
+    <!-- CSS only -->
+    <!-- Bootstrap css cdn link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./aboutus.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-dark" style="background-color: #003466;" >
+
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <span class="nav-item">
+          <a
+            id="login-btn"
+            class="btn button btn-outline-success"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            href="#login"
+            >Login</a
+          >
+        </span>
+        <span class="nav-item">
+          <a
+             id="signup-btn"
+             class="btn button btn-outline-primary"
+             data-bs-toggle="modal"
+            data-bs-target="#exampleModal2"
+            href="#signup"
+            >Sign up</a
+           >
+        </span>
+        </div> -->
+        
+        <div></div>
+        <div class="navbar-items">
+          <a class="navbar-brand ms-5" href="./homepage.html">主頁</a>
+          <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
+
+          <img class="icon" src="../images/icon.png" >
+
+          <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
+          <a class="navbar-brand ms-8 nav-link active" aria-current="page" href="./aboutus.html">About Us</a>
+        </div>
+        <div class="icon-container">
+          <img class="icon2" src="../images/notification.png" >
+          <img class="icon2" src="../images/like.png" >
+          <span class="nav-item">
+            <a
+              id="login-btn"
+              class="btn button btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              href="#login"
+              >
+              <img class="icon2" src="../images/profile.png">
+              </a>
+          </span>
+            
+        </div>
+    </nav>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content"> 
+          <div class="modal-header">              
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="login_icon_container">
+              <img class="login_icon" src="../images/login_register/icon1.png"/>
+            </div>            
+            <div class="login_title">歡迎使用PetPals!</div>
+            <div class="container" align="center">
+              <div class="row justify-content-center">    
+                <input type="account" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
+                <div id="password_block">
+                  <div class="input_box">
+                    <input type="password" class="form-control" id="password" placeholder="密碼">
+                  </div>
+                  <!--
+                  <div class="eye_icon">
+                    <img class="invisible_btn" src="../images/login_register/invisible.png"/>
+                  </div>-->
+                </div>
+                <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
+                <a href="./homepage.html/">
+                  <button class="btn btn-yellow reg_button">登入</button>
+                  <hr>
+                </a>                
+                <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
+                <div class="small_word" id="supplyment">為您的寵物建立屬於自己的社交帳號!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="login_icon_container">
+              <img class="reg_icon" src="../images/login_register/icon1.png"/>
+            </div>
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title">
+                  註冊
+                </div>
+                <div class="reg_content">
+                  Petpals為您的寵物制定最完美的散步規畫，
+                  <br>
+                  並找到最適合牠的寵物玩伴。
+                </div>
+                
+                <div class="container-fluid" style="display: flex;">
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search">
+                  </form>
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search">
+                  </form>
+                </div>
+              
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search">
+                  </form>
+                  
+                </div>
+            
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search">
+                  </form>
+                </div>
+
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
+                  </form>
+                </div>
+                
+               <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal2" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title" style="font-size: 1.5rem;">
+                  請問您的身分為?
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/login_register/feeder.png"/>
+                </div>
+                <div>
+                  <label><input type="radio" name="who" class="checkbox" value="register_feeder" required="required" checked="checked">寵物飼主</label>
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/login_register/lover.png"/>
+                </div> 
+                <div>
+                  <label><input type="radio" name="who" class="checkbox" value="register_lover" required="required">毛小孩愛好者</label>
+                </div>
+                <br><br> 
+                <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- register Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content shadow p-3 mb-5 bg-body rounded">
+          <div class="modal-header">
+            <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
+      
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
+            </button>
+            <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
+              <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
+            </button>
+          </div>
+          <div class="modal-body">
+    
+    <!-- Step 1.5: Additional Form -->
+    <div id="step15">
+    <div id="step1.5" class="inactive-step " style="display: none;">
+      <h3 class="form-heading">您的寵物基本資訊</h3>
+      <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
+      <div class="mb-3">
+        <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+        <select id="petGender" class="form-control">
+          <option value=""disabled selected>寵物性別</option>
+          <option value="male">公</option>
+          <option value="female">母</option>
+        </select>
+
+        <select id="petSize" class="form-control">
+          <option value=""disabled selected>寵物體型</option>
+          <option value="small">小型</option>
+          <option value="medium">中型</option>
+          <option value="large">大型</option>
+        </select>
+
+        <select id="petAge" class="form-control">
+          <option value=""disabled selected>寵物年齡</option>
+          <option value="puppy">幼年</option>
+          <option value="adult">成年</option>
+          <option value="senior">老年</option>
+        </select>
+
+        <button class="btn btn-primary mt-3" onclick="showStep('2'); setstep('2');">繼續註冊</button>
+      </div>
+    </div>
+    </div>
+              <!-- Step 2: location -->
+              <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+                <div class="mb-3" style="position: relative;">
+                    <h1 id="title">您的所在區域為?</h1>
+                    <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                    <select id="region" class="form-control">
+                        <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                        <option value="台北市">台北市</option>
+                        <option value="新北市">新北市</option>
+                    </select>
+                    <select id="district" class="form-control">
+                        <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                        <option value="中正區">中正區</option>
+                        <option value="板橋區">板橋區</option>
+                    </select>
+            
+                    <p id="service-notice">開啟訂位服務</p>
+                    <p id="ss">自動更新位置及時推薦附近機會</p>
+                    <div class="btn-group" id="button-group">
+                      <div class="form-check">
+                          <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                          <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+                      </div>
+                      <div class="form-check">
+                          <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                          <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                      </div>
+                  </div>
+                  
+            
+              
+                  <button class="btn btn-primary mt-3" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+              </div>
+                        </div>
+              <!-- Step 3: end -->
+              <div id="step3" class="inactive-step" style="display: none;">
+                <p>註冊完成!</p>
+                <p>使用PetPals<br>開始你的第一趟旅程</p>
+                <button type="submit" class="btn btn-primary mt-3"> <img src="../images/dog1.png" alt="Submit"></button>
+              </div>
+          </div>
+        </div> 
+      </div>
+    </div></div>
+
+    <!--
+      要新增註冊的對話框就複製這段code，改第一行的id=exampleModal成新的名子，
+      跟倒數幾行button裡的data-bs-target，改成下一個對話框的id
+
+    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal3" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title" style="font-size: 2rem;">
+                  您的寵物基本資訊
+                </div>
+                
+                <br><br>
+                <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal5" data-bs-toggle="modal">繼續</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    
+
+    <!-- ABOUT US and introduction start -->
+    <div class="aboutus_box">
+      <div class="aboutus">
+        ABOUT US
+      </div>
+    </div>
+    <img src="../images/aboutus/dogs1.png" class="dogs_pic"/>
+    
+    <div class="main">
+      <div class="welcome title">
+        歡迎來到PetPals寵物夥伴!
+      </div>
+      <div class="introduction content">
+        在這裡，我們深信每一隻毛孩都應該擁有最愉快的生活！
+        PetPals的使命是幫助寵物找到最適合他們的玩伴，共度最完美的旅程，一起創造美好的回憶和冒險。
+        我們為寵物與主人規劃最良好的路線，讓你們能夠享受每一次的散步時光。
+      </div>
+    </div>
+
+    <div class="image-container">
+      <img src="../images/aboutus/資產 7.png" alt="Background Image" class="yellow">
+      <h2 class="headtext">我們提供的服務</h2>
+      <div class="textb">
+          <div class="startext">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
+              <div class="text">寵物身心健康</div>
+          </div>
+          <div class="startext">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
+              <div class="text">規劃完美旅程</div>
+          </div>
+          <div class="startext">
+              <img src="../images/aboutus/資產 8.png" alt="Star" class="star">
+              <div class="text">建立寵物連結</div>
+          </div>
+      </div>
+  </div>
+
+    <!-- team member -->
+    <div>
+      <div class="member title">
+        <hr class="line">
+        <div class="line">團隊成員</div>
+        <hr class="line">
+      </div>
+      
+      <div class="mem_pic">
+        <div class="member">
+          <img src="../images/aboutus/萬楚君.JPG" class="member_pic"/>
+          <div class="name">萬楚君</div>
+          <div class="job">前端設計</div>
+          <div class="email">c44099051@gs.ncku.edu.tw</div>
+        </div>
+
+        <div class="member">
+          <img src="../images/aboutus/莊汶叡.JPG" class="member_pic"/>
+          <div class="name">莊汶叡</div>
+          <div class="job">前端設計</div>
+          <div class="email">e24091077@gs.ncku.edu.tw</div>
+        </div>
+
+        <div class="member">
+          <img src="../images/aboutus/陳薪媛.jpg" class="member_pic"/>
+          <div class="name">陳薪媛</div>
+          <div class="job">介面設計</div>
+          <div class="email">f34106036@gs.ncku.edu.tw</div>
+        </div>
+        
+        <div class="member">
+          <img src="../images/aboutus/林郁家.JPEG" class="member_pic"/>
+          <div class="name">林郁家</div>
+          <div class="job">前端設計</div>
+          <div class="email">e24102064@gs.ncku.edu.tw</div>
+        </div>
+
+        <div class="member">
+          <img src="../images/aboutus/林新堯.jpg" class="member_pic"/>
+          <div class="name">林新堯</div>
+          <div class="job">前端設計</div>
+          <div class="email">e24096629@gs.ncku.edu.tw</div>
+        </div>
+      </div>
+    </div>
+    <!-- team member -->
+    
+    <!-- ABOUT US and introduction end -->
+
+    
+    <!-- start here -->
+
+
+    <div class="mainpage">
+      
+      <nav class="navbar navbar-dark fixed-bottom" style="background-color: #003466;">
+        <div class="container-fluid">
+          <div class="navbar-items1">
+            <div class="icon-container">
+              <img class="icon3" src="../images/aboutus/fb.png">
+              <img class="icon3" src="../images/aboutus/line.png">
+              <img class="icon3" src="../images/aboutus/ig.png">
+            </div>
+          </div>
+          <div></div>
+          <div class="navbar-items2">
+            <div class="policy">
+              <a class="navbar-brand ms-3" href="./news.html">隱私政策</a>
+              <div style="color: #FFFFFF;">|</div>
+              <a class="navbar-brand ms-3" href="./news.html">使用條款</a>
+              <div style="color: #FFFFFF;">|</div>
+              <a class="navbar-brand ms-3" href="./market.html">網站地圖</a>
+            </div>
+          </div>
+          <div class="petpals">
+            <a class="navbar-brand">@2024Petpals 寵物夥伴 保留所有權利</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+    <!-- end here -->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./aboutus.js"></script>
+    <script>
+      var userRole = 'none';  
+      var activeStepId='1';
+
+        function selectRole(role) {
+          userRole = role; 
+
+          if (role === 'a') {
+              activeStepId='1.5';
+          } else {
+              activeStepId='2';
+          }
+      }
+      function setstep(idd){
+      activeStepId=idd;
+
+      }
+      function goBack() {
+          
+          switch (activeStepId) {
+              case '3':
+                  showStep('2');  
+                  break;
+              case '2':
+                  if (userRole === 'a') {
+                      showStep('1.5');
+                  } else {
+                      userRole = 'none';  
+                  }
+                  break;
+              case '1.5':                  
+                  userRole = 'none'; 
+                  break;
+              default:
+                  console.error('Unhandled case or unknown step');
+                  break;
+          }
+      }
+      document.getElementById('loginModal').addEventListener('hidden.bs.modal', function () {
+
+          showStep('1');
+          resetIcons();  
+          userRole = 'none';  
+          activeStepId = '1';  
+      });
+      function updateIconsDisplay(stepNumber) {
+          var icons = [
+              document.getElementById('progressicon1'),
+              document.getElementById('progressicon2'),
+              document.getElementById('progressicon3'),
+              document.getElementById('progressicon4'),
+              document.getElementById('progressicon5'),
+              document.getElementById('progressicon6'),
+              document.getElementById('progressicon7'),
+              document.getElementById('progressicon8'),
+              document.getElementById('progressicon9'),
+              document.getElementById('progressicon10')
+          ];
+
+          icons.forEach(icon => { if (icon) icon.style.display = 'none'; });
+
+
+          let displayIcons = [];
+          switch (stepNumber) {
+              case '1':
+                  break;
+              case '1.5':
+                  displayIcons = [1, 2, 0];
+                  break;
+              case '2':
+                  if (userRole === 'a') {
+                      displayIcons = [3, 4, 2];
+                  } else {
+                      displayIcons = [7, 6];
+                  }
+                  break;
+              case '3':
+                  if (userRole === 'a') {
+                      displayIcons = [1, 3, 5];
+                  } else {
+                      displayIcons = [9, 8];
+                  }
+                  break;
+              default:
+                  console.error('Unexpected step: ' + stepNumber);
+                  return;
+          }
+
+          displayIcons.forEach(index => {
+              if (icons[index]) {
+                  icons[index].style.display = 'block';
+              }
+          });
+      }
+
+      function showStep(stepNumber) {
+          var steps = document.querySelectorAll('.active-step, .inactive-step');
+          steps.forEach(function(step) {
+              step.style.display = 'none';
+              step.classList.remove('active-step');
+              step.classList.add('inactive-step');
+          });
+
+          var currentStep = document.getElementById('step' + stepNumber);
+          if (currentStep) {
+              currentStep.style.display = 'block';
+              currentStep.classList.add('active-step');
+              currentStep.classList.remove('inactive-step');
+              activeStepId = stepNumber;  
+              updateIconsDisplay(stepNumber);  
+          } else {
+              console.error('Step not found: step' + stepNumber);
+          }
+          if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
+            $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+            $("button[class='signback']").attr("data-bs-toggle", "modal");
+          }
+          else {
+            $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+            $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+          }
+      }
+
+
+        function redirectToHomepage() {
+
+          window.location.href = "./homepage.html";
+        }
+
+        window.onload = function() {
+
+          var hash = window.location.hash;
+
+          if (hash.includes("loginModal")) {
+            var loginModal = document.getElementById("loginModal");
+            var bsModal = new bootstrap.Modal(loginModal);
+            bsModal.show();
+          }
+        };
+
+      var who;
+      $("input[name=who]").click( function(){
+        if($("input[name=who]:checked")) {
+          $("input[name=who]:checked").each(function() {
+            who = $(this).val();
+            //var next = "#"+who;
+            //$("button[name=who]").attr("data-bs-target", next);
+          })
+        }
+      })
+      
+      $("button[name='who']").click(function() {
+        if(who == "register_feeder"){
+            selectRole('a');showStep('1.5');setstep('1.5')
+        }
+        else{
+            selectRole('b');showStep('2');setstep('2')
+        }
+      })
+    </script>
+  </body>
+</html>
