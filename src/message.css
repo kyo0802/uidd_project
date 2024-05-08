@@ -21,9 +21,11 @@
 }
 
 .mainpage{
-    display:grid;
+    display: flex;
     grid-template-columns:50% 50%;
     height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -435,3 +437,47 @@ font-size: 12px;
     height: auto;
 }
 
+.mainpage_container {
+    width: 90%;
+    height: 90%;
+}
+
+.message_icon {
+    height: 2rem;
+    padding-left: 40px;
+}
+
+.line {
+    border: 1px solid black;
+}
+
+.message_title {
+    color: #003466;
+    font-family: 'GenYoGothic';
+    margin-left: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.message_list {
+    display: flex;
+}
+
+.message_pic {
+    margin: 10px 30px;
+    height: 4rem;
+}
+
+.discription_container {
+    vertical-align: center;
+}
+
+.discription {
+    margin-top: 10px;
+    height: 15px;
+    font-family: 'GenYoGothic';
+}
+
+.sent {
+    color: rgb(173, 172, 172);
+}

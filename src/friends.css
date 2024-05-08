@@ -21,9 +21,11 @@
 }
 
 .mainpage{
-    display:grid;
+    display: flex;
     grid-template-columns:50% 50%;
     height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -433,5 +435,123 @@ font-size: 12px;
     padding-top: 20%;
     width: 100%; 
     height: auto;
+}
+
+.mainpage_container {
+    width: 90%;
+    height: 90%;
+}
+
+.message_icon {
+    height: 2rem;
+    padding-left: 40px;
+}
+
+.line {
+    border: 1px solid black;
+}
+
+.message_title {
+    color: #003466;
+    font-family: 'GenYoGothic';
+    margin-left: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.message_list {
+    display: flex;
+}
+
+.message_pic {
+    margin: 10px 30px;
+    height: 4rem;
+}
+
+.discription_container {
+    vertical-align: center;
+}
+
+.discription {
+    margin-top: 10px;
+    height: 15px;
+    font-family: 'GenYoGothic';
+}
+
+.sent {
+    color: rgb(173, 172, 172);
+}
+
+.btn-group {
+    margin-right: 2rem;
+}
+
+.btn {
+    border: none;
+    color: #d1d1d1;
+    font-size: 1.2rem;
+    font-family: 'GenYoGothic';
+}
+
+.btn[for=btnradio1]:hover {
+    color: #FFC553;
+}
+
+.btn[for=btnradio2]:hover {
+    color: #ea718e;
+}
+
+.btn1_checked {
+    color: #FFC553;
+}
+
+.btn2_checked {
+    color: #ea718e;
+}
+
+.content_container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-left: 1rem;
+}
+
+#interest_container {
+    visibility: hidden;
+}
+
+.profile {
+    margin-right: 5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.profile_img {
+    width: 5rem;
+    margin: none;
+    padding: none;
+}
+
+.name {
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: 'GenYoGothic';
+    margin-top: 5px;
+}
+
+.new {
+    color: #d1d1d1;
+}
+
+.sendmsg {
+    position: absolute;
+    left: 0;
+    transition: .5s ease;
+    opacity: 0;
+}
+
+.profile:hover .sendmsg {
+    opacity: 1;
 }
 
