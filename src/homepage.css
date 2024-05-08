@@ -434,23 +434,6 @@ font-size: 12px;
     height: auto;
 }
 
-#msg {
-    list-style-type: none;
-    padding: 1rem;
-    margin-left: 1rem;
-    font-family: 'GenYoGothic', sans-serif;
-    color: white;
-    background-color: #003566;
-    width: 10%;
-    font-size: 1.3rem;
-    text-align: center;
-    letter-spacing: 0.2rem;
-}
-
-/* .chat{
-    display: flex;
-    justify-content: center;
-} */
 .chatbox {
     font-family: 'GenYoGothic', sans-serif;
     padding-left: 5rem;
@@ -468,7 +451,7 @@ font-size: 12px;
 #chatsign{
     height: 3rem;
 }
-hr {
+.chat hr {
     border: 0;
     height: 0.1rem;
     background: #2e2c2c;
@@ -486,7 +469,7 @@ h6 {
     color: #0000009b;
 }
 .chatbox .name{
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 0.1rem;
     color: #222427b7;
 }
@@ -499,4 +482,157 @@ h6 {
     font-size: 1rem;
     letter-spacing: 0.1rem;
     color: #00000023;
+}
+
+#msg {
+    font-family: 'GenYoGothic', sans-serif;
+    position: fixed;
+    top: 20%;
+    right: 8rem; 
+    width: 430px; 
+    height: 65%; 
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(56, 56, 56, 0.3); 
+    border-radius: 15px;
+}
+
+.msg .img{
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+}
+.msg .name{
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    color: #FFC533;
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+}
+.msg .friend{
+    display: flex;
+}
+.msg .success{
+    width: 70%;
+    height: 1.5rem;
+    margin-top: 2.5rem;
+    margin-left: 3.5rem;
+    background-color: #fdcc4fe6;
+    border-radius: 0.5rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1rem;
+}
+
+.map{
+    width: 80%;
+    height: 15rem;
+    margin-left: 2.5rem;
+    background-color: #fdcc4fe6;
+    border-radius: 1rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-size: smaller;
+}
+
+.map label{
+    font-size: 0.7rem;
+    color: #ffffff;
+    padding: 0.5em;
+}
+
+.map #place{
+    width: 15rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+.map #time{
+    width: 6rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+.map #stop{
+    width: 4rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+
+.map button {
+    width: 90%;
+    height: 1.5rem;
+    background-color: #fff;
+    color: #FFC533;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(56, 56, 56, 0.3);
+}
+
+.map button:hover {
+    background-color: #003466;
+    color: #ffffff;
+}
+
+.input{
+    position: fixed;
+    width: 100%;
+}
+.input #mymsg{
+    height: 1.5rem;
+    padding-left: 3rem;
+    border-radius: 0.5rem;
+    color: rgb(138, 138, 138);
+    text-align: left;
+    border: none;
+}
+
+.confirm {
+    width: 80%;
+    height: 16rem;
+    margin-left: 2.5rem;
+    background-color: #cdcccce6;
+    border-radius: 1rem;
+    color: rgb(90, 90, 90);
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-size: smaller;
+    display: none;
+}
+.confirm button {
+    width: 40%;
+    height: 1.5rem;
+    background-color: #fff;
+    margin-top: 0.5rem;
+    color: #FFC533;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(56, 56, 56, 0.3);
+}
+.content {
+    width: 100%;
+    height: 23rem;
+    overflow: auto;
+    border-top: 10rem;
+}
+.content p{
+    padding-top: 0.5rem;
+}
+#map {
+    width: 30rem;
+    height: 400px; /* 調整地圖的高度 */
+    display: none;
 }

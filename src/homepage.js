@@ -136,4 +136,47 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  
+ 
+    
+var chatbox = document.getElementById("chatbox");
+
+
+chatbox.addEventListener("click", function() {
+    
+});
+
+function initMap() {
+    var mapOptions = {
+        center: { lat: 22.99776836378852, lng: 120.21686402050172 }, 
+        zoom: 15 // 縮放級別
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+
+function showConfirm() {
+    var place = document.getElementById('place').value;
+    var time = document.getElementById('time').value;
+    var stop = document.getElementById('stop').value;
+    var specialRequest = '';
+    var checkboxes = document.getElementsByName('specialRequest');
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            specialRequest += checkbox.value + ', ';
+        }
+    });
+    specialRequest = specialRequest.slice(0, -2); 
+
+    document.getElementById('confirmPlace').textContent = place;
+    document.getElementById('confirmTime').textContent = time + ' 分鐘';
+    document.getElementById('confirmStop').textContent = stop + ' 個';
+    document.getElementById('confirmSpecial').textContent = specialRequest;
+
+    document.getElementById('mapreq').style.display = 'none';
+    document.getElementById('confirm').style.display = 'block';
+}
+
+function showMap(){
+    document.getElementById('map').style.display='block';
+    document.getElementById('confirm').style.display='none';
+}
