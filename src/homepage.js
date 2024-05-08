@@ -136,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
- 
     
 var chatbox = document.getElementById("chatbox");
 
