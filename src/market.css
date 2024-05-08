@@ -13,6 +13,9 @@
     src: url('../font/ttc/GenYoGothic-M.ttc') format('truetype');
 }
 
+.navbar {
+    height: 65px; 
+  }
 
 .navbar-brand,.nav-link {
     font-family: 'GenYoGothic', sans-serif; 

@@ -7,8 +7,207 @@
     margin:4px
 }
 
-.mainpage{
+@font-face 
+{
+    font-family: 'GenYoGothic'; 
+    src: url('../font/ttc/GenYoGothic-M.ttc') format('truetype');
+}
+
+.body{
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.navbar-brand,.nav-link {
+    font-family: 'GenYoGothic', sans-serif; 
+    font-size: 1.3rem; 
+    font-weight: normal; 
+}
+
+.navbar {
+    height: 65px; 
+  }
+  
+.mainpage {
+    display: flex;
+    height: calc(100vh - 65px); 
+    margin: 0;
+    padding: 0; 
+    background-image: url('../images/index/bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.mainpage > div:nth-child(1) {
+    flex-grow: 3; 
+  }
+  
+  .mainpage > div:nth-child(2) {
+    flex-grow: 0.5; 
+  }
+  
+  .mainpage > div:nth-child(3) {
+    flex-grow: 3; 
+  }
+
+  .mainpage > div:nth-child(4) {
+    flex-grow: 0.5; 
+  }
+
+  .mainpage > div:nth-child(5) {
+      flex-grow: 3; 
+    }
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+.icon{
+    height: 3rem; 
+    width: auto;
+}
+
+.navbar-items {
+    display: flex; 
+    align-items: center;
+    gap: 5vw; 
+  }
+
+.icon-container {
+    display: flex;
+    align-items: center;
+  }
+  
+.icon2 {
+    height: 2rem; 
+    width: auto;
+    margin-right: 2vw;
+}
+
+.nav-item.dropdown {
+    list-style-type: none;
+}
+
+.card_container_1 {
+    margin: 0;
+    padding: 0;
     display:grid;
-    grid-template-columns:50% 50%;
-    height: 100vh;
+    background-image: url('../images/card/mt/base.png');
+    background-size: contain; 
+    background-repeat: no-repeat;   
+    background-position: center;
+    position: relative;
+}
+.card_container_2 {
+    margin: 0;
+    padding: 0;
+    display:grid;
+    background-image: url('../images/card/mt/base.png');
+    background-size: contain; 
+    background-repeat: no-repeat;   
+    background-position: center;
+    position: relative;
+}
+.card_container_3 {
+    margin: 0;
+    padding: 0;
+    display:grid;
+    background-image: url('../images/card/mt/base.png');
+    background-size: contain; 
+    background-repeat: no-repeat;   
+    background-position: center;
+    position: relative; 
+}
+
+.card_bg {
+    justify-content: center;
+    align-items: center;
+}
+.card_bg > * {
+    margin: 14px 0; 
+}
+
+.card_dog_1{
+    margin-top:10%;
+    height: 40%;
+    width: auto;
+    background-image: url('../images/card/dog2.png');
+    background-size: contain;    
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card_dog_2{
+    margin-top:10%;
+    height: 40%;
+    width: auto;
+    background-image: url('../images/card/dog1.png');
+    background-size: contain;    
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card_dog_3{
+    margin-top:10%;
+    height: 40%;
+    width: auto;
+    background-image: url('../images/card/dog3.png');
+    background-size: contain;    
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card_data{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25%;
+}
+
+.card_dis {
+    font-size: 14px;
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    background-color: #8da9bf; 
+    height: 2rem; 
+    border-radius: 5px;
+    margin-left: 25%;  
+    margin-right: 25%;  
+}
+
+.dynamicText{
+    font-size: 28px;
+    display: grid;
+    place-items: center;
+}
+.card_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.card_button img {
+    margin: 0 10px;
+    cursor: pointer; 
+}
+
+.prev_button, .next_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+}
+.prev_button, .next_button img{
+    cursor: pointer; 
+}
+
+.overlay_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: none; 
+    z-index: 10;
 }

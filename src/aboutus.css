@@ -7,6 +7,9 @@
     margin:4px
 }
 
+.navbar {
+  height: 65px; 
+}
 @font-face 
 {
     font-family: 'GenYoGothic'; 
