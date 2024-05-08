@@ -13,49 +13,39 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./message.css" />
+    
+    <link rel="stylesheet" href="./homepage.css" />
   </head>
   <body>
+    
     <!-- JavaScript Bundle with Popper -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
       <div class="container-fluid">
-        <div class="dropdown">
-          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="icon-container">
+          <button
+          class="navbar-toggler"
+          data-bs-toggle="dropdown"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            <li><a class="dropdown-item" href="./message.html">訊息</a></li>
-            <li><a class="dropdown-item" href="./friends.html">好友</a></li>
-          </ul>
+          
+            <li class="nav-item dropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">我的配對</a></li>
+                <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
+              </ul>
+          </li>
         </div>
-        
-        <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <span class="nav-item">
-          <a
-            id="login-btn"
-            class="btn button btn-outline-success"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            href="#login"
-            >Login</a
-          >
-        </span>
-        <span class="nav-item">
-          <a
-             id="signup-btn"
-             class="btn button btn-outline-primary"
-             data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            href="#signup"
-            >Sign up</a
-           >
-        </span>
-        </div> -->
-        
+
         <div></div>
         <div class="navbar-items">
-          <a class="navbar-brand ms-5" href="./homepage.html">主頁</a>
-          <a class="navbar-brand ms-3  nav-link active" aria-current="page" href="./news.html">動態消息</a>
+          <a class="navbar-brand ms-5 nav-link active" aria-current="page" href="./homepage.html">主頁</a>
+          <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
+
           <img class="icon" src="../images/icon.png" >
           <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
           <a class="navbar-brand ms-8" href="./aboutus.html">About Us</a>
@@ -68,16 +58,111 @@
               <img class="icon2" src="../images/dog.png" >
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">帳號設定</a></li>
-              <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">登出</a></li>
+
+                <li><a class="dropdown-item" href="#">帳號設定</a></li>
+                <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">登出</a></li>
+                <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">登入</a></li>
+
             </ul>
           </li>
         </div>
         
       </div>
     </nav>
+    
+    <div class="chat">
+        <div class="chatbox">
+            <img id="chatsign" src="../images/chat.png" alt="chat" />
+            <h2>&nbsp;配對訊息</h2><br>
+        </div><hr>
+        <div class="chatbox" id="chatbox">
+            <img class="doggy" src="../images/doggy2.png">
+            <h6><span class="nameselected">BAGLE</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy3.png">
+            <h6><span class="name">Kuma</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy1.png">
+            <h6><span class="name">布丁</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy4.png">
+            <h6><span class="name">小虎</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy5.png">
+            <h6><span class="name">摩卡</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div>
+        <hr>
+        
+        <div class="msg" id="msg">
+          <div class="friend">
+            <img class="img" src="../images/doggy2.png">
+            <h6 class="name">BAGLE</h6>
+          </div>
+          <hr>
+          <div class="content">
+            <div class="success">
+                已傳送配對邀請！
+            </div>
+            <br><br><br>
+            <div class="map" id="mapreq">
+              <p>請輸入您的需求！</p>
+              <label for="place">出發地點</label>
+              <input type="text" id="place" placeholder="出發地點"><br>
+              <label for="time">散步時長</label>
+              <select id="time">
+                  <option value="30">半小時</option>
+                  <option value="60">一小時</option>
+                  <option value="120">兩小時</option>
+              </select>
+              <label for="stop">停靠點</label>
+              <select id="stop">
+                  <option value="1">一</option>
+                  <option value="2">二</option>
+                  <option value="3">三</option>
+                  <option value="4">更多</option>
+              </select><br>
+              <label>特殊需求</label><br>
+              <input type="checkbox" id="peeingArea" name="specialRequest" value="便溺區域">
+              <label for="peeingArea">便溺區域</label>
+              <input type="checkbox" id="grassArea" name="specialRequest" value="草地區域">
+              <label for="grassArea">草地區域</label>
+              <input type="checkbox" id="offLeashArea" name="specialRequest" value="解牽繩奔跑區">
+              <label for="offLeashArea">解牽繩奔跑區</label><br>
+              <input type="checkbox" id="play" name="specialRequest" value="寵物遊樂設施">
+              <label for="play">寵物遊樂設施</label>
+              <input type="checkbox" id="nopeople" name="specialRequest" value="避開人群">
+              <label for="nopeople">避開人群</label>
+              <input type="checkbox" id="nodog" name="specialRequest" value="避開其他狗">
+              <label for="nodog">避開其他狗</label><br>
+              <button onclick="showConfirm()">確認送出</button>
+          </div>
+          
+          <div class="confirm" id="confirm">
+              <p>請確認您的需求！</p>
+              <p>出發地點｜<span id="confirmPlace"></span></p>
+              <p>散步時長｜<span id="confirmTime"></span></p>
+              <p>停靠點｜<span id="confirmStop"></span></p>
+              <p>特殊需求｜<span id="confirmSpecial"></span></p>
+              <button>返回修改</button>
+              <button onclick="showMap()">確認送出</button>
+          </div>
+            <div id="map"></div>
+          </div>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3x0GSfyR_X5QtfPOdvXWEKyyuwBsNweA&callback=initMap"></script>
+          <hr>
+          <div class="input">
+            <br>
+            <input type="text" id="mymsg" placeholder="輸入訊息...">
+          </div>
+        </div>
+    </div>
+
 
     <div
       class="modal fade"
@@ -209,54 +294,145 @@
       </div>
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow p-3 mb-5 bg-body rounded">
+      <div class="modal-header">
+        <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
+         <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
+        <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
+  
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
+        </button>
+        <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
+          <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
+        </button>
+      </div>
+      <div class="modal-body">
+<!-- Step 1: choose -->
+<div id="step1" class="active-step">
+  <div class="mb-3">
 
+    <label for="username" class="form-label">身分:</label>
+    <button class="btn btn-primary mt-3" onclick="selectRole('a');showStep('1.5');setstep('1.5');" >飼主</button>
+    <button class="btn btn-info mt-3" onclick="selectRole('b'); showStep('2');setstep('2');">愛好者</button>
+  </div>
+</div>
+<!-- Step 1.5: Additional Form -->
+<div id="step15">
+<div id="step1.5" class="inactive-step " style="display: none;">
+  <h3 class="form-heading">您的寵物基本資訊</h3>
+  <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
+  <div class="mb-3">
+    <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+    <select id="petGender" class="form-control">
+      <option value=""disabled selected>寵物性別</option>
+      <option value="male">公</option>
+      <option value="female">母</option>
+    </select>
+
+    <select id="petSize" class="form-control">
+      <option value=""disabled selected>寵物體型</option>
+      <option value="small">小型</option>
+      <option value="medium">中型</option>
+      <option value="large">大型</option>
+    </select>
+
+    <select id="petAge" class="form-control">
+      <option value=""disabled selected>寵物年齡</option>
+      <option value="puppy">幼年</option>
+      <option value="adult">成年</option>
+      <option value="senior">老年</option>
+    </select>
+
+    <button class="btn btn-primary mt-3" onclick="showStep('2'); setstep('2');">繼續註冊</button>
+  </div>
+</div>
+</div>
+          <!-- Step 2: location -->
+          <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+            <div class="mb-3" style="position: relative;">
+                <h1 id="title">您的所在區域為?</h1>
+                <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                <select id="region" class="form-control">
+                    <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                    <option value="台北市">台北市</option>
+                    <option value="新北市">新北市</option>
+                </select>
+                <select id="district" class="form-control">
+                    <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                    <option value="中正區">中正區</option>
+                    <option value="板橋區">板橋區</option>
+                </select>
+        
+                <p id="service-notice">開啟訂位服務</p>
+                <p id="ss">自動更新位置及時推薦附近機會</p>
+                <div class="btn-group" id="button-group">
+                  <div class="form-check">
+                      <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                      <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+                  </div>
+                  <div class="form-check">
+                      <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                      <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                  </div>
+              </div>
+              
+        
+           
+               <button class="btn btn-primary mt-3" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+           </div>
+                     </div>
+          <!-- Step 3: end -->
+          <div id="step3" class="inactive-step" style="display: none;">
+            <p>註冊完成!</p>
+            <p>使用PetPals<br>開始你的第一趟旅程</p>
+            <button type="submit" class="btn btn-primary mt-3"> <img src="../images/dog1.png" alt="Submit"></button>
+          </div>
+      </div>
+    </div> 
+  </div>
+</div></div>
 <!-- start here -->
 
 
-    <div class="mainpage">
-      <div class="mainpage_container">
-        <img class="message_icon" src="../images/message/message_icon.png">
-        <span class="message_title">配對訊息</span>
-        <hr class="line" style="background-color: black; height: 1px; border: none;">
-
-        <div class="message_list">
-          <img src="../images/message/dog1.png" class="message_pic">
-          <div class="discription_container">
-            <div class="discription name">KOGEE</div>
-            <div class="discription sent">已傳送配對邀請!</div></div>
+<div class="mainpage">
+      
+    <nav class="navbar navbar-dark fixed-bottom" style="background-color: #003466;">
+      <div class="container-fluid">
+        <div class="navbar-items1">
+          <div class="icon-container">
+            <img class="icon3" src="../images/aboutus/fb.png">
+            <img class="icon3" src="../images/aboutus/line.png">
+            <img class="icon3" src="../images/aboutus/ig.png">
+          </div>
         </div>
-        <hr class="line">
-        <div class="message_list">
-          <img src="../images/message/BAGLE.png" class="message_pic">
-          <div class="discription_container">
-            <div class="discription name">BAGLE</div>
-            <div class="discription sent">已傳送配對邀請!</div></div>
+        <div></div>
+        <div class="navbar-items2">
+          <div class="policy">
+            <a class="navbar-brand ms-3" href="./news.html">隱私政策</a>
+            <div style="color: #FFFFFF;">|</div>
+            <a class="navbar-brand ms-3" href="./news.html">使用條款</a>
+            <div style="color: #FFFFFF;">|</div>
+            <a class="navbar-brand ms-3" href="./market.html">網站地圖</a>
+          </div>
         </div>
-        <hr class="line">
-        <div class="message_list">
-          <img src="../images/message/KUMA.png" class="message_pic">
-          <div class="discription_container">
-            <div class="discription name">KUMA</div>
-            <div class="discription sent">已傳送配對邀請!</div></div>
+        <div class="petpals">
+          <a class="navbar-brand">@2024Petpals 寵物夥伴 保留所有權利</a>
         </div>
-        <hr class="line">
-        <div class="message_list">
-          <img src="../images/message/MOCCA.png" class="message_pic">
-          <div class="discription_container">
-            <div class="discription name">MOCCA</div>
-            <div class="discription sent">已傳送配對邀請!</div></div>
-        </div>
-        <hr class="line">
-        <div class="message_list">
-          <img src="../images/message/PUDDING.png" class="message_pic">
-          <div class="discription_container">
-            <div class="discription name">PUDDING</div>
-            <div class="discription sent">已傳送配對邀請!</div></div>
-        </div>
-        <hr class="line">
       </div>
-    </div>
-
+    </nav>
+</div>
 
 <!-- end here -->
     <script
@@ -264,6 +440,6 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-    <script src="./message.js"></script>
+    <script src="./homepage.js"></script>
   </body>
 </html>

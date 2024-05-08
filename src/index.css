@@ -6,9 +6,13 @@
 .nav-item{
     margin:4px
 }
+.nav-item.dropdown {
+    list-style-type: none;
+}
 
 .mainpage{
     display:grid;
     grid-template-columns:50% 50%;
     height: 100vh;
 }
+
