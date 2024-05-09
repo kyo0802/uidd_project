@@ -19,18 +19,26 @@
     <!-- JavaScript Bundle with Popper -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
       <div class="container-fluid">
-        <button
+        <div class="icon-container">
+          <button
           class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
+          data-bs-toggle="dropdown"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <li class="nav-item dropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="./friends.html">我的配對</a></li>
+                <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
+              </ul>
+            </li>
+        </div>
+        
         <div></div>
         <div class="navbar-items">
           <a class="navbar-brand ms-5  nav-link active" aria-current="page" href="./homepage.html">主頁</a>
@@ -59,136 +67,6 @@
         
       </div>
     </nav>
-
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">歡迎回來</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
-                </div>
-                <div class="col -12" align="left">
-                  Email address
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Password
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <a href="homepage.html">
-                  <button>登入</button>
-              </a>
-
-
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <span>還未加入寵物社群
-              <a href="">立即加入</a>
-            </span>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel2" align="center">建立帳戶</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
-                </div>
-
-                <div class="col -12" align="left">
-                姓名
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Email
-                  </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                  </nav>
-                <div class="col -12" align="left">
-                密碼
-               </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                   </nav>
-                
-               <button type="button" class="btn btn-primary">註冊 </button>
-
-
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <span>已有帳號了?
-              <a href="">登入</a>
-            </span>
-          </div>
-          
-        </div>
-      </div>
-    </div>
 
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -271,8 +149,8 @@
                     <option value="板橋區">板橋區</option>
                 </select>
         
-                <p id="service-notice">開啟訂位服務</p>
-                <p id="ss">自動更新位置及時推薦附近機會</p>
+                <p id="service-notice">開啟定位服務</p>
+                <p id="ss">自動更新位置即時推薦附近機會</p>
                 <div class="btn-group" id="button-group">
                   <div class="form-check">
                       <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>

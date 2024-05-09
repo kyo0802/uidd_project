@@ -119,11 +119,13 @@ var userRole = 'none';
             $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
           }
       }
+        var submitBtn = document.getElementById("submitBtn");
 
+        submitBtn.addEventListener("click", redirectToHomepage);
 
         function redirectToHomepage() {
 
-          window.location.href = "./homepage.html";
+          window.location.href = "./index.html";
         }
 
         window.onload = function() {

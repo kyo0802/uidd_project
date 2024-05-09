@@ -162,6 +162,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 25%;
+    font-family: 'GenYoGothic', sans-serif; 
+    font-weight: normal; 
 }
 
 .card_dis {
@@ -174,12 +176,16 @@
     border-radius: 5px;
     margin-left: 25%;  
     margin-right: 25%;  
+    font-family: 'GenYoGothic', sans-serif; 
+    font-weight: normal; 
 }
 
 .dynamicText{
     font-size: 28px;
     display: grid;
     place-items: center;
+    font-family: 'GenYoGothic', sans-serif; 
+    font-weight: normal; 
 }
 .card_button {
     display: flex;
