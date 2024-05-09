@@ -356,7 +356,7 @@ input[type="checkbox"] {
 #step2 .mb-3 {
   font-family: 'GenYoGothic', sans-serif;
   position: relative;
-  height: 553px;
+  height: 500px;
   width: 400px;
   left: -20px;
 }
@@ -508,9 +508,6 @@ font-size: 12px;
   top: 43px;
   left: 38px;
   width: 300px;
-  background-color: #003466;
-  border-color: #003466;
-  color: white;
   font-weight: bold;
 }
 
@@ -548,8 +545,6 @@ font-size: 12px;
   cursor: pointer; 
 }
 
-
-
 #step3 {
   font-family: 'GenYoGothic', sans-serif;
   position: relative; 
@@ -568,7 +563,6 @@ font-size: 12px;
   width: 100%; 
   height: auto;
 }
-
 
 .policy{
     font-family: 'GenYoGothic-L', sans-serif; 

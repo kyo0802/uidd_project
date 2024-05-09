@@ -61,15 +61,6 @@
     list-style-type: none;
 }
 
-.dropdown-menu {
-    background-color: #003466;
-}
-
-.dropdown-item {
-    background-color: #003466;
-    font-family: 'GenYoGothic';
-}
-
 .modal {
     display: none; 
     position: fixed; 
