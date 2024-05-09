@@ -6,6 +6,9 @@
 .nav-item{
     margin:4px
 }
+.nav-item.dropdown {
+    list-style-type: none;
+}
 
 @font-face 
 {

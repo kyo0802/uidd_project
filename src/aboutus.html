@@ -14,45 +14,33 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./aboutus.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
   </head>
   <body>
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
 
       <div class="container-fluid">
-        <button
+        <div class="icon-container">
+          <button
           class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
+          data-bs-toggle="dropdown"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <span class="nav-item">
-          <a
-            id="login-btn"
-            class="btn button btn-outline-success"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            href="#login"
-            >Login</a
           >
-        </span>
-        <span class="nav-item">
-          <a
-             id="signup-btn"
-             class="btn button btn-outline-primary"
-             data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            href="#signup"
-            >Sign up</a
-           >
-        </span>
-        </div> -->
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <li class="nav-item dropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="./friends.html">我的配對</a></li>
+                <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
+              </ul>
+          </li>
+        </div>
         
         <div></div>
         <div class="navbar-items">
@@ -68,7 +56,7 @@
           <span class="nav-item">
             <a
               id="login-btn"
-              class="btn button btn-outline-primary"
+              class="btn button"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               href="#login"
@@ -80,6 +68,7 @@
         </div>
     </nav>
 
+    <!-- login dialog begin -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -116,10 +105,10 @@
                   </div>-->
                 </div>
                 <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
-                <a href="./homepage.html/">
+                <a href="./homepage.html">
                   <button class="btn btn-yellow reg_button">登入</button>
-                  <hr>
                 </a>                
+                <hr style="margin-top: 20px;">
                 <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
                 <div class="small_word" id="supplyment">為您的寵物建立屬於自己的社交帳號!</div>
               </div>
@@ -128,7 +117,9 @@
         </div>
       </div>
     </div>
+    <!-- login dialog end -->
 
+    <!-- register dialog begin -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -200,62 +191,134 @@
           <div class="modal-body">
             <div class="container" align="center">
               <div class= "row justify-content-center">    
-                <div class="reg_title" style="font-size: 2rem;">
+                <div class="reg_title" style="font-size: 1.5rem;">
                   請問您的身分為?
                 </div>
                 <div class="login_icon_container">
                   <img class="login_icon" src="../images/login_register/feeder.png"/>
                 </div>
                 <div>
-                  <input type="checkbox" class="checkbox" name="feeders">
-                  <label for="feeders">寵物飼主</label>
+                  <label><input type="radio" name="who" class="checkbox" value="register_feeder" required="required" checked="checked">寵物飼主</label>
                 </div>
                 <div class="login_icon_container">
                   <img class="login_icon" src="../images/login_register/lover.png"/>
                 </div> 
                 <div>
-                  <input type="checkbox" class="checkbox" name="lovers">
-                  <label for="lovers">毛小孩愛好者</label></div>
+                  <label><input type="radio" name="who" class="checkbox" value="register_lover" required="required">毛小孩愛好者</label>
                 </div>
-                <br><br> <button type="button" class="btn btn-blue reg_button" onclick="redirectToHomepage()">繼續</button>
+                <br><br> 
+                <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
 
-                             </div>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!--
-      要新增註冊的對話框就複製這段code，改第一行的id=exampleModal成新的名子，
-      跟倒數幾行button裡的data-bs-target，改成下一個對話框的id
-
-      <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content shadow p-3 mb-5 bg-body rounded">
           <div class="modal-header">
-            <button type="button" class="btn back_btn" data-bs-target="#exampleModal3" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
+      
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
+            </button>
+            <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
+              <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
+            </button>
           </div>
 
           <div class="modal-body">
-            <div class="container" align="center">
-              <div class= "row justify-content-center">    
-                <div class="reg_title" style="font-size: 2rem;">
-                  您的寵物基本資訊
+    
+            <!-- Step 1.5: Additional Form -->
+            <div id="step15">
+              <div id="step1.5" class="inactive-step " style="display: none;">
+                <h3 class="form-heading">您的寵物基本資訊</h3>
+                <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
+                <div class="mb-3">
+                  <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+                  <select id="petGender" class="form-control">
+                    <option value=""disabled selected>寵物性別</option>
+                    <option value="male">公</option>
+                    <option value="female">母</option>
+                  </select>
+
+                  <select id="petSize" class="form-control">
+                    <option value=""disabled selected>寵物體型</option>
+                    <option value="small">小型</option>
+                    <option value="medium">中型</option>
+                    <option value="large">大型</option>
+                  </select>
+
+                  <select id="petAge" class="form-control">
+                    <option value=""disabled selected>寵物年齡</option>
+                    <option value="puppy">幼年</option>
+                    <option value="adult">成年</option>
+                    <option value="senior">老年</option>
+                  </select>
+
+                  <button class="btn btn-blue reg_button" onclick="showStep('2'); setstep('2');">繼續註冊</button>
                 </div>
-                
-                <br><br>
-                <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal5" data-bs-toggle="modal">繼續</button>
               </div>
             </div>
+
+            <!-- Step 2: location -->
+            <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+              <div class="mb-3" style="position: relative;">
+                  <h1 id="title">您的所在區域為?</h1>
+                  <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                  <select id="region" class="form-control">
+                      <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                      <option value="台北市">台北市</option>
+                      <option value="新北市">新北市</option>
+                  </select>
+                  <select id="district" class="form-control">
+                      <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                      <option value="中正區">中正區</option>
+                      <option value="板橋區">板橋區</option>
+                  </select>
+          
+                  <p id="service-notice">開啟訂位服務</p>
+                  <p id="ss">自動更新位置及時推薦附近機會</p>
+                  <div class="btn-group" id="button-group">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                        <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                        <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                    </div>
+                  </div>
+                  <button class="btn btn-blue reg_button" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+              </div>
+            </div>
+
+            <!-- Step 3: end -->
+            <div id="step3" class="inactive-step" style="display: none;">
+              <p>註冊完成!</p>
+              <p>使用PetPals<br>開始你的第一趟旅程</p>
+              <button type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
+            </div>
+
           </div>
-        </div>
+        </div> 
       </div>
     </div>
-    -->
-
-    
+  </div>  
+  <!-- register dialog end -->  
 
     <!-- ABOUT US and introduction start -->
     <div class="aboutus_box">
@@ -294,8 +357,9 @@
           </div>
       </div>
   </div>
+  <!-- introduction end -->
 
-    <!-- team member -->
+    <!-- team member start -->
     <div>
       <div class="member title">
         <hr class="line">
@@ -340,10 +404,7 @@
         </div>
       </div>
     </div>
-    <!-- team member -->
-    
-    <!-- ABOUT US and introduction end -->
-
+    <!-- team member end -->
     
     <!-- start here -->
 
@@ -385,6 +446,6 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-    <script src="./index.js"></script>
+    <script src="./aboutus.js"></script>
   </body>
 </html>

@@ -13,9 +13,11 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./index.css" />
+    
+    <link rel="stylesheet" href="./homepage.css" />
   </head>
   <body>
+    
     <!-- JavaScript Bundle with Popper -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
       <div class="container-fluid">
@@ -27,14 +29,24 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <li class="nav-item dropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="./friends.html">我的配對</a></li>
+                <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
+              </ul>
+          </li>
+        </div>
+
         <div></div>
         <div class="navbar-items">
-          <a class="navbar-brand ms-5  nav-link active" aria-current="page" href="./homepage.html">主頁</a>
+          <a class="navbar-brand ms-5 nav-link active" aria-current="page" href="./homepage.html">主頁</a>
           <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
-          <a href="./index.html"><img class="icon" src="../images/icon.png"  ></a>
+
+          <img class="icon" src="../images/icon.png" >
           <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
           <a class="navbar-brand ms-8" href="./aboutus.html">About Us</a>
         </div>
@@ -46,6 +58,7 @@
               <img class="icon2" src="../images/dog.png" >
             </a>
             <ul class="dropdown-menu">
+
                 <li><a class="dropdown-item" href="#">帳號設定</a></li>
                 <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -59,6 +72,97 @@
       </div>
     </nav>
     
+    <div class="chat">
+        <div class="chatbox">
+            <img id="chatsign" src="../images/chat.png" alt="chat" />
+            <h2>&nbsp;配對訊息</h2><br>
+        </div><hr>
+        <div class="chatbox" id="chatbox">
+            <img class="doggy" src="../images/doggy2.png">
+            <h6><span class="nameselected">BAGLE</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy3.png">
+            <h6><span class="name">Kuma</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy1.png">
+            <h6><span class="name">布丁</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy4.png">
+            <h6><span class="name">小虎</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div><hr>
+        <div class="chatbox">
+            <img class="doggy" src="../images/doggy5.png">
+            <h6><span class="name">摩卡</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+        </div>
+        <hr>
+        
+        <div class="msg" id="msg">
+          <div class="friend">
+            <img class="img" src="../images/doggy2.png">
+            <h6 class="name">BAGLE</h6>
+          </div>
+          <hr>
+          <div class="content">
+            <div class="success">
+                已傳送配對邀請！
+            </div>
+            <br><br><br>
+            <div class="map" id="mapreq">
+              <p>請輸入您的需求！</p>
+              <label for="place">出發地點</label>
+              <input type="text" id="place" placeholder="出發地點"><br>
+              <label for="time">散步時長</label>
+              <select id="time">
+                  <option value="30">半小時</option>
+                  <option value="60">一小時</option>
+                  <option value="120">兩小時</option>
+              </select>
+              <label for="stop">停靠點</label>
+              <select id="stop">
+                  <option value="1">一</option>
+                  <option value="2">二</option>
+                  <option value="3">三</option>
+                  <option value="4">更多</option>
+              </select><br>
+              <label>特殊需求</label><br>
+              <input type="checkbox" id="peeingArea" name="specialRequest" value="便溺區域">
+              <label for="peeingArea">便溺區域</label>
+              <input type="checkbox" id="grassArea" name="specialRequest" value="草地區域">
+              <label for="grassArea">草地區域</label>
+              <input type="checkbox" id="offLeashArea" name="specialRequest" value="解牽繩奔跑區">
+              <label for="offLeashArea">解牽繩奔跑區</label><br>
+              <input type="checkbox" id="play" name="specialRequest" value="寵物遊樂設施">
+              <label for="play">寵物遊樂設施</label>
+              <input type="checkbox" id="nopeople" name="specialRequest" value="避開人群">
+              <label for="nopeople">避開人群</label>
+              <input type="checkbox" id="nodog" name="specialRequest" value="避開其他狗">
+              <label for="nodog">避開其他狗</label><br>
+              <button onclick="showConfirm()">確認送出</button>
+          </div>
+          
+          <div class="confirm" id="confirm">
+              <p>請確認您的需求！</p>
+              <p>出發地點｜<span id="confirmPlace"></span></p>
+              <p>散步時長｜<span id="confirmTime"></span></p>
+              <p>停靠點｜<span id="confirmStop"></span></p>
+              <p>特殊需求｜<span id="confirmSpecial"></span></p>
+              <button>返回修改</button>
+              <button onclick="showMap()">確認送出</button>
+          </div>
+            <div id="map"></div>
+          </div>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3x0GSfyR_X5QtfPOdvXWEKyyuwBsNweA&callback=initMap"></script>
+          <hr>
+          <div class="input">
+            <br>
+            <input type="text" id="mymsg" placeholder="輸入訊息...">
+          </div>
+        </div>
+    </div>
+
 
     <div
       class="modal fade"
@@ -302,86 +406,33 @@
 <!-- start here -->
 
 
-    <div class="mainpage">
-        <div class="card_container_0">
-          <img src="../images/index/bg.png" class="overlay_image">
-          <div class="card_bg">
-            <div class="card_dog_1"></div>
-            <div class="dynamicText">布丁</div>
-            <div class="card_data">       
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              體型
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
-              年齡         
-              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              散步時長        
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
-            </div>
-            <div class="card_dis">距離您約0.8km</div>
-            <div class="card_button">
-                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
-                <img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;">
-                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
-            </div>
+<div class="mainpage">
+      
+    <nav class="navbar navbar-dark fixed-bottom" style="background-color: #003466;">
+      <div class="container-fluid">
+        <div class="navbar-items1">
+          <div class="icon-container">
+            <img class="icon3" src="../images/aboutus/fb.png">
+            <img class="icon3" src="../images/aboutus/line.png">
+            <img class="icon3" src="../images/aboutus/ig.png">
           </div>
         </div>
-        <div class="prev_button" style="display: flex; align-items: center;">
-          <img src="../images/index/left.png"style="width: 50px; height: 50px;">
-        </div>
-        <div class="card_container_1">
-          <div class="card_bg">
-            <div class="card_dog_2"></div>
-            <div class="dynamicText">KUMA</div>
-            <div class="card_data">       
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              體型
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
-              年齡         
-              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              散步時長        
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
-            </div>
-            <div class="card_dis">距離您約1.2km</div>
-            <div class="card_button">
-                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
-                <img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;">
-                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
-            </div>
+        <div></div>
+        <div class="navbar-items2">
+          <div class="policy">
+            <a class="navbar-brand ms-3" href="./news.html">隱私政策</a>
+            <div style="color: #FFFFFF;">|</div>
+            <a class="navbar-brand ms-3" href="./news.html">使用條款</a>
+            <div style="color: #FFFFFF;">|</div>
+            <a class="navbar-brand ms-3" href="./market.html">網站地圖</a>
           </div>
         </div>
-        <div class="next_button" style="display: flex; align-items: center;">
-          <img src="../images/index/right.png"style="width: 50px; height: 50px;">  
+        <div class="petpals">
+          <a class="navbar-brand">@2024Petpals 寵物夥伴 保留所有權利</a>
         </div>
-        <div class="card_container_2">
-          <img src="../images/index/bg.png" class="overlay_image">
-          <div class="card_bg">
-            <div class="card_dog_3"></div>
-            <div class="dynamicText">BAGLE</div>
-            <div class="card_data">       
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              體型
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
-              年齡         
-              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
-              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
-              散步時長        
-              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
-            </div>
-            <div class="card_dis">距離您約1.5km</div>
-            <div class="card_button">
-                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
-                <img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;">
-                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
-            </div>
-          </div>
-        </div>
-    </div>
-
+      </div>
+    </nav>
+</div>
 
 <!-- end here -->
     <script
@@ -389,6 +440,6 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-    <script src="./index.js"></script>
+    <script src="./homepage.js"></script>
   </body>
 </html>
