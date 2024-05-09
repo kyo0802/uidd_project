@@ -89,6 +89,16 @@
     list-style-type: none;
 }
 
+.card_container_0 {
+    margin: 0;
+    padding: 0;
+    display:grid;
+    background-image: url('../images/card/mt/base.png');
+    background-size: contain; 
+    background-repeat: no-repeat;   
+    background-position: center;
+    position: relative;
+}
 .card_container_1 {
     margin: 0;
     padding: 0;
@@ -100,16 +110,6 @@
     position: relative;
 }
 .card_container_2 {
-    margin: 0;
-    padding: 0;
-    display:grid;
-    background-image: url('../images/card/mt/base.png');
-    background-size: contain; 
-    background-repeat: no-repeat;   
-    background-position: center;
-    position: relative;
-}
-.card_container_3 {
     margin: 0;
     padding: 0;
     display:grid;
