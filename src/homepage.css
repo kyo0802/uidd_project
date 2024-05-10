@@ -13,9 +13,6 @@
     src: url('../font/ttc/GenYoGothic-M.ttc') format('truetype');
 }
 
-.navbar {
-    height: 65px; 
-  }
 
 .navbar-brand,.nav-link {
     font-family: 'GenYoGothic', sans-serif; 
@@ -67,6 +64,15 @@
 
 .nav-item.dropdown {
     list-style-type: none;
+}
+
+.dropdown-menu {
+    background-color: #003466;
+}
+
+.dropdown-item {
+    background-color: #003466;
+    font-family: 'GenYoGothic';
 }
 
 .modal {
