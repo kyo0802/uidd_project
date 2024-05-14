@@ -15,12 +15,10 @@
     />
     <link rel="stylesheet" href="./aboutus.css" />
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
   </head>
   <body>
+    <!-- navbar begin -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
-
       <div class="container-fluid">
         <div class="icon-container">
           <button
@@ -51,22 +49,31 @@
           <a class="navbar-brand ms-8 nav-link active" aria-current="page" href="./aboutus.html">About Us</a>
         </div>
         <div class="icon-container">
-          <img class="icon2" src="../images/notification.png" >
-          <img class="icon2" src="../images/like.png" >
-          <span class="nav-item">
-            <a
-              id="login-btn"
-              class="btn button"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              href="#login"
-              >
-              <img class="icon2" src="../images/profile.png">
-              </a>
-          </span>
-            
+          <a href="#">
+            <img class="icon2" src="../images/notification.png" >
+          </a>
+          <a href="#">
+            <img class="icon2" src="../images/like.png" >
+          </a>
+          <a href="#" id="profile" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            <img class="icon2" src="../images/profile.png">
+          </a> 
+          <li id="profile_box" class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="icon2" src="../images/dog.png" >
+            </a>
+            <ul class="dropdown-menu dropdown-menu-start dropdown-menu-lg-start">
+              <li><a class="dropdown-item" href="#">帳號設定</a></li>
+              <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logout">登出</a></li>
+            </ul>
+          </li>
         </div>
+      </div>
     </nav>
+    <!-- navbar end -->
 
     <!-- login dialog begin -->
     <div
@@ -94,19 +101,22 @@
             <div class="login_title">歡迎使用PetPals!</div>
             <div class="container" align="center">
               <div class="row justify-content-center">    
-                <input type="account" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
+                <input type="text" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
                 <div id="password_block">
                   <div class="input_box">
                     <input type="password" class="form-control" id="password" placeholder="密碼">
+                    <i id="checkeye">
+                      <a href="#">
+                        <img class="eye_icon eye_close" src="../images/login_register/invisible.png"/>
+                        <img class="eye_icon eye_open" src="../images/login_register/visible.png"/>
+                      </a>
+                    </i>
                   </div>
-                  <!--
-                  <div class="eye_icon">
-                    <img class="invisible_btn" src="../images/login_register/invisible.png"/>
-                  </div>-->
                 </div>
+                <div id="wrong_account" class="small_word"></div>
                 <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
-                <a href="./homepage.html">
-                  <button class="btn btn-yellow reg_button">登入</button>
+                <a href="#">
+                  <button class="btn btn-yellow reg_button" id="login_btn">登入</button>
                 </a>                
                 <hr style="margin-top: 20px;">
                 <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
@@ -316,9 +326,8 @@
           </div>
         </div> 
       </div>
-    </div>
-  </div>  
-  <!-- register dialog end -->  
+    </div>    
+    <!-- register dialog end -->  
 
     <!-- ABOUT US and introduction start -->
     <div class="aboutus_box">
@@ -326,7 +335,7 @@
         ABOUT US
       </div>
     </div>
-    <img src="../images/aboutus/dogs1.png" class="dogs_pic"/>
+    
     
     <div class="main">
       <div class="welcome title">
@@ -446,6 +455,7 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./aboutus.js"></script>
   </body>
 </html>
