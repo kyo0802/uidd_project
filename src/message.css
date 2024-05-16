@@ -70,38 +70,189 @@
     font-family: 'GenYoGothic';
 }
 
-.modal {
-    display: none; 
-    position: fixed; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.3); 
-    backdrop-filter: blur(10px); 
-    z-index: 10;
-}
-
-
-.modal-backdrop {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 9;
-}
-
-
-.modal-content {
-    position: relative;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-
-    width: 400px; 
-    height: 553px; 
-    z-index: 11;
-}
+#profile_box {
+    display: none;
+  }
+  
+  .btn-outline-primary {
+    border-color: #003466;
+  }
+  .btn-outline-primary:hover {
+    background-color: #003466;
+    border-color: #003466;
+  }
+  
+  .modal-body {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  
+  .login_icon_container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login_icon {
+    object-fit: contain;
+    height: 100px;
+  }
+  
+  .login_title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+  }
+  
+  #checkeye {
+    position: absolute;
+    top: 258px;
+    right: 90px;
+  }
+  
+  .eye_icon {
+    object-fit: contain;
+    width: 1rem;
+  }
+  
+  .eye_open {
+    display: none;
+  }
+  
+  .eye_close {
+    right: 80px;
+  }
+  
+  #wrong_account {
+    text-align: right;
+    margin-top: 0px;
+    color: rgb(201, 4, 4);
+  }
+  
+  .form-control {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .form-control::placeholder {
+    opacity: 50%;
+    font-family: 'GenYoGothic-L';
+  }
+  
+  #password_block {
+    padding: 0;
+    display: block;
+  }
+  
+  #forget_password {
+    text-align: left;
+    color: #003466;
+  }
+  
+  .reg_button {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'GenYoGothic';
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .btn-yellow {
+    background-color: #FFC533;
+    :hover {
+      color:#FFC533;
+    }
+  }
+  
+  .btn-blue {
+    background-color: #003466;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    :hover {
+      color: #003466;
+    }
+  }
+  
+  .small_word {
+    font-size: 0.9rem;
+    font-family: 'GenYoGothic-L';
+    font-weight: 300;
+    color: #003466;
+    text-align: left;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+  
+  #supplyment {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .back_btn img{
+    height: 20px;
+    z-index: 100;
+    :hover {
+      border: none;
+    }
+  }
+  
+  .reg_icon {
+    object-fit: contain;
+    height: 80px;
+  }
+  
+  .reg_title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 2.8rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+  }
+  
+  .reg_content {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+    font-weight: lighter;
+  }
+  
+  .width_half {
+    width: 50%;
+  }
+  
+  .checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'GenYoGothic-L';
+  }
+  
+  input[type="checkbox"] {
+    border-radius: 50%;
+  }
 
 .inactive-step {
     display: none;

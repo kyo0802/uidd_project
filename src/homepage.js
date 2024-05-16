@@ -113,36 +113,108 @@ function showStep(stepNumber) {
     } else {
         console.error('Step not found: step' + stepNumber);
     }
+    if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        }
+        else {
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    const selects = document.querySelectorAll('.form-control');
-  
-    selects.forEach(select => {
-      styleSelectOption(select);
-      select.addEventListener('change', function () {
-        styleSelectOption(select);
-      });
-    });
-  
-    function styleSelectOption(select) {
-      const selectedOption = select.options[select.selectedIndex];
-      const defaultText = '縣市' || '鄉、鎮、市、區'; // 根据需要调整默认文字
-  
-      // 如果当前选中的是"disabled"选项，则应用特殊样式
-      if (selectedOption.disabled) {
-        select.style.color = '#ADADAD'; // 灰色
-      } else {
-        select.style.color = 'black'; // 或其他颜色
-      }
+
+var submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("click", redirectToHomepage);
+
+function redirectToHomepage() {
+
+    window.location.href = "./index.html";
+}
+
+window.onload = function() {
+    var hash = window.location.hash;
+
+    if (hash.includes("loginModal")) {
+    var loginModal = document.getElementById("loginModal");
+    var bsModal = new bootstrap.Modal(loginModal);
+    bsModal.show();
     }
-  });
-    
-var chatbox = document.getElementById("chatbox");
+};
 
+var who;
+$("input[name=who]").click( function(){
+    if($("input[name=who]:checked")) {
+        $("input[name=who]:checked").each(function() {
+        who = $(this).val();
+        //var next = "#"+who;
+        //$("button[name=who]").attr("data-bs-target", next);
+        })
+    }
+})
 
-chatbox.addEventListener("click", function() {
-    
+$("button[name='who']").click(function() {
+    if(who == "register_lover"){
+        selectRole('b');showStep('2');setstep('2')
+    }
+    else{
+        selectRole('a');showStep('1.5');setstep('1.5')
+        
+    }
+})
+
+// eye icon of password invisible or not
+$(".eye_close").click(function() {
+    $(".eye_close").css("display", "none");
+    $(".eye_open").css("display", "inline");
+    $("#password").attr("type", "text");
 });
+
+$(".eye_open").click(function() {
+    $(".eye_close").css("display", "inline");
+    $(".eye_open").css("display", "none");
+    $("#password").attr("type", "password");
+});
+
+// save account in local storage in login session
+var account = "", user = "";
+user = localStorage.getItem("account")
+$(document).ready(function() {
+    if(user === null) {
+        $("#profile_box").css("display", "none")
+        $("#profile").css("display", "inline")
+        $("#login_btn").click(function() {
+            account = $("#email").val();
+            localStorage.setItem("account", account);  
+            $("#login_btn").css("background-color", "#FFC533")  
+            $("#login_btn").css("color", "white")
+            /*
+            if(account == "database user data") {
+                is_login = true;
+                user = localStorage.getItem("account")
+            }
+            else {
+                $("#wrong_account").html("帳號不存在或密碼錯誤")
+                $("#email").css("border-color", "red")
+                $("#password").css("border-color", "red")
+            }
+            */
+            user = localStorage.getItem("account")
+            location.reload()
+        });
+    }
+    else {
+        $("#profile").css("display", "none")
+        $("#profile_box").css("display", "inline")
+        $("#logout").click(function() {
+            // logout and clear local storage
+            localStorage.clear()
+            location.reload()
+            $("#profile_box").css("display", "none")
+            $("#profile").css("display", "inline")
+        })
+    }
+})
+// login session end
 
 function initMap() {
     var mapOptions = {
