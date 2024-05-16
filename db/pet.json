@@ -1,0 +1,7 @@
+{
+    "pets": [
+        {"pet": "KUMA", "gender": "M", "size":"S", "age":5 },
+        {"pet": "PUTTIN", "gender": "F", "size":"M", "age":8 },
+        {"pet": "BAGLE", "gender": "M", "size":"L", "age":7 }
+    ]
+}

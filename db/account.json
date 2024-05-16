@@ -1,0 +1,9 @@
+{
+    "accounts": [
+        {"email": "a@gmail.com", "password": "aaaaaaaa", "f_name":"A", "l_name":"a", "identity":"O", "pet":"KUMA", "county": "新北市", "dist": "林口區", "gps":1},
+        {"email": "b@gmail.com", "password": "bbbbbbbb", "f_name":"B", "l_name":"b", "identity":"P", "pet":"NULL", "county": "新北市", "dist": "三重區", "gps":0},
+        {"email": "c@gmail.com", "password": "cccccccc", "f_name":"C", "l_name":"c", "identity":"O", "pet":"BAGLE", "county": "新北市", "dist": "林口區", "gps":1},
+        {"email": "abc@gmail.com", "password": "abcabcabc", "f_name":"ABC", "l_name":"abc", "identity":"O", "pet":"布丁", "county": "新北市", "dist": "林口區", "gps":1},
+        {"email": "ABC@gmail.com", "password": "ABCabcabc", "f_name":"abc", "l_name":"ABC", "identity":"O", "pet":"BAGLE", "county": "新北市", "dist": "板橋區", "gps":0}
+    ]
+}
