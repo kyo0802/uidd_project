@@ -756,3 +756,30 @@ font-size: 12px;
     letter-spacing: 0.5vw;
     }
 
+    #overlay {
+      position: fixed; /* 固定位置，确保覆盖整个视图区域 */
+      top: 70px; /* 导航栏高度下方开始 */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white; /* 半透明背景 */
+      z-index: 100; /* 确保在页面内容上方 */
+      overflow-y: auto; /* 允许在Y轴上滚动 */
+      display: none; /* 默认不显示 */
+      color: black; /* 文字颜色 */
+      padding: 20px; /* 内部间距 */
+  }
+  .content-block {
+    height: 150px;
+    width: 100%;
+    background-color: #fff; /* 白色背景 */
+    color: black; /* 文字顏色 */
+    border-bottom: 3px solid #ccc; /* 灰色分隔線 */
+    box-sizing: border-box; /* 包含邊框在內的寬度 */
+}
+
+
+.content-block:last-child {
+    border-bottom: none;
+}
+

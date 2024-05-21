@@ -159,3 +159,14 @@ function showStep(stepNumber) {
     }
     })
 
+    document.querySelector('.navbar-toggler').addEventListener('click', function() {
+        var overlay = document.getElementById('overlay');
+        if (overlay.style.display === 'none' || overlay.style.display === '') {
+            overlay.style.display = 'block'; // 显示遮盖层
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        } else {
+            overlay.style.display = 'none'; // 隐藏遮盖层
+            document.body.style.overflow = ''; // 恢复背景滚动
+        }
+    });
+    
