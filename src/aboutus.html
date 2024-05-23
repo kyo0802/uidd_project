@@ -289,16 +289,12 @@
               <div class="mb-3" style="position: relative;">
                   <h1 id="title">您的所在區域為?</h1>
                   <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
-                  <select id="region" class="form-control">
-                      <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
-                      <option value="台北市">台北市</option>
-                      <option value="新北市">新北市</option>
-                  </select>
-                  <select id="district" class="form-control">
-                      <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
-                      <option value="中正區">中正區</option>
-                      <option value="板橋區">板橋區</option>
-                  </select>
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="縣市" aria-label="Search">
+                  </form>
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="鄉、鎮、市、區" aria-label="Search">
+                  </form>
           
                   <p id="service-notice">開啟定位服務</p>
                   <p id="ss">自動更新位置即時推薦附近機會</p>
