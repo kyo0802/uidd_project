@@ -584,6 +584,234 @@ font-size: 12px;
     height: auto;
 }
 
+#overlay {
+    position: fixed; 
+    top: 56px; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1050; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; 
+    font-size: 24px; 
+}
+.interactive-history {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: 400px;
+}
+
+.content-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-in {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-out {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.background-layer {
+    position: absolute;
+    top: 20px;
+    left: 110px;
+    width: 320px;
+    height: 450px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    z-index: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.bg-slide-in {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.bg-slide-out {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.tab-buttons {
+    position: absolute;
+    top: 20px;
+    left: -40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-button {
+    background: #D1D1D1;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 40px;
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    height: auto;
+    font-weight: bold;
+}
+
+.tab-button.active {
+    background: #FFC433;
+    color: white;
+    z-index: 2;
+}
+
+.tab-content {
+    flex: 1;
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 20px;
+    box-sizing: content-box;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.dog-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.dog-info {
+    font-size: 12px;
+    color: #999898;
+    line-height: 1;
+}
+
+#dog-name-input {
+    width: 100px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffcc00;
+    background: none;
+    outline: none;
+}
+
+.dog-name {
+    display: flex;
+    align-items: center;
+}
+
+.dog-name h3 {
+    margin-right: 10px;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.edit-icon {
+    width: 16px;
+    height: 16px;
+    filter: grayscale(100%);
+}
+
+.edit-button:hover .edit-icon {
+    filter: none;
+}
+
+.dog-info h3 {
+    font-size: 20px;
+    color: #ffcc00;
+    margin-bottom: 8px;
+    font-weight: 900;
+}
+
+.average-info {
+    font-size: 14px;
+    color: #003466;
+}
+
+.highlight {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffcc00;
+}
+
+.chart {
+    width: 100%;
+    height: 50px;
+    background-color: #eee;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 12px;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin-left: 5px;
+    color: black;
+    font-size: 16px;
+}
+
 .chatbox {
     font-family: 'GenYoGothic', sans-serif;
     padding-left: 5rem;
