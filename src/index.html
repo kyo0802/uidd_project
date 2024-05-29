@@ -13,213 +13,402 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./homepage.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <!-- JavaScript Bundle with Popper -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
       <div class="container-fluid">
-        <button
+        <div class="icon-container">
+          <button
           class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
+          data-bs-toggle="dropdown"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <span class="nav-item">
-          <a
-            id="login-btn"
-            class="btn button btn-outline-success"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            href="#login"
-            >Login</a
           >
-        </span>
-        <span class="nav-item">
-          <a
-             id="signup-btn"
-             class="btn button btn-outline-primary"
-             data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            href="#signup"
-            >Sign up</a
-           >
-        </span>
-        </div> -->
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <li class="nav-item dropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="./friends.html">我的配對</a></li>
+                <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
+              </ul>
+            </li>
+        </div>
         
         <div></div>
         <div class="navbar-items">
-          <a class="navbar-brand ms-5" href="./homepage.html">主頁</a>
+          <a class="navbar-brand ms-5  nav-link active" aria-current="page" href="./homepage.html">主頁</a>
           <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
-          <img class="icon" src="../images/icon.png" >
+          <a href="./index.html"><img class="icon" src="../images/icon.png"  ></a>
           <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
-          <a class="navbar-brand ms-8 nav-link active" aria-current="page" href="./aboutus.html">About Us</a>
+          <a class="navbar-brand ms-8" href="./aboutus.html">About Us</a>
         </div>
         <div class="icon-container">
-          <img class="icon2" src="../images/notification.png" >
-          <img class="icon2" src="../images/like.png" >
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#">
+            <img class="icon2" src="../images/notification.png" >
+          </a>
+          <a href="#">
+            <img class="icon2" src="../images/like.png" >
+          </a>
+          <a href="#" id="profile" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            <img class="icon2" src="../images/profile.png">
+          </a> 
+          <li id="profile_box" class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img class="icon2" src="../images/dog.png" >
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-start dropdown-menu-lg-start">
               <li><a class="dropdown-item" href="#">帳號設定</a></li>
               <li><a class="dropdown-item" href="#">個人頁面設定</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">登出</a></li>
+              <li><a class="dropdown-item" href="#" id="logout">登出</a></li>
             </ul>
           </li>
-        </div>
-        
+        </div>        
       </div>
     </nav>
 
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">歡迎回來</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
+<!-- login dialog begin -->
+<div
+class="modal fade"
+id="exampleModal"
+tabindex="-1"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content"> 
+    <div class="modal-header">              
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
 
-          <div class="modal-body">
-            <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
-                </div>
-                <div class="col -12" align="left">
-                  Email address
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Password
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <a href="homepage.html">
-                  <button>登入</button>
-              </a>
-
-
-              </div>
+    <div class="modal-body">
+      <div class="login_icon_container">
+        <img class="login_icon" src="../images/login_register/icon1.png"/>
+      </div>            
+      <div class="login_title">歡迎使用PetPals!</div>
+      <div class="container" align="center">
+        <div class="row justify-content-center">    
+          <input type="text" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
+          <div id="password_block">
+            <div class="input_box">
+              <input type="password" class="form-control" id="password" placeholder="密碼">
+              <i id="checkeye">
+                <a href="#">
+                  <img class="eye_icon eye_close" src="../images/login_register/invisible.png"/>
+                  <img class="eye_icon eye_open" src="../images/login_register/visible.png"/>
+                </a>
+              </i>
             </div>
           </div>
-
-          <div class="modal-footer">
-            <span>還未加入寵物社群
-              <a href="">立即加入</a>
-            </span>
-          </div>
-
+          <div id="wrong_account" class="small_word"></div>
+          <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
+          <a href="#">
+            <button class="btn btn-yellow reg_button" id="login_btn">登入</button>
+          </a>                
+          <hr style="margin-top: 20px;">
+          <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
+          <div class="small_word" id="supplyment">為您的寵物建立屬於自己的社交帳號!</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
+<!-- login dialog end -->
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel2" align="center">建立帳戶</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- register dialog begin -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="btn back_btn" data-bs-target="#exampleModal" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="login_icon_container">
+        <img class="reg_icon" src="../images/login_register/icon1.png"/>
+      </div>
+      <div class="container" align="center">
+        <div class= "row justify-content-center">    
+          <div class="reg_title">
+            註冊
           </div>
-          <div class="modal-body">
-            <div class="container" align="center">
-              <div class="row align-items-center" ; class= "row justify-content-center">    
-                <div>
-                  <img class="col -4" ; src="../images/logo_dcard.png" />
-                  <img class="col -4" ; src="../images/logo_facebook.png" />
-                  <img class="col -4" ; src="../images/logo_google.png" />
-                </div>
-
-                <div class="col -12" align="left">
-                姓名
-                </div>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                    </form>
-                  </div>
-                </nav>
-                <div class="col -12" align="left">
-                  Email
-                  </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                  </nav>
-                <div class="col -12" align="left">
-                密碼
-               </div>
-                  <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                      </form>
-                    </div>
-                   </nav>
-                
-               <button type="button" class="btn btn-primary">註冊 </button>
-
-
-              </div>
-            </div>
+          <div class="reg_content">
+            Petpals為您的寵物制定最完美的散步規畫，
+            <br>
+            並找到最適合牠的寵物玩伴。
+          </div>
+          
+          <div class="container-fluid" style="display: flex;">
+            <form class="d-flex width_half" role="search">
+              <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search">
+            </form>
+            <form class="d-flex width_half" role="search">
+              <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search">
+            </form>
+          </div>
+        
+          <div class="container-fluid">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search">
+            </form>
+            
+          </div>
+      
+          <div class="container-fluid">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search">
+            </form>
           </div>
 
-          <div class="modal-footer">
-            <span>已有帳號了?
-              <a href="">登入</a>
-            </span>
+          <div class="container-fluid">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
+            </form>
           </div>
+          
+         <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
           
         </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
 
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="btn back_btn" data-bs-target="#exampleModal2" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="container" align="center">
+        <div class= "row justify-content-center">    
+          <div class="reg_title" style="font-size: 1.5rem;">
+            請問您的身分為?
+          </div>
+          <div class="login_icon_container">
+            <img class="login_icon" src="../images/login_register/feeder.png"/>
+          </div>
+          <div>
+            <label><input type="radio" name="who" class="checkbox" value="register_feeder" required="required" checked="checked">寵物飼主</label>
+          </div>
+          <div class="login_icon_container">
+            <img class="login_icon" src="../images/login_register/lover.png"/>
+          </div> 
+          <div>
+            <label><input type="radio" name="who" class="checkbox" value="register_lover" required="required">毛小孩愛好者</label>
+          </div>
+          <br><br> 
+          <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content shadow p-3 mb-5 bg-body rounded">
+    <div class="modal-header">
+      <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
+      <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
+
+      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
+      </button>
+      <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
+        <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Step 1.5: Additional Form -->
+      <div id="step15">
+        <div id="step1.5" class="inactive-step " style="display: none;">
+          <h3 class="form-heading">您的寵物基本資訊</h3>
+          <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
+          <div class="mb-3">
+            <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+            <select id="petGender" class="form-control">
+              <option value=""disabled selected>寵物性別</option>
+              <option value="male">公</option>
+              <option value="female">母</option>
+            </select>
+
+            <select id="petSize" class="form-control">
+              <option value=""disabled selected>寵物體型</option>
+              <option value="small">小型</option>
+              <option value="medium">中型</option>
+              <option value="large">大型</option>
+            </select>
+
+            <select id="petAge" class="form-control">
+              <option value=""disabled selected>寵物年齡</option>
+              <option value="puppy">幼年</option>
+              <option value="adult">成年</option>
+              <option value="senior">老年</option>
+            </select>
+
+            <button class="btn btn-blue reg_button" onclick="showStep('2'); setstep('2');">繼續註冊</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: location -->
+      <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+        <div class="mb-3" style="position: relative;">
+            <h1 id="title">您的所在區域為?</h1>
+            <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+            <select id="region" class="form-control">
+                <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                <option value="台北市">台北市</option>
+                <option value="新北市">新北市</option>
+            </select>
+            <select id="district" class="form-control">
+                <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                <option value="中正區">中正區</option>
+                <option value="板橋區">板橋區</option>
+            </select>
+    
+            <p id="service-notice">開啟定位服務</p>
+            <p id="ss">自動更新位置即時推薦附近機會</p>
+            <div class="btn-group" id="button-group">
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                  <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+              </div>
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                  <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+              </div>
+            </div>
+            <button class="btn btn-blue reg_button" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+        </div>
+      </div>
+
+      <!-- Step 3: end -->
+      <div id="step3" class="inactive-step" style="display: none;">
+        <p>註冊完成!</p>
+        <p>使用PetPals<br>開始你的第一趟旅程</p>
+        <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
+      </div>
+
+    </div>
+  </div> 
+</div>
+</div>
+</div>  
+<!-- register dialog end -->  
 
 <!-- start here -->
 
 
     <div class="mainpage">
-      <div align="center"  style="width:100%;height:100%;margin-top:30%;">
-      </div>
-   
-    
+        <div class="card_container_0">
+          <img src="../images/index/bg.png" class="overlay_image">
+          <div class="card_bg">
+            <div class="card_dog_1"></div>
+            <div class="dynamicText">BAGLE</div>
+            <div class="card_data">       
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              體型
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
+              年齡         
+              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              散步時長        
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
+            </div>
+            <div class="card_dis">距離您約0.8km</div>
+            <div class="card_button">
+                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
+                <a href="./message.html"><img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;" ></a>
+                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
+            </div>
+          </div>
+        </div>
+        <div class="prev_button" style="display: flex; align-items: center;">
+          <img src="../images/index/left.png"style="width: 50px; height: 50px;">
+        </div>
+        <div class="card_container_1">
+          <div class="card_bg">
+            <div class="card_dog_2"></div>
+            <div class="dynamicText">KUMA</div>
+            <div class="card_data">       
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              體型
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
+              年齡         
+              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              散步時長        
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
+            </div>
+            <div class="card_dis">距離您約1.2km</div>
+            <div class="card_button">
+                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
+                <img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;">
+                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
+            </div>
+          </div>
+        </div>
+        <div class="next_button" style="display: flex; align-items: center;">
+          <img src="../images/index/right.png"style="width: 50px; height: 50px;">  
+        </div>
+        <div class="card_container_2">
+          <img src="../images/index/bg.png" class="overlay_image">
+          <div class="card_bg">
+            <div class="card_dog_3"></div>
+            <div class="dynamicText">布丁</div>
+            <div class="card_data">       
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              體型
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;">   
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">
+              年齡         
+              <img src="../images/card/mt/mark.png"style="width: 10px; height: 10px;"> 
+              <img src="../images/card/mt/circle.png"style="width: 4px; height: 4px;">   
+              散步時長        
+              <img src="../images/card/mt/yes.png"style="width: 10px; height: 10px;"> 
+            </div>
+            <div class="card_dis">距離您約1.5km</div>
+            <div class="card_button">
+                <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 70px; height: 70px;">
+                <img src="../images/card/mt/match.png" class="button_card" alt="Button 2" style="width: 100px; height: auto;">
+                <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 70px; height: 70px;">
+            </div>
+          </div>
+        </div>
     </div>
 
 
@@ -229,6 +418,7 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-    <script src="./homepage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>

@@ -23,9 +23,16 @@
 .mainpage{
     display:grid;
     grid-template-columns:50% 50%;
-    height: 100vh;
+    height: 30vh;
 }
 
+.policy{
+    font-family: 'GenYoGothic-L', sans-serif; 
+    font-size: 10px;     
+    font-weight: lighter; 
+    display: flex; 
+    align-items: center;
+}
 
 
 .navbar-dark .navbar-toggler-icon {
@@ -49,7 +56,7 @@
     align-items: center;
   }
   
-.icon2 {
+  .icon2, .icon3 {
     height: 2rem; 
     width: auto;
     margin-right: 2vw;
@@ -59,40 +66,190 @@
     list-style-type: none;
 }
 
-
-.modal {
-    display: none; 
-    position: fixed; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.3); 
-    backdrop-filter: blur(10px); 
-    z-index: 10;
-}
-
-
-.modal-backdrop {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 9;
-}
-
-
-.modal-content {
-    position: relative;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-
-    width: 400px; 
-    height: 553px; 
-    z-index: 11;
-}
-
+#profile_box {
+    display: none;
+  }
+  
+  .btn-outline-primary {
+    border-color: #003466;
+  }
+  .btn-outline-primary:hover {
+    background-color: #003466;
+    border-color: #003466;
+  }
+  
+  .modal-body {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  
+  .login_icon_container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login_icon {
+    object-fit: contain;
+    height: 100px;
+  }
+  
+  .login_title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+  }
+  
+  #checkeye {
+    position: absolute;
+    top: 258px;
+    right: 90px;
+  }
+  
+  .eye_icon {
+    object-fit: contain;
+    width: 1rem;
+  }
+  
+  .eye_open {
+    display: none;
+  }
+  
+  .eye_close {
+    right: 80px;
+  }
+  
+  #wrong_account {
+    text-align: right;
+    margin-top: 0px;
+    color: rgb(201, 4, 4);
+  }
+  
+  .form-control {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .form-control::placeholder {
+    opacity: 50%;
+    font-family: 'GenYoGothic-L';
+  }
+  
+  #password_block {
+    padding: 0;
+    display: block;
+  }
+  
+  #forget_password {
+    text-align: left;
+    color: #003466;
+  }
+  
+  .reg_button {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'GenYoGothic';
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .btn-yellow {
+    background-color: #FFC533;
+    :hover {
+      color:#FFC533;
+    }
+  }
+  
+  .btn-blue {
+    background-color: #003466;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    :hover {
+      color: #003466;
+    }
+  }
+  
+  .small_word {
+    font-size: 0.9rem;
+    font-family: 'GenYoGothic-L';
+    font-weight: 300;
+    color: #003466;
+    text-align: left;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+  
+  #supplyment {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .back_btn img{
+    height: 20px;
+    z-index: 100;
+    :hover {
+      border: none;
+    }
+  }
+  
+  .reg_icon {
+    object-fit: contain;
+    height: 80px;
+  }
+  
+  .reg_title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 2.8rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+  }
+  
+  .reg_content {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-family: 'GenYoGothic';
+    color: #003466;
+    letter-spacing: 2px;
+    font-weight: lighter;
+  }
+  
+  .width_half {
+    width: 50%;
+  }
+  
+  .checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'GenYoGothic-L';
+  }
+  
+  input[type="checkbox"] {
+    border-radius: 50%;
+  }
+  
 .inactive-step {
     display: none;
   }
@@ -101,45 +258,45 @@
     display: block;
   }
 
-    .modal-header,
-    .modal-footer {
-        border: none; 
-    }
-    .modal-header {
-        position: relative; 
-    }
-    .close {
-        background-size: cover; 
-        background-color: transparent; 
-        width: 20px; 
-        height: 20px; 
-        border: none; 
-        outline: none; 
-        overflow: hidden; 
-        position: absolute;
-        right: 18px;
-        top: 18px;    
-        padding: 0;   
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-    }
-    .signback {
-        background-size: cover; 
-        background-color: transparent; 
-        width: 20px; 
-        height: 20px; 
-        border: none; 
-        outline: none; 
-        overflow: hidden; 
-        position: absolute;
-        left: 18px;
-        top: 18px;    
-        padding: 0;   
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-    }
+.modal-header,
+.modal-footer {
+    border: none; 
+}
+.modal-header {
+    position: relative; 
+}
+.close {
+    background-size: cover; 
+    background-color: transparent; 
+    width: 20px; 
+    height: 20px; 
+    border: none; 
+    outline: none; 
+    overflow: hidden; 
+    position: absolute;
+    right: 18px;
+    top: 18px;    
+    padding: 0;   
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+.signback {
+    background-size: cover; 
+    background-color: transparent; 
+    width: 20px; 
+    height: 20px; 
+    border: none; 
+    outline: none; 
+    overflow: hidden; 
+    position: absolute;
+    left: 18px;
+    top: 18px;    
+    padding: 0;   
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
 #progressicon1{
     position: absolute;
     top: 25px;  
@@ -426,6 +583,7 @@ font-size: 12px;
     width: 100%; 
     height: auto;
 }
+
 #overlay {
     position: fixed; 
     top: 56px; 
@@ -654,4 +812,205 @@ font-size: 12px;
     font-size: 16px;
 }
 
+.chatbox {
+    font-family: 'GenYoGothic', sans-serif;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 1rem;
+    padding-top: 3rem;
+    display: flex;
+}
+.chatbox h2{
+    font-size: 1.6rem;
+    color: #003466;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2rem;
+}
+#chatsign{
+    height: 3rem;
+}
+.chat hr {
+    border: 0;
+    height: 0.1rem;
+    background: #2e2c2c;
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.doggy{
+    width: 5rem;
+}
+h6 {
+    padding: 1rem;
+    margin: 0.5rem;
+    color: #0000009b;
+}
+.chatbox .name{
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    color: #222427b7;
+}
+.chatbox .nameselected{
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    color: #FFC533;
+}
+.chatbox .invitation{
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    color: #00000023;
+}
 
+#msg {
+    font-family: 'GenYoGothic', sans-serif;
+    position: fixed;
+    top: 20%;
+    right: 8rem; 
+    width: 430px; 
+    height: 65%; 
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(56, 56, 56, 0.3); 
+    border-radius: 15px;
+}
+
+.msg .img{
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+}
+.msg .name{
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    color: #FFC533;
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+}
+.msg .friend{
+    display: flex;
+}
+.msg .success{
+    width: 70%;
+    height: 1.5rem;
+    margin-top: 2.5rem;
+    margin-left: 3.5rem;
+    background-color: #fdcc4fe6;
+    border-radius: 0.5rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1rem;
+}
+
+.map{
+    width: 80%;
+    height: 15rem;
+    margin-left: 2.5rem;
+    background-color: #fdcc4fe6;
+    border-radius: 1rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-size: smaller;
+}
+
+.map label{
+    font-size: 0.7rem;
+    color: #ffffff;
+    padding: 0.5em;
+}
+
+.map #place{
+    width: 15rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+.map #time{
+    width: 6rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+.map #stop{
+    width: 4rem;
+    height: 1.8rem;
+    margin-bottom: 10px;
+    padding: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+}
+
+.map button {
+    width: 90%;
+    height: 1.5rem;
+    background-color: #fff;
+    color: #FFC533;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(56, 56, 56, 0.3);
+}
+
+.map button:hover {
+    background-color: #003466;
+    color: #ffffff;
+}
+
+.input{
+    position: fixed;
+    width: 100%;
+}
+.input #mymsg{
+    height: 1.5rem;
+    padding-left: 3rem;
+    border-radius: 0.5rem;
+    color: rgb(138, 138, 138);
+    text-align: left;
+    border: none;
+}
+
+.confirm {
+    width: 80%;
+    height: 16rem;
+    margin-left: 2.5rem;
+    background-color: #cdcccce6;
+    border-radius: 1rem;
+    color: rgb(90, 90, 90);
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-size: smaller;
+    display: none;
+}
+.confirm button {
+    width: 40%;
+    height: 1.5rem;
+    background-color: #fff;
+    margin-top: 0.5rem;
+    color: #FFC533;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(56, 56, 56, 0.3);
+}
+.content {
+    width: 100%;
+    height: 23rem;
+    overflow: auto;
+    border-top: 10rem;
+}
+.content p{
+    padding-top: 0.5rem;
+}
+#map {
+    width: 30rem;
+    height: 400px; /* 調整地圖的高度 */
+    display: none;
+}

@@ -1,7 +1,7 @@
 var userRole = 'none';  
 var activeStepId='1';
 
-  function selectRole(role) {
+function selectRole(role) {
     userRole = role; 
 
     if (role === 'a') {
@@ -24,11 +24,10 @@ function goBack() {
             if (userRole === 'a') {
                 showStep('1.5');
             } else {
-                showStep('1');
                 userRole = 'none';  
             }
             break;
-        case '1.5':
+        case '1.5':                  
             userRole = 'none'; 
             break;
         default:
@@ -112,35 +111,35 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
-      $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
-      $("button[class='signback']").attr("data-bs-toggle", "modal");
+    $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+    $("button[class='signback']").attr("data-bs-toggle", "modal");
     }
     else {
-      $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
-      $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+    $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+    $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
     }
+}
+var submitBtn = document.getElementById("submitBtn");
 
+submitBtn.addEventListener("click", redirectToHomepage);
+
+function redirectToHomepage() {
+
+    window.location.href = "./index.html";
 }
 
-
-  function redirectToHomepage() {
-
-    window.location.href = "./homepage.html";
-  }
-
-  window.onload = function() {
-
+window.onload = function() {
     var hash = window.location.hash;
 
     if (hash.includes("loginModal")) {
-      var loginModal = document.getElementById("loginModal");
-      var bsModal = new bootstrap.Modal(loginModal);
-      bsModal.show();
+    var loginModal = document.getElementById("loginModal");
+    var bsModal = new bootstrap.Modal(loginModal);
+    bsModal.show();
     }
-  };
+};
 
-    var who;
-    $("input[name=who]").click( function(){
+var who;
+$("input[name=who]").click( function(){
     if($("input[name=who]:checked")) {
         $("input[name=who]:checked").each(function() {
         who = $(this).val();
@@ -148,25 +147,79 @@ function showStep(stepNumber) {
         //$("button[name=who]").attr("data-bs-target", next);
         })
     }
-    })
+})
 
-    $("button[name='who']").click(function() {
-    if(who == "register_feeder"){
-        selectRole('a');showStep('1.5');setstep('1.5')
-    }
-    else{
+$("button[name='who']").click(function() {
+    if(who == "register_lover"){
         selectRole('b');showStep('2');setstep('2')
     }
-    })
+    else{
+        selectRole('a');showStep('1.5');setstep('1.5')
+        
+    }
+})
 
-    document.querySelector('.navbar-toggler').addEventListener('click', function() {
-        var overlay = document.getElementById('overlay');
-        if (overlay.style.display === 'none' || overlay.style.display === '') {
-            overlay.style.display = 'block'; // 显示遮盖层
-            document.body.style.overflow = 'hidden'; // 禁止背景滚动
-        } else {
-            overlay.style.display = 'none'; // 隐藏遮盖层
-            document.body.style.overflow = ''; // 恢复背景滚动
-        }
-    });
+// eye icon of password invisible or not
+$(".eye_close").click(function() {
+    $(".eye_close").css("display", "none");
+    $(".eye_open").css("display", "inline");
+    $("#password").attr("type", "text");
+});
+
+$(".eye_open").click(function() {
+    $(".eye_close").css("display", "inline");
+    $(".eye_open").css("display", "none");
+    $("#password").attr("type", "password");
+});
+
+
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+    var overlay = document.getElementById('overlay');
+    if (overlay.style.display === 'none' || overlay.style.display === '') {
+        overlay.style.display = 'block'; // 显示遮盖层
+        document.body.style.overflow = 'hidden'; // 禁止背景滚动
+    } else {
+        overlay.style.display = 'none'; // 隐藏遮盖层
+        document.body.style.overflow = ''; // 恢复背景滚动
+    }
+});
     
+// save account in local storage in login session
+var account = "", user = "";
+user = localStorage.getItem("account")
+$(document).ready(function() {
+    if(user === null) {
+        $("#profile_box").css("display", "none")
+        $("#profile").css("display", "inline")
+        $("#login_btn").click(function() {
+            account = $("#email").val();
+            localStorage.setItem("account", account);  
+            $("#login_btn").css("background-color", "#FFC533")  
+            $("#login_btn").css("color", "white")
+            /*
+            if(account == "database user data") {
+                is_login = true;
+                user = localStorage.getItem("account")
+            }
+            else {
+                $("#wrong_account").html("帳號不存在或密碼錯誤")
+                $("#email").css("border-color", "red")
+                $("#password").css("border-color", "red")
+            }
+            */
+            user = localStorage.getItem("account")
+            location.reload()
+        });
+    }
+    else {
+        $("#profile").css("display", "none")
+        $("#profile_box").css("display", "inline")
+        $("#logout").click(function() {
+            // logout and clear local storage
+            localStorage.clear()
+            location.reload()
+            $("#profile_box").css("display", "none")
+            $("#profile").css("display", "inline")
+        })
+    }
+})

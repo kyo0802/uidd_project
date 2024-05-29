@@ -25,6 +25,8 @@ const app = express()//跑express function回傳app物件
 
 const port = 5678
 
+const db = require('../db/mysql');
+
 // handle `/step1` url
 // 處理 `/step1` 網址
 app.get('/step1', (req, res) => {
@@ -75,7 +77,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.post('/add', (req, res) => {
-  fs.readFile('./students.json', 'utf8', (err, data) => {
+  fs.readFile('../db/students.json', 'utf8', (err, data) => {
     if (err) {
       res.status(500).send('Error reading JSON file');
       return;
@@ -123,6 +125,21 @@ app.post('/delete', (req, res) => {
     }
   });
 });
+
+/*
+app.get('/users', (req, res) => {
+    // 执行数据库查询
+    db.query('SELECT * FROM users', (err, results) => {
+        if (err) {
+            res.status(500).send('Error retrieving users from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+*/
+
+
 // start the server
 // 啟動伺服器
 app.listen(port, () => {

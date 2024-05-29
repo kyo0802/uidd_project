@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/kyo0802/uidd_project.git",
   "author": "kyo0802 <e24091077@gs.ncku.edu.tw>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }

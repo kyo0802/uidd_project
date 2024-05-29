@@ -113,7 +113,16 @@ function showStep(stepNumber) {
     } else {
         console.error('Step not found: step' + stepNumber);
     }
+    if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        }
+        else {
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        }
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     const selects = document.querySelectorAll('.form-control');
   
@@ -225,4 +234,133 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
   
-  
+
+
+var submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("click", redirectToHomepage);
+
+function redirectToHomepage() {
+
+    window.location.href = "./index.html";
+}
+
+window.onload = function() {
+    var hash = window.location.hash;
+
+    if (hash.includes("loginModal")) {
+    var loginModal = document.getElementById("loginModal");
+    var bsModal = new bootstrap.Modal(loginModal);
+    bsModal.show();
+    }
+};
+
+var who;
+$("input[name=who]").click( function(){
+    if($("input[name=who]:checked")) {
+        $("input[name=who]:checked").each(function() {
+        who = $(this).val();
+        //var next = "#"+who;
+        //$("button[name=who]").attr("data-bs-target", next);
+        })
+    }
+})
+
+$("button[name='who']").click(function() {
+    if(who == "register_lover"){
+        selectRole('b');showStep('2');setstep('2')
+    }
+    else{
+        selectRole('a');showStep('1.5');setstep('1.5')
+        
+    }
+})
+
+// eye icon of password invisible or not
+$(".eye_close").click(function() {
+    $(".eye_close").css("display", "none");
+    $(".eye_open").css("display", "inline");
+    $("#password").attr("type", "text");
+});
+
+$(".eye_open").click(function() {
+    $(".eye_close").css("display", "inline");
+    $(".eye_open").css("display", "none");
+    $("#password").attr("type", "password");
+});
+
+// save account in local storage in login session
+var account = "", user = "";
+user = localStorage.getItem("account")
+$(document).ready(function() {
+    if(user === null) {
+        $("#profile_box").css("display", "none")
+        $("#profile").css("display", "inline")
+        $("#login_btn").click(function() {
+            account = $("#email").val();
+            localStorage.setItem("account", account);  
+            $("#login_btn").css("background-color", "#FFC533")  
+            $("#login_btn").css("color", "white")
+            /*
+            if(account == "database user data") {
+                is_login = true;
+                user = localStorage.getItem("account")
+            }
+            else {
+                $("#wrong_account").html("帳號不存在或密碼錯誤")
+                $("#email").css("border-color", "red")
+                $("#password").css("border-color", "red")
+            }
+            */
+            user = localStorage.getItem("account")
+            location.reload()
+        });
+    }
+    else {
+        $("#profile").css("display", "none")
+        $("#profile_box").css("display", "inline")
+        $("#logout").click(function() {
+            // logout and clear local storage
+            localStorage.clear()
+            location.reload()
+            $("#profile_box").css("display", "none")
+            $("#profile").css("display", "inline")
+        })
+    }
+})
+// login session end
+
+function initMap() {
+    var mapOptions = {
+        center: { lat: 22.99776836378852, lng: 120.21686402050172 }, 
+        zoom: 15 // 縮放級別
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+
+function showConfirm() {
+    var place = document.getElementById('place').value;
+    var time = document.getElementById('time').value;
+    var stop = document.getElementById('stop').value;
+    var specialRequest = '';
+    var checkboxes = document.getElementsByName('specialRequest');
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            specialRequest += checkbox.value + ', ';
+        }
+    });
+    specialRequest = specialRequest.slice(0, -2); 
+
+    document.getElementById('confirmPlace').textContent = place;
+    document.getElementById('confirmTime').textContent = time + ' 分鐘';
+    document.getElementById('confirmStop').textContent = stop + ' 個';
+    document.getElementById('confirmSpecial').textContent = specialRequest;
+
+    document.getElementById('mapreq').style.display = 'none';
+    document.getElementById('confirm').style.display = 'block';
+}
+
+function showMap(){
+    document.getElementById('map').style.display='block';
+    document.getElementById('confirm').style.display='none';
+}
