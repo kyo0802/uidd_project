@@ -14,12 +14,12 @@
       crossorigin="anonymous"
     />
     
-    <link rel="stylesheet" href="./homepage.css" />
+    <link rel="stylesheet" href="./message.css" />
   </head>
   <body>
     
     <!-- navbar begin -->
-    <nav class="navbar navbar-dark" style="background-color: #003466;" >
+    <nav class="navbar navbar-dark" style="background-color: #003466; position: fixed;  width: 100%; margin-bottom: 3rem;" >
       <div class="container-fluid">
         <div class="icon-container">
           <button
@@ -334,13 +334,14 @@
     
     <!-- chat begin -->
     <div class="chat">
+      <div class="chat chatlist">
         <div class="chatbox">
             <img id="chatsign" src="../images/chat.png" alt="chat" />
             <h2>&nbsp;配對訊息</h2><br>
         </div><hr>
         <div class="chatbox" id="chatbox">
             <img class="doggy" src="../images/doggy2.png">
-            <h6><span class="nameselected">BAGLE</span><br><span class="invitation">已傳送配對邀請！</span></h6>
+            <h6><span class="nameselected">BAGLE</span><br><span class="invitation" id="msgcontent">已傳送配對邀請！</span></h6>
         </div><hr>
         <div class="chatbox">
             <img class="doggy" src="../images/doggy3.png">
@@ -359,8 +360,9 @@
             <h6><span class="name">摩卡</span><br><span class="invitation">已傳送配對邀請！</span></h6>
         </div>
         <hr>
-        
-        <div class="msg" id="msg">
+      
+      </div>
+        <div class="chat msg" id="msg">
           <div class="friend">
             <img class="img" src="../images/doggy2.png">
             <h6 class="name">BAGLE</h6>
@@ -370,7 +372,10 @@
             <div class="success">
                 已傳送配對邀請！
             </div>
-            <br><br><br>
+            <br><br>
+            <!-- chatbox is here -->
+            <div id="chat-box"></div>
+            <!-- chatbox is here -->
             <div class="map" id="mapreq">
               <p>請輸入您的需求！</p>
               <label for="place">出發地點</label>
@@ -402,24 +407,64 @@
               <input type="checkbox" id="nodog" name="specialRequest" value="避開其他狗">
               <label for="nodog">避開其他狗</label><br>
               <button onclick="showConfirm()">確認送出</button>
+            </div>
+            <div class="confirm" id="confirm">
+                <p>請確認您的需求！</p>
+                <p>出發地點｜<span id="confirmPlace"></span></p>
+                <p>散步時長｜<span id="confirmTime"></span></p>
+                <p>停靠點｜<span id="confirmStop"></span></p>
+                <p>特殊需求｜<span id="confirmSpecial"></span></p>
+                <button onclick="back()">返回修改</button>
+                <button onclick="calculateAndDisplayRoute()">確認送出</button>
+            </div>
+            <div class="success" id="waiting">
+              等待對方確認中...
+            </div>
+            <div class="success" id="calculating">
+              系統計算中...
+            </div><br>
+            
+            <div class="route" id="route">
+                <p>以下是您的配對路線：</p>
+                <div id="map">
+                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3x0GSfyR_X5QtfPOdvXWEKyyuwBsNweA&callback=initMap"></script>
+                </div><br>
+                <span id="placeinfo">起始點　　　　　停靠點A<span id="stopb">　　　　　停靠點B</span>　　　　　目的地<br></span>
+                <div class="address_container">
+                  <div class="address" id="placeinfo1"></div>　　
+                  <div class="address" id="placeinfo2"></div>　　
+                  <div class="address" id="placeinfo3"></div>　　
+                  <div class="address" id="placeinfo4"></div>
+                </div>
+                <br>
+                <div class="line-arrow-container">
+                  &#11044;
+                  <div class="line"></div>
+                  <div class="arrow">&rarr;</div> <!-- Right arrow -->
+                  <div class="line"></div>
+                  <div class="arrow">&rarr;&#11096;</div> <!-- Right arrow -->
+                  <div id="stop1" style="display: flex; align-items: center;justify-content: center;">
+                    <div class="line"></div>
+                    <div class="arrow">&rarr;</div> <!-- Right arrow -->
+                    <div class="line"></div>
+                    <div class="arrow">&rarr;&#11096;</div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="arrow">&rarr;</div>
+                  <div class="line"></div>
+                  <div class="arrow">&rarr;</div>&#11044;
+              </div>
+              <div id="timeestimated"></div>
+            </div>
           </div>
           
-          <div class="confirm" id="confirm">
-              <p>請確認您的需求！</p>
-              <p>出發地點｜<span id="confirmPlace"></span></p>
-              <p>散步時長｜<span id="confirmTime"></span></p>
-              <p>停靠點｜<span id="confirmStop"></span></p>
-              <p>特殊需求｜<span id="confirmSpecial"></span></p>
-              <button>返回修改</button>
-              <button onclick="showMap()">確認送出</button>
-          </div>
-            <div id="map"></div>
-          </div>
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3x0GSfyR_X5QtfPOdvXWEKyyuwBsNweA&callback=initMap"></script>
+          <img src="../images/資產 52.png" id="pair" onclick="pair()">
           <hr>
           <div class="input">
-            <br>
             <input type="text" id="mymsg" placeholder="輸入訊息...">
+            <button onclick="send()">
+              <img src="../images/send.png" alt="send" id="send">
+            </button>
           </div>
         </div>
     </div>

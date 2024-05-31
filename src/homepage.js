@@ -216,13 +216,91 @@ $(document).ready(function() {
 })
 // login session end
 
-function initMap() {
-    var mapOptions = {
-        center: { lat: 22.99776836378852, lng: 120.21686402050172 }, 
-        zoom: 15 // 縮放級別
-    };
 
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+function calculateAndDisplayRoute() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 22.99776836378852, lng: 120.21686402050172 },
+        zoom: 10
+    });
+    directionsRenderer.setMap(map);
+
+    document.getElementById('waiting').style.display='block';
+    document.getElementById('calculating').style.display='block';
+    document.getElementById('route').style.display='block';
+    document.getElementById('map').style.display='block';
+    document.getElementById('route').style.display='block';
+
+    if ( document.getElementById('stop').value == '1' ) {
+        document.getElementById('stop1').style.display = 'none';
+        document.getElementById('stopb').style.display = 'none';
+        document.getElementById('placeinfo3').style.display = 'none';
+    }
+    else{
+        document.getElementById('stop1').style.display = 'flex';
+    }
+
+    var start = document.getElementById('confirmPlace').textContent;
+    if (!start) {
+        alert('請輸入出發地點');
+        document.getElementById('waiting').style.display='none';
+        document.getElementById('calculating').style.display='none';
+        document.getElementById('route').style.display='none';
+        return;
+    }
+    var end = document.getElementById('confirmPlace').textContent;
+    var waypoints = [
+        {
+            location: "台南市北區勝利路206巷1號",
+            stopover: true
+        },
+        {
+            location: "台南市北區開元振興公園",
+            stopover: true
+        }
+    ];
+
+    document.getElementById('placeinfo1').innerText = document.getElementById('confirmPlace').textContent;
+    document.getElementById('placeinfo2').innerText = "台南市北區勝利路206巷1號";
+    if ( document.getElementById('stop').value == '1' ) {
+        document.getElementById('placeinfo3').innerText = '';
+    }
+    else{
+        document.getElementById('placeinfo3').innerText = "台南市北區開元振興公園";
+    }
+    document.getElementById('placeinfo4').innerText = document.getElementById('confirmPlace').textContent;
+    
+    directionsService.route({
+        origin: start,
+        destination: end,
+        waypoints: waypoints,
+        optimizeWaypoints: false,
+        travelMode: 'WALKING'
+    }, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+            var legs = response.routes[0].legs;
+                    var output = '';
+
+                    for (var i = 0; i < legs.length; i++) {
+                        var leg = legs[i];
+                        var duration = leg.duration.text;
+                        output += duration + '　　　';
+                    }
+
+                    document.getElementById('timeestimated').innerHTML = output;
+            // var route = response.routes[0].legs[0];
+            //         var duration = route.duration.text;
+            //         document.getElementById('timeestimated').innerText = duration;
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function pair(){
+    document.getElementById('mapreq').style.display = 'block';
 }
 
 function showConfirm() {
@@ -248,6 +326,32 @@ function showConfirm() {
 }
 
 function showMap(){
+    document.getElementById('waiting').style.display='block';
+    document.getElementById('calculating').style.display='block';
+    document.getElementById('route').style.display='block';
     document.getElementById('map').style.display='block';
+    document.getElementById('route').style.display='block';
+}
+
+function back(){
     document.getElementById('confirm').style.display='none';
+    document.getElementById('waiting').style.display='none';
+    document.getElementById('route').style.display='none';
+    document.getElementById('calculating').style.display='none';
+    document.getElementById('mapreq').style.display = 'block';
+}
+
+function send(){
+    var message = document.getElementById('mymsg').value;
+    var chatBox = document.getElementById('chat-box');
+    var messageElement = document.createElement('div');
+    messageElement.className = 'chat-message ';
+    var bubbleElement = document.createElement('div');
+    bubbleElement.className = 'chat-bubble ';
+    bubbleElement.innerText = message;
+    messageElement.appendChild(bubbleElement);
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    document.getElementById('msgcontent').innerText = document.getElementById('mymsg').value;
+    document.getElementById('mymsg').value = '';
 }
