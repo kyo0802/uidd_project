@@ -127,206 +127,206 @@ aria-hidden="true"
 </div>
 <!-- login dialog end -->
 
-<!-- register dialog begin -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="btn back_btn" data-bs-target="#exampleModal" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
 
-    <div class="modal-body">
-      <div class="login_icon_container">
-        <img class="reg_icon" src="../images/login_register/icon1.png"/>
-      </div>
-      <div class="container" align="center">
-        <div class= "row justify-content-center">    
-          <div class="reg_title">
-            註冊
+    <!-- register dialog begin -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="reg_content">
-            Petpals為您的寵物制定最完美的散步規畫，
-            <br>
-            並找到最適合牠的寵物玩伴。
-          </div>
-          
-          <div class="container-fluid" style="display: flex;">
-            <form class="d-flex width_half" role="search">
-              <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search">
-            </form>
-            <form class="d-flex width_half" role="search">
-              <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search">
-            </form>
-          </div>
-        
-          <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search">
-            </form>
+
+          <div class="modal-body">
+            <div class="login_icon_container">
+              <img class="reg_icon" src="../images/login_register/icon1.png"/>
+            </div>
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title">
+                  註冊
+                </div>
+                <div class="reg_content">
+                  Petpals為您的寵物制定最完美的散步規畫，
+                  <br>
+                  並找到最適合牠的寵物玩伴。
+                </div>
+                
+                <div class="container-fluid" style="display: flex;">
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search" id="f_name">
+                  </form>
+                  <form class="d-flex width_half" role="search">
+                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search" id="l_name">
+                  </form>
+                </div>
+              
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search" id="account">
+                  </form>
+                  
+                </div>
             
-          </div>
-      
-          <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search">
-            </form>
-          </div>
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search"  id="register-pw">
+                  </form>
+                </div>
 
-          <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
-            </form>
-          </div>
-          
-         <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="btn back_btn" data-bs-target="#exampleModal2" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-
-    <div class="modal-body">
-      <div class="container" align="center">
-        <div class= "row justify-content-center">    
-          <div class="reg_title" style="font-size: 1.5rem;">
-            請問您的身分為?
-          </div>
-          <div class="login_icon_container">
-            <img class="login_icon" src="../images/login_register/feeder.png"/>
-          </div>
-          <div>
-            <label><input type="radio" name="who" class="checkbox" value="register_feeder" required="required" checked="checked">寵物飼主</label>
-          </div>
-          <div class="login_icon_container">
-            <img class="login_icon" src="../images/login_register/lover.png"/>
-          </div> 
-          <div>
-            <label><input type="radio" name="who" class="checkbox" value="register_lover" required="required">毛小孩愛好者</label>
-          </div>
-          <br><br> 
-          <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
-
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content shadow p-3 mb-5 bg-body rounded">
-    <div class="modal-header">
-      <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
-      <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
-
-      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-        <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
-      </button>
-      <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
-        <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
-      </button>
-    </div>
-
-    <div class="modal-body">
-
-      <!-- Step 1.5: Additional Form -->
-      <div id="step15">
-        <div id="step1.5" class="inactive-step " style="display: none;">
-          <h3 class="form-heading">您的寵物基本資訊</h3>
-          <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
-          <div class="mb-3">
-            <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
-
-            <select id="petGender" class="form-control">
-              <option value=""disabled selected>寵物性別</option>
-              <option value="male">公</option>
-              <option value="female">母</option>
-            </select>
-
-            <select id="petSize" class="form-control">
-              <option value=""disabled selected>寵物體型</option>
-              <option value="small">小型</option>
-              <option value="medium">中型</option>
-              <option value="large">大型</option>
-            </select>
-
-            <select id="petAge" class="form-control">
-              <option value=""disabled selected>寵物年齡</option>
-              <option value="puppy">幼年</option>
-              <option value="adult">成年</option>
-              <option value="senior">老年</option>
-            </select>
-
-            <button class="btn btn-blue reg_button" onclick="showStep('2'); setstep('2');">繼續註冊</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2: location -->
-      <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
-        <div class="mb-3" style="position: relative;">
-            <h1 id="title">您的所在區域為?</h1>
-            <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
-            <select id="region" class="form-control">
-                <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
-                <option value="台北市">台北市</option>
-                <option value="新北市">新北市</option>
-            </select>
-            <select id="district" class="form-control">
-                <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
-                <option value="中正區">中正區</option>
-                <option value="板橋區">板橋區</option>
-            </select>
-    
-            <p id="service-notice">開啟定位服務</p>
-            <p id="ss">自動更新位置即時推薦附近機會</p>
-            <div class="btn-group" id="button-group">
-              <div class="form-check">
-                  <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
-                  <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
-              </div>
-              <div class="form-check">
-                  <input type="radio" class="form-check-input" name="locationService" id="locationNo">
-                  <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                <div class="container-fluid">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
+                  </form>
+                </div>
+                
+               <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
+                
               </div>
             </div>
-            <button class="btn btn-blue reg_button" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+          </div>
         </div>
       </div>
-
-      <!-- Step 3: end -->
-      <div id="step3" class="inactive-step" style="display: none;">
-        <p>註冊完成!</p>
-        <p>使用PetPals<br>開始你的第一趟旅程</p>
-        <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
-      </div>
-
     </div>
-  </div> 
-</div>
-</div>
-</div>  
-<!-- register dialog end -->  
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn back_btn" data-bs-target="#exampleModal2" data-bs-toggle="modal"><img src="../images/login_register/back.png"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container" align="center">
+              <div class= "row justify-content-center">    
+                <div class="reg_title" style="font-size: 1.5rem;">
+                  請問您的身分為?
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/login_register/feeder.png"/>
+                </div>
+                <div>
+                  <label><input type="radio" name="who" class="checkbox" value="feeder" required="required" checked="checked">寵物飼主</label>
+                </div>
+                <div class="login_icon_container">
+                  <img class="login_icon" src="../images/login_register/lover.png"/>
+                </div> 
+                <div>
+                  <label><input type="radio" name="who" class="checkbox" value="lover" required="required">毛小孩愛好者</label>
+                </div>
+                <br><br> 
+                <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content shadow p-3 mb-5 bg-body rounded">
+          <div class="modal-header">
+            <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon3" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon4" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon5" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon6" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon7" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon8" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot2.png" id="progressicon9" style="display: none; width: 10px; height: 10px;">
+            <img src="../images/dot1.png" id="progressicon10" style="display: none; width: 10px; height: 10px;">
+      
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <img src="../images/x.png" alt="Close" style="width: 18px; height: 18px;">
+            </button>
+            <button type="button" class="signback" onclick="goBack()" aria-label="Go Back">
+              <img src="../images/back.png" alt="Back" style="width: 18px; height: 18px;">
+            </button>
+          </div>
+
+          <div class="modal-body">
+    
+            <!-- Step 1.5: Additional Form -->
+            <div id="step15">
+              <div id="step1.5" class="inactive-step " style="display: none;">
+                <h3 class="form-heading">您的寵物基本資訊</h3>
+                <p class="form-subheading">輔助配對功能智能化推薦<br>註冊完畢可再修改</p>
+                <div class="mb-3">
+                  <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
+
+                  <select id="petGender" class="form-control">
+                    <option value=""disabled selected>寵物性別</option>
+                    <option value="male">公</option>
+                    <option value="female">母</option>
+                  </select>
+
+                  <select id="petSize" class="form-control">
+                    <option value=""disabled selected>寵物體型</option>
+                    <option value="small">小型</option>
+                    <option value="medium">中型</option>
+                    <option value="large">大型</option>
+                  </select>
+
+                  <select id="petAge" class="form-control">
+                    <option value=""disabled selected>寵物年齡</option>
+                    <option value="puppy">幼年</option>
+                    <option value="adult">成年</option>
+                    <option value="senior">老年</option>
+                  </select>
+
+                  <button class="btn btn-blue reg_button" onclick="showStep('2'); setstep('2');">繼續註冊</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: location -->
+            <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
+              <div class="mb-3" style="position: relative;">
+                  <h1 id="title">您的所在區域為?</h1>
+                  <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                  <select id="region" class="form-control">
+                      <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                      <option value="台北市">台北市</option>
+                      <option value="新北市">新北市</option>
+                  </select>
+                  <select id="district" class="form-control">
+                      <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                      <option value="中正區">中正區</option>
+                      <option value="板橋區">板橋區</option>
+                  </select>
+          
+                  <p id="service-notice">開啟定位服務</p>
+                  <p id="ss">自動更新位置即時推薦附近機會</p>
+                  <div class="btn-group" id="button-group">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="locationService" id="locationYes" value="1" checked>
+                        <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="locationService" id="locationNo" value="0">
+                        <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
+                    </div>
+                  </div>
+                  <button class="btn btn-blue reg_button" id="submit-button" onclick="showStep('3')"onclick="setstep('3')">完成註冊</button>
+              </div>
+            </div>
+
+            <!-- Step 3: end -->
+            <div id="step3" class="inactive-step" style="display: none;">
+              <p>註冊完成!</p>
+              <p>使用PetPals<br>開始你的第一趟旅程</p>
+              <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
+            </div>
+
+          </div>
+        </div> 
+      </div>
+    </div>    
+    <!-- register dialog end -->  
 
 <!-- start here -->
 
