@@ -814,7 +814,84 @@ font-size: 12px;
     color: black;
     font-size: 16px;
 }
+#tab2 h3 {
+    font-weight: 600; 
+    font-size: 24px; 
+    line-height: 27.81px; 
+    color: #003466; 
+    margin-bottom: 20px; 
+    text-align: center; 
+}
 
+.walk-record-header {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; 
+    box-sizing: border-box; 
+    border-bottom: 2px solid #ddd; 
+    font-weight: 600;
+    font-size: 15px; 
+    line-height: 17.38px; 
+    color: #003466; 
+}
+
+.walk-record {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.record-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px 20px; 
+    border: none; 
+    background-color: #fff;
+    font-weight: 400; 
+    font-size: 15px; 
+    line-height: 17.38px; 
+    color: #000; 
+    text-align: center; 
+    cursor: pointer; 
+    width: 100%; 
+    box-sizing: border-box; 
+    border-top: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd; 
+    transition: background-color 0.3s; 
+}
+
+.record-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%; 
+}
+
+.record-details {
+    display: none; 
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.owner-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.owner-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/*e*/
 .chatbox {
     font-family: 'GenYoGothic', sans-serif;
     padding-left: 5rem;

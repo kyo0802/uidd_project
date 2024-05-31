@@ -90,8 +90,10 @@
             </ul>
           </li>
         </div>
-      </div>
+      </div>-->
     </nav>
+
+
 
      <!--個人檔案-->
     <div class="interactive-history">
@@ -125,9 +127,94 @@
               </div>
           </div>
           <div id="tab2" class="tab-content">
-              <h3>分次紀錄</h3>
-              <div class="chart">圖表資料2</div>
-          </div>
+            <h3>分次散步紀錄</h3>
+            <div class="walk-record-header">
+                <div class="record-date">日期</div>
+                <div class="record-time">時間</div>
+                <div class="record-duration">時長</div>
+                <div class="record-distance">距離</div>
+                <div class="record-note"></div>
+            </div>
+            <div class="walk-record">
+                <button class="record-item" onclick="toggleDetails(this)">
+                    <div class="record-summary">
+                        <div class="record-date">05/06</div>
+                        <div class="record-time">19:00</div>
+                        <div class="record-duration">1.5 小時</div>
+                        <div class="record-distance">2 公里</div>
+                        <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
+                    </div>
+                    <div class="record-details">
+                        <p>總體分數: ⭐⭐⭐⭐☆</p>
+                        <p>距離: 2公里</p>
+                        <p>喝水量: 200cc</p>
+                        <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
+                        <div class="owner-info">
+                            <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                            <div>
+                                <p>KUMA</p>
+                                <p>寵物主人: ⭐⭐⭐⭐⭐</p>
+                                <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                                <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="record-item" onclick="toggleDetails(this)">
+                  <div class="record-summary">
+                      <div class="record-date">05/06</div>
+                      <div class="record-time">19:00</div>
+                      <div class="record-duration">1.5 小時</div>
+                      <div class="record-distance">2 公里</div>
+                      <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
+                  </div>
+                  <div class="record-details">
+                      <p>總體分數: ⭐⭐⭐⭐☆</p>
+                      <p>距離: 2公里</p>
+                      <p>喝水量: 200cc</p>
+                      <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
+                      <div class="owner-info">
+                          <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                          <div>
+                              <p>KUMA</p>
+                              <p>寵物主人: ⭐⭐⭐⭐⭐</p>
+                              <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                              <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
+                          </div>
+                      </div>
+                  </div>
+              </button>
+              <button class="record-item" onclick="toggleDetails(this)">
+                <div class="record-summary">
+                    <div class="record-date">05/06</div>
+                    <div class="record-time">19:00</div>
+                    <div class="record-duration">1.5 小時</div>
+                    <div class="record-distance">2 公里</div>
+                    <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
+                </div>
+                <div class="record-details">
+                    <p>總體分數: ⭐⭐⭐⭐☆</p>
+                    <p>距離: 2公里</p>
+                    <p>喝水量: 200cc</p>
+                    <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
+                    <div class="owner-info">
+                        <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                        <div>
+                            <p>KUMA</p>
+                            <p>寵物主人: ⭐⭐⭐⭐⭐</p>
+                            <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                            <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
+                        </div>
+                    </div>
+                </div>
+            </button>
+                <!-- More records as needed -->
+            </div>
+        </div>
+        
+                </tbody>
+            </table>
+        </div>
       </div>
   </div>
   
