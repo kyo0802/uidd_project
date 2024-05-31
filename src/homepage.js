@@ -329,6 +329,47 @@ $(document).ready(function() {
 })
 // login session end
 
+// city json begin
+const jsonUrl = './CityCountyData.json';
+fetch(jsonUrl)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
+
 function initMap() {
     var mapOptions = {
         center: { lat: 22.99776836378852, lng: 120.21686402050172 }, 
@@ -364,3 +405,34 @@ function showMap(){
     document.getElementById('map').style.display='block';
     document.getElementById('confirm').style.display='none';
 }
+
+$(document).ready(function() {
+    $("#text_box").css("overflow", "auto")
+    $('#msg_input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
+
+            let userInput = $(this).val();
+            if (userInput.trim() !== '') {
+                // 创建一个新的 message_box div
+                var messageBox = document.createElement('div');
+                messageBox.className = 'user_box';
+
+                // 创建一个新的 message div，并设置其类和内容
+                var newMessage = document.createElement('div');
+                newMessage.className = 'message user_msg';
+                newMessage.textContent = userInput;
+
+                // 将新创建的 message div 添加到 message_box 中
+                messageBox.appendChild(newMessage);
+
+                // 将新创建的 message_box div 添加到 #text_box 中
+                var textBox = document.getElementById('text_box');
+                textBox.appendChild(messageBox);
+
+                // 清空输入框
+                msg_input.value = '';
+            }
+        }
+    });
+});
