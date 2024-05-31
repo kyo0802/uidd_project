@@ -232,4 +232,34 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         details.style.display = 'none';
     }
-}
+
+$(document).ready(function() {
+    $("#text_box").css("overflow", "auto")
+    $('#msg_input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
+
+            let userInput = $(this).val();
+            if (userInput.trim() !== '') {
+                // 创建一个新的 message_box div
+                var messageBox = document.createElement('div');
+                messageBox.className = 'user_box';
+
+                // 创建一个新的 message div，并设置其类和内容
+                var newMessage = document.createElement('div');
+                newMessage.className = 'message user_msg';
+                newMessage.textContent = userInput;
+
+                // 将新创建的 message div 添加到 message_box 中
+                messageBox.appendChild(newMessage);
+
+                // 将新创建的 message_box div 添加到 #text_box 中
+                var textBox = document.getElementById('text_box');
+                textBox.appendChild(messageBox);
+
+                // 清空输入框
+                msg_input.value = '';
+            }
+        }
+    });
+});
