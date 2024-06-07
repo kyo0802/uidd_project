@@ -345,7 +345,18 @@ function send(){
     var message = document.getElementById('mymsg').value;
     var chatBox = document.getElementById('chat-box');
     var messageElement = document.createElement('div');
+    
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var timestamp = hours + ':' + minutes;
     messageElement.className = 'chat-message ';
+
+    var messageTimestamp = document.createElement('div');
+    messageTimestamp.className = 'timestamp';
+    messageTimestamp.innerText = timestamp;
+    messageElement.appendChild(messageTimestamp);
+
     var bubbleElement = document.createElement('div');
     bubbleElement.className = 'chat-bubble ';
     bubbleElement.innerText = message;
