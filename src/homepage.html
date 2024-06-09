@@ -90,8 +90,10 @@
             </ul>
           </li>
         </div>
-      </div>
+      </div>-->
     </nav>
+
+
 
      <!--個人檔案-->
     <div class="interactive-history">
@@ -125,9 +127,126 @@
               </div>
           </div>
           <div id="tab2" class="tab-content">
-              <h3>分次紀錄</h3>
-              <div class="chart">圖表資料2</div>
-          </div>
+            <h3>分次散步紀錄</h3>
+            <div class="walk-record-header">
+                <div class="record-date">日期</div>
+                <div class="record-time">時間</div>
+                <div class="record-duration">時長</div>
+                <div class="record-distance">距離</div>
+                <div class="record-note"></div>
+            </div>
+            <div class="walk-record">
+                <button class="record-item" onclick="toggleDetails(this)">
+                    <div class="record-summary">
+                        <div class="record-date">05/06</div>
+                        <div class="record-time">19:00</div>
+                        <div class="record-duration">1.5 小時</div>
+                        <div class="record-distance">2 公里</div>
+                        <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
+                    </div>
+                    <div class="record-details">
+                        <p>總體分數: ⭐⭐⭐⭐☆</p>
+                        <p>距離: 2公里</p>
+                        <p>喝水量: 200cc</p>
+                        <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
+                        <div class="owner-info">
+                            <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                            <div>
+                                <p>KUMA</p>
+                                <p>寵物主人: ⭐⭐⭐⭐⭐</p>
+                                <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                                <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="record-item" onclick="toggleDetails(this)">
+                  <div class="record-summary">
+                    <div class="record-date">05/06</div>
+                    <div class="record-time">19:00</div>
+                    <div class="record-duration">1.5 小時</div>
+                    <div class="record-distance">2 公里</div>
+                    <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
+                  </div>
+                  <div class="record-details">
+                    <div class="total">
+                      <p>總體分數</p>
+                      <p>⭐⭐⭐⭐☆</p>
+                    </div>
+                    <div class="routebar">
+                      <div class="routesection">
+                        <span>家</span>
+                        <div class="home"></div>
+                      </div>
+                      <div class="routesection">
+                        <span>自強操場</span>
+                        <div class="loc1"></div>
+                      </div>
+                      <div class="routesection">
+                        <span>蠑螈</span>
+                        <div class="loc2"></div>
+                      </div>
+                      <div class="routesection">
+                        <span>家</span>
+                        <div class="home"></div>
+                      </div>
+                    </div>
+                    <div class="details">
+                      <div class="detail-bar">
+                        <span>距離</span>
+                        <div class="bar-container">
+                          <div class="bar" style="width: 40%;">2</div>
+                        </div>
+                        <span class="bar-label">2公里</span>
+                      </div>
+                      <div class="detail-bar">
+                        <span>喝水量</span>
+                        <div class="bar-container">
+                          <div class="bar" style="width: 50%;">200</div>
+                        </div>
+                        <span class="bar-label">200cc</span>
+                      </div>
+                      <div class="detail-ratings">
+                        <div class="detail-rating">
+                          <span>路線規劃</span>
+                          <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div class="detail-rating">
+                          <span>停靠點 A</span>
+                          <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div class="detail-rating">
+                          <span>停靠點 B</span>
+                          <div class="stars">⭐⭐⭐⭐</div>
+                        </div>
+                      </div>
+                      <p class="note-title">備註:</p>
+                      <p class="note-content">今天天氣特別熱，回家後有點身體不適</p>
+                      <div class="owner-info">
+                        <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                        <div class="owner-text">
+                          <p>KUMA</p>
+                          <p>⭐⭐⭐⭐⭐</p>
+                        </div>
+                      </div>
+                      <div class="owner-rating">
+                        <p class="owner-rating-title">寵物主人: ⭐⭐⭐⭐⭐</p>
+                        <p class="owner-rating-status">遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                        <p class="owner-rating-note">寵物夥伴備註</p> 
+                        <p class="owner-rating-note2">KUMA體型相當，很合得來！</p>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                
+             
+                <!-- More records as needed -->
+            </div>
+        </div>
+        
+                </tbody>
+            </table>
+        </div>
       </div>
   </div>
   
@@ -197,6 +316,7 @@
     </div>
     <!-- login dialog end -->
 
+   
     <!-- register dialog begin -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
@@ -223,23 +343,23 @@
                 
                 <div class="container-fluid" style="display: flex;">
                   <form class="d-flex width_half" role="search">
-                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search" id="f_name">
                   </form>
                   <form class="d-flex width_half" role="search">
-                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search" id="l_name">
                   </form>
                 </div>
               
                 <div class="container-fluid">
                   <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search" id="account">
                   </form>
                   
                 </div>
             
                 <div class="container-fluid">
                   <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search"  id="register-pw">
                   </form>
                 </div>
 
@@ -276,13 +396,13 @@
                   <img class="login_icon" src="../images/login_register/feeder.png"/>
                 </div>
                 <div>
-                  <label><input type="radio" name="who" class="checkbox" value="register_feeder" required="required" checked="checked">寵物飼主</label>
+                  <label><input type="radio" name="who" class="checkbox" value="feeder" required="required" checked="checked">寵物飼主</label>
                 </div>
                 <div class="login_icon_container">
                   <img class="login_icon" src="../images/login_register/lover.png"/>
                 </div> 
                 <div>
-                  <label><input type="radio" name="who" class="checkbox" value="register_lover" required="required">毛小孩愛好者</label>
+                  <label><input type="radio" name="who" class="checkbox" value="lover" required="required">毛小孩愛好者</label>
                 </div>
                 <br><br> 
                 <button type="button" name="who" class="btn btn-blue reg_button" data-bs-target="#loginModal" data-bs-toggle="modal">繼續</button>
@@ -323,7 +443,7 @@
             <div id="step15">
               <div id="step1.5" class="inactive-step " style="display: none;">
                 <h3 class="form-heading">您的寵物基本資訊</h3>
-                <p class="form-subheading">輔助配對功能智能畫推薦<br>註冊完畢可再修改</p>
+                <p class="form-subheading">輔助配對功能智能化推薦<br>註冊完畢可再修改</p>
                 <div class="mb-3">
                   <input type="text" id="petName" class="form-control" name="petName" placeholder="寵物名稱">
 
@@ -368,11 +488,11 @@
                   <p id="ss">自動更新位置即時推薦附近機會</p>
                   <div class="btn-group" id="button-group">
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" name="locationService" id="locationYes" checked>
+                        <input type="radio" class="form-check-input" name="locationService" id="locationYes" value="1" checked>
                         <label class="form-check-label" for="locationYes">我願意開啟定位服務</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" name="locationService" id="locationNo">
+                        <input type="radio" class="form-check-input" name="locationService" id="locationNo" value="0">
                         <label class="form-check-label" for="locationNo">我不願意開啟定位服務</label>
                     </div>
                   </div>
@@ -390,9 +510,8 @@
           </div>
         </div> 
       </div>
-    </div>
-  </div>  
-  <!-- register dialog end -->
+    </div>    
+    <!-- register dialog end -->  
 
 <!-- start here -->
 

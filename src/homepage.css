@@ -623,6 +623,7 @@ font-size: 12px;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
+
 .slide-in {
     transform: translateX(0);
     opacity: 1;
@@ -716,8 +717,16 @@ font-size: 12px;
     display: block;
     opacity: 1;
     transform: translateX(0);
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
+.tab-content.active::-webkit-scrollbar {
+    display: none; 
+}
+.tab-content.active {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; }
 .header {
     display: flex;
     align-items: center;
@@ -814,7 +823,330 @@ font-size: 12px;
     color: black;
     font-size: 16px;
 }
+#tab2 h3 {
+    font-weight: 600; 
+    font-size: 24px; 
+    line-height: 27.81px; 
+    color: #003466; 
+    margin-bottom: 20px; 
+    text-align: center; 
+}
 
+.walk-record-header {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 26px; 
+    border-bottom: 2px solid #ddd; 
+    font-weight: 600;
+    font-size: 15px; 
+    line-height: 17.38px; 
+    color: #003466; 
+}
+.walk-record-header > div {
+    flex: 1; 
+    text-align: left; 
+}
+
+
+.walk-record {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.record-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px 20px; 
+    border: none; 
+    background-color: #fff;
+    font-weight: 400; 
+    font-size: 15px; 
+    line-height: 17.38px; 
+    color: #000; 
+    text-align: center; 
+    cursor: pointer; 
+    width: 100%; 
+    box-sizing: border-box; 
+    border-top: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd; 
+    transition: background-color 0.3s; 
+}
+
+.record-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%; 
+    color: #686868;
+}
+
+.record-details {
+    display: none;
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    color: #212529;
+    border-radius: 5px;
+    position: relative;
+    flex-direction: column;
+}
+.total {
+    position: relative;
+    top: 10px; 
+    left: 0px; 
+    padding: 0px; 
+    border-radius: 5px; /* 調整邊框半徑 */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100px; /* 自動調整寬度 */
+    height: auto; /* 自動調整高度 */
+    margin-right: 10px;
+    font-size: 12px; 
+    color: #003366; 
+    line-height: 0.8;
+}
+.routebar {
+    top:0px;
+    right:-10px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    background-color: #FFC433;
+    border-radius: 100px;
+    padding: 1px;
+    flex: 1;
+    width: 200px;
+    height: 50px;
+    font-size: 10px; 
+    color: white; 
+}
+
+.routesection {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto; 
+    height: auto;
+}
+
+.rating {
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.home {
+    width: 50px;
+    background-color: #ffc107;
+}
+
+.loc1 {
+    width: 50px;
+    background-color: #ffc107;
+}
+
+.loc2 {
+    width: 50px;
+    background-color: #ffc107;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    height: auto;
+    margin-top: 20px;
+}
+
+.details p {
+    margin: 5px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.details span {
+    color: #f57c00;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.detail-ratings {
+
+    flex-direction: column;
+    margin-top: 10px;
+    position:absolute;
+    top:90px;
+    right:0px;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+    width: 150px;
+    height:100px;
+}
+
+.detail-rating {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.detail-rating span {
+    flex: 1;
+    color:  #a0a0a0;
+    font-size: 10px;
+    align-items: left;
+    font-weight: 100;
+}
+.stars {
+    flex: 1;
+    text-align: right;
+    align-items: right;
+    font-size: 12px;
+}
+.detail-bar {
+    display: flex;
+    align-items: left;
+    margin: 5px 0;
+     flex-direction: column;
+     width: 100%;
+}
+
+.detail-bar span {
+    display: flex;
+    flex-shrink: 0;
+    width: 80px; 
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 5px; 
+    
+}
+
+.detail-bar .bar-container {
+    background-color: #ddd;
+    border-radius: 5px;
+     margin: 0 10px; 
+     position: relative; 
+     width: 100px;
+     height: 7px;
+}
+
+.detail-bar .bar {
+    height: 100%;
+    background-color: #ffc107;
+    border-radius: 5px;
+    color: #ffc107;
+    font-size: 0;
+}
+
+.detail-bar .bar-label {
+    font-weight: bold;
+    color: #FFC433; 
+    margin-top: 5px;
+    align-items: right;
+    display: flex;
+}
+.note-title {
+    margin-right: 10px !important;
+    color: #003366; 
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+
+.note-content { 
+    margin-right: 10px !important;
+    color: #808080; 
+    font-size: 12px !important;
+    border-bottom: 2px solid #FFC433;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.owner-info {
+
+    background-color: #ffc107;
+    padding: 10px;
+    padding-top: 20px;
+    border-radius: 100px;
+    border: 1px solid #ffc107;
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 170px; 
+    height: 70px;
+    left: 10px;
+    color:white;
+
+}
+.owner-text {
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+
+}
+.owner-text p:first-child {
+    margin-bottom: 5px;
+    align-items: center;
+    font-size: 13px;
+    text-align: center; 
+}
+.owner-text p:last-child {
+    font-size: 10px;
+}
+.owner-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.owner-rating {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: auto; 
+    height: auto;
+}
+
+.owner-rating-title {
+    margin-bottom: 10px; 
+    font-weight: bold;
+    color: #a7a7a7;
+    font-size: 10px !important;
+}
+
+.owner-rating-status {
+    margin-bottom: 10px; 
+    font-weight: bold;
+    color: #a7a7a7;
+    font-size: 10px !important;
+}
+
+.owner-rating-note {
+    margin-bottom: 0; 
+    font-size: 14px; 
+    color: #003366; 
+    font-weight: bold;
+}
+
+.owner-rating-note2 {
+    margin-bottom: 0; 
+    font-size: 14px; 
+    color: #808080; 
+}
+
+/*e*/
 .chatbox {
     font-family: 'GenYoGothic', sans-serif;
     padding-left: 5rem;

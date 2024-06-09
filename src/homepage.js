@@ -123,119 +123,6 @@ function showStep(stepNumber) {
         }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const selects = document.querySelectorAll('.form-control');
-  
-    selects.forEach(select => {
-      styleSelectOption(select);
-      select.addEventListener('change', function () {
-        styleSelectOption(select);
-      });
-    });
-  
-    function styleSelectOption(select) {
-      const selectedOption = select.options[select.selectedIndex];
-      const defaultText = '縣市' || '鄉、鎮、市、區'; 
-  
-
-      if (selectedOption.disabled) {
-        select.style.color = '#ADADAD'; 
-      } else {
-        select.style.color = 'black'; 
-      }
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var myModal = new bootstrap.Modal(document.getElementById('uploadImageModal'), {});
-    myModal.show();
-  });
-
-  let isAnimating = false;
-
-  document.querySelectorAll('.tab-button').forEach(button => {
-      button.addEventListener('click', () => {
-          if (isAnimating) return; // 如果正在动画中，直接返回
-  
-          const target = button.getAttribute('data-target');
-          const activeContent = document.querySelector('.tab-content.active');
-  
-          // 如果点击的按钮对应当前显示的内容，直接返回
-          if (activeContent && activeContent.id === target) return;
-  
-          const contentBox = document.querySelector('.content-box');
-          const backgroundLayer = document.querySelector('.background-layer');
-  
-          // 设置动画状态为真，禁用按钮
-          isAnimating = true;
-          document.querySelectorAll('.tab-button').forEach(btn => {
-              btn.disabled = true;
-          });
-  
-          document.querySelectorAll('.tab-button').forEach(btn => {
-              btn.classList.remove('active');
-              btn.style.zIndex = '0';
-          });
-          button.classList.add('active');
-          button.style.zIndex = '2';
-  
-          // 如果有活动的内容，先隐藏
-          if (activeContent) {
-              activeContent.classList.remove('active');
-              activeContent.classList.add('slide-out');
-              setTimeout(() => {
-                  activeContent.style.display = 'none';
-                  activeContent.classList.remove('slide-out');
-              }, 150); // 动画持续时间为 150 毫秒
-          }
-  
-          // 显示新的内容
-          const newContent = document.getElementById(target);
-          newContent.style.display = 'block';
-          setTimeout(() => {
-              newContent.classList.add('active');
-          }, 10); // 确保 display 设置完成后再添加 active 类
-  
-          // 触发 content-box 和 background-layer 的滑动动画
-          contentBox.classList.add('slide-out');
-          backgroundLayer.classList.add('bg-slide-out');
-          setTimeout(() => {
-              contentBox.classList.remove('slide-out');
-              contentBox.classList.add('slide-in');
-              backgroundLayer.classList.remove('bg-slide-out');
-              backgroundLayer.classList.add('bg-slide-in');
-              setTimeout(() => {
-                  contentBox.classList.remove('slide-in');
-                  backgroundLayer.classList.remove('bg-slide-in');
-  
-                  // 动画结束后，重新启用按钮并重置动画状态
-                  isAnimating = false;
-                  document.querySelectorAll('.tab-button').forEach(btn => {
-                      btn.disabled = false;
-                  });
-              }, 300); // 保持 slide-in 和 bg-slide-in 动画时间为 300 毫秒
-          }, 150);
-      });
-  });
-  
-  function editDogName() {
-      var nameText = document.getElementById('dog-name-text');
-      var nameInput = document.getElementById('dog-name-input');
-  
-      if (nameText.style.display === 'none') {
-          nameText.innerText = nameInput.value;
-          nameText.style.display = 'block';
-          nameInput.style.display = 'none';
-      } else {
-          nameInput.value = nameText.innerText;
-          nameText.style.display = 'none';
-          nameInput.style.display = 'block';
-          nameInput.focus();
-      }
-  }
-  
-
-
 var submitBtn = document.getElementById("submitBtn");
 submitBtn.addEventListener("click", redirectToHomepage);
 
@@ -288,45 +175,203 @@ $(".eye_open").click(function() {
     $("#password").attr("type", "password");
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const selects = document.querySelectorAll('.form-control');
+  
+    selects.forEach(select => {
+      styleSelectOption(select);
+      select.addEventListener('change', function () {
+        styleSelectOption(select);
+      });
+    });
+  
+    function styleSelectOption(select) {
+      const selectedOption = select.options[select.selectedIndex];
+      const defaultText = '縣市' || '鄉、鎮、市、區'; 
+  
+
+      if (selectedOption.disabled) {
+        select.style.color = '#ADADAD'; 
+      } else {
+        select.style.color = 'black'; 
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var myModal = new bootstrap.Modal(document.getElementById('uploadImageModal'), {});
+    myModal.show();
+  });
+
+  let isAnimating = false;
+
+  document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+          if (isAnimating) return; 
+  
+          const target = button.getAttribute('data-target');
+          const activeContent = document.querySelector('.tab-content.active');
+  
+
+          if (activeContent && activeContent.id === target) return;
+  
+          const contentBox = document.querySelector('.content-box');
+          const backgroundLayer = document.querySelector('.background-layer');
+  
+
+          isAnimating = true;
+          document.querySelectorAll('.tab-button').forEach(btn => {
+              btn.disabled = true;
+          });
+  
+          document.querySelectorAll('.tab-button').forEach(btn => {
+              btn.classList.remove('active');
+              btn.style.zIndex = '0';
+          });
+          button.classList.add('active');
+          button.style.zIndex = '2';
+  
+
+          if (activeContent) {
+              activeContent.classList.remove('active');
+              activeContent.classList.add('slide-out');
+              setTimeout(() => {
+                  activeContent.style.display = 'none';
+                  activeContent.classList.remove('slide-out');
+              }, 150); 
+          }
+  
+
+          const newContent = document.getElementById(target);
+          newContent.style.display = 'block';
+          setTimeout(() => {
+              newContent.classList.add('active');
+          }, 10); 
+  
+
+          contentBox.classList.add('slide-out');
+          backgroundLayer.classList.add('bg-slide-out');
+          setTimeout(() => {
+              contentBox.classList.remove('slide-out');
+              contentBox.classList.add('slide-in');
+              backgroundLayer.classList.remove('bg-slide-out');
+              backgroundLayer.classList.add('bg-slide-in');
+              setTimeout(() => {
+                  contentBox.classList.remove('slide-in');
+                  backgroundLayer.classList.remove('bg-slide-in');
+  
+     
+                  isAnimating = false;
+                  document.querySelectorAll('.tab-button').forEach(btn => {
+                      btn.disabled = false;
+                  });
+              }, 300); 
+          }, 150);
+      });
+  });
+  
+  function editDogName() {
+      var nameText = document.getElementById('dog-name-text');
+      var nameInput = document.getElementById('dog-name-input');
+  
+      if (nameText.style.display === 'none') {
+          nameText.innerText = nameInput.value;
+          nameText.style.display = 'block';
+          nameInput.style.display = 'none';
+      } else {
+          nameInput.value = nameText.innerText;
+          nameText.style.display = 'none';
+          nameInput.style.display = 'block';
+          nameInput.focus();
+      }
+  }
+  
+  function toggleDetails(button) {
+    const details = button.querySelector('.record-details');
+    const summary = button.querySelector('.record-summary');
+    if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'flex';
+        summary.style.color = '#092844';
+    } else {
+        details.style.display = 'none';
+        summary.style.color = '';
+    }
+}
+
 // save account in local storage in login session
 var account = "", user = "";
 user = localStorage.getItem("account")
 $(document).ready(function() {
-    if(user === null) {
-        $("#profile_box").css("display", "none")
-        $("#profile").css("display", "inline")
-        $("#login_btn").click(function() {
-            account = $("#email").val();
-            localStorage.setItem("account", account);  
-            $("#login_btn").css("background-color", "#FFC533")  
-            $("#login_btn").css("color", "white")
-            /*
-            if(account == "database user data") {
-                is_login = true;
-                user = localStorage.getItem("account")
+
+    $("#text_box").css("overflow", "auto")
+    $('#msg_input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
+
+            let userInput = $(this).val();
+            if (userInput.trim() !== '') {
+                // 创建一个新的 message_box div
+                var messageBox = document.createElement('div');
+                messageBox.className = 'user_box';
+
+                // 创建一个新的 message div，并设置其类和内容
+                var newMessage = document.createElement('div');
+                newMessage.className = 'message user_msg';
+                newMessage.textContent = userInput;
+
+                // 将新创建的 message div 添加到 message_box 中
+                messageBox.appendChild(newMessage);
+
+                // 将新创建的 message_box div 添加到 #text_box 中
+                var textBox = document.getElementById('text_box');
+                textBox.appendChild(messageBox);
+
+                // 清空输入框
+                msg_input.value = '';
             }
-            else {
-                $("#wrong_account").html("帳號不存在或密碼錯誤")
-                $("#email").css("border-color", "red")
-                $("#password").css("border-color", "red")
-            }
-            */
-            user = localStorage.getItem("account")
-            location.reload()
+        }
+    });
+
+    let user = localStorage.getItem("account");
+
+    if (user === null) {
+        $("#profile_box").css("display", "none");
+        $("#login_form").css("display", "block");
+
+        $('#login_btn').click(function(event) {
+            event.preventDefault();
+
+            const account = $('#email').val();
+            const password = $('#password').val();
+
+            const input_data = {
+                account: account,
+                password: password,
+            };
+
+            $.post('./login', input_data, function(data) {
+                localStorage.setItem("account", account);
+                $("#login_btn").css("background-color", "#FFC533");
+                $("#login_btn").css("color", "white");
+                alert('Login successful');
+                location.reload();
+            }).fail(function(error) {
+                $("#wrong_account").html("帳號不存在或密碼錯誤");
+                $("#email").css("border-color", "red");
+                $("#password").css("border-color", "red");
+                alert('Login failed: ' + error.responseText);
+            });
+        });
+    } else {
+        $("#login_form").css("display", "none");
+        $("#profile_box").css("display", "inline");
+
+        $("#logout").click(function() {
+            localStorage.clear();
+            location.reload();
         });
     }
-    else {
-        $("#profile").css("display", "none")
-        $("#profile_box").css("display", "inline")
-        $("#logout").click(function() {
-            // logout and clear local storage
-            localStorage.clear()
-            location.reload()
-            $("#profile_box").css("display", "none")
-            $("#profile").css("display", "inline")
-        })
-    }
-})
+});
 // login session end
 
 // city json begin
@@ -405,34 +450,43 @@ function showMap(){
     document.getElementById('map').style.display='block';
     document.getElementById('confirm').style.display='none';
 }
+$(document).ready(() => {
 
-$(document).ready(function() {
-    $("#text_box").css("overflow", "auto")
-    $('#msg_input').on('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
-
-            let userInput = $(this).val();
-            if (userInput.trim() !== '') {
-                // 创建一个新的 message_box div
-                var messageBox = document.createElement('div');
-                messageBox.className = 'user_box';
-
-                // 创建一个新的 message div，并设置其类和内容
-                var newMessage = document.createElement('div');
-                newMessage.className = 'message user_msg';
-                newMessage.textContent = userInput;
-
-                // 将新创建的 message div 添加到 message_box 中
-                messageBox.appendChild(newMessage);
-
-                // 将新创建的 message_box div 添加到 #text_box 中
-                var textBox = document.getElementById('text_box');
-                textBox.appendChild(messageBox);
-
-                // 清空输入框
-                msg_input.value = '';
-            }
-        }
+    $('#submit-button').click((event) => {
+      event.preventDefault(); 
+  
+      const account = $('#account').val();
+      const password = $('#register-pw').val();
+      const f_name = $('#f_name').val();
+      const l_name = $('#l_name').val();
+      const identity = $('input[name="who"]:checked').val();
+      const petname = $('#petName').val();
+      const petgender = $('#petGender').val();
+      const petsize = $('#petSize').val();
+      const petage = $('#petAge').val();
+      const region = $('#region').val();
+      const district = $('#district').val();
+      const gps = $('input[name="locationService"]:checked').val();
+  
+      const input_data = {
+        account: account,
+        password: password,
+        f_name: f_name,
+        l_name: l_name,
+        identity: identity,
+        petname: petname,
+        petgender: petgender,
+        petsize: petsize,
+        petage: petage,
+        region: region,
+        district: district,
+        gps: gps
+      };
+  
+      $.post('./register', input_data, (data) => {
+        alert('Registration successful');
+      }).fail((error) => {
+        alert('Registration failed: ' + error.responseText);
+      });
     });
-});
+  });
