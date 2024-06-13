@@ -318,3 +318,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  function createMatch() {
+    var user1 = localStorage.getItem("account");
+    var user2 = "asdsa"; // 這個應該是被配對的另一個用戶的 email
+  
+    var data = {
+      user1_email: user1,
+      user2_email: user2
+    };
+  
+    $.post('/create_match', data, function(response) {
+      localStorage.setItem("match_id", response.match_id);
+      alert('配對成功，match_id: ' + response.match_id);
+    }).fail(function(error) {
+      console.error('配對失敗:', error.responseText);
+    });
+  }

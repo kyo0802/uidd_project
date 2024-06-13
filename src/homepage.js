@@ -496,20 +496,82 @@ function back(){
     document.getElementById('mapreq').style.display = 'block';
 }
 
-function send(){
-    var message = document.getElementById('mymsg').value;
-    var chatBox = document.getElementById('chat-box');
-    var messageElement = document.createElement('div');
-    messageElement.className = 'chat-message ';
-    var bubbleElement = document.createElement('div');
-    bubbleElement.className = 'chat-bubble ';
-    bubbleElement.innerText = message;
-    messageElement.appendChild(bubbleElement);
-    chatBox.appendChild(messageElement);
-    chatBox.scrollTop = chatBox.scrollHeight;
-    document.getElementById('msgcontent').innerText = document.getElementById('mymsg').value;
-    document.getElementById('mymsg').value = '';
+document.querySelectorAll('.chatbox').forEach(chatbox => {
+    chatbox.addEventListener('click', function() {
+      const matchId = this.getAttribute('data-match-id');
+      localStorage.setItem('match_id', matchId);
+    });
+  });
+  
+  $(document).ready(function() {
+    $('.chatbox').on('click', function() {
+        var matchId = $(this).data('match-id'); // 假設每個聊天框有一個匹配 ID
+
+        // 發送請求獲取聊天記錄
+        $.get('/get_messages', { match_id: matchId }, function(response) {
+            // 清空當前聊天框的訊息
+            $('#chat-box').empty();
+        
+            // 遍歷返回的消息並動態生成聊天氣泡
+            response.messages.forEach(function(message) {
+                var messageText = message.message_text.trim(); // 去掉首尾空白字符
+
+                // 檢查消息文本是否為空
+                if (messageText) {
+                    var messageElement = $('<div>').addClass('chat-message');
+                    var bubbleElement = $('<div>').addClass('chat-bubble').text(messageText);
+            
+                    if (message.sender_email === localStorage.getItem("account")) {
+                        messageElement.addClass('my-message'); // 如果是自己發的消息，添加特定樣式
+                    } else {
+                        messageElement.addClass('other-message'); // 如果是對方發的消息，添加特定樣式
+                    }
+            
+                    messageElement.append(bubbleElement);
+                    $('#chat-box').append(messageElement);
+                }
+            });
+        });
+    });
+
+    $('#send').on('click', send);
+});
+
+function send() {
+    var message = $('#mymsg').val().trim(); // 去掉首尾空白字符
+    var chatBox = $('#chat-box');
+
+    // 檢查消息文本是否為空
+    if (message) {
+        var messageElement = $('<div>').addClass('chat-message my-message');
+        var bubbleElement = $('<div>').addClass('chat-bubble').text(message);
+        messageElement.append(bubbleElement);
+        chatBox.append(messageElement);
+        chatBox.scrollTop(chatBox.prop('scrollHeight'));
+        $('#msgcontent').text(message);
+
+        // 清空輸入框
+        $('#mymsg').val('');
+
+        // 獲取用戶和匹配對象的詳情
+        var user = localStorage.getItem("account");
+        var matchId = localStorage.getItem("match_id"); // 假設 match_id 存在 localStorage
+
+        // 使用 jQuery 發送訊息到伺服器
+        var data = {
+            user: user,
+            match_id: matchId,
+            message: message
+        };
+
+        $.post('/save_message', data, function(response) {
+            console.log("訊息已存儲到資料庫");
+        }).fail(function(error) {
+            console.error('訊息儲存失敗:', error.responseText);
+        });
+    }
 }
+
 
 $(document).ready(() => {
 

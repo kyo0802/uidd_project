@@ -52,6 +52,8 @@ app.use(express.static(`${__dirname}/src`, {
 // 設置圖片文件目錄
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
+app.use('/font', express.static(path.join(__dirname, 'font')));
+
 // 設置根路徑指向 aboutus.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'aboutus.html'));
@@ -155,6 +157,91 @@ app.post('/login', (req, res) => {
     }
   });
 });
+
+
+app.post('/create_match', (req, res) => {
+  const user1_email = req.body.user1_email;
+  const user2_email = req.body.user2_email;
+
+  if (!user1_email || !user2_email) {
+    res.status(400).send('缺少必要的參數');
+    return;
+  }
+
+  const sql = 'INSERT INTO matches (user1_email, user2_email) VALUES (?, ?)';
+  const values = [user1_email, user2_email];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('配對創建失敗:', err);
+      res.status(500).send('配對創建失敗');
+      return;
+    }
+
+    const match_id = result.insertId; // 獲取新創建的 match_id
+    res.json({ match_id: match_id });
+  });
+});
+
+app.get('/get_messages', (req, res) => {
+  const match_id = req.query.match_id;
+
+  if (!match_id) {
+    res.status(400).send({ error: '缺少必要的參數', code: 'MISSING_PARAMS' });
+    return;
+  }
+
+  const sql = 'SELECT * FROM messages WHERE match_id = ? ORDER BY sent_at ASC';
+  db.query(sql, [match_id], (err, results) => {
+    if (err) {
+      console.error('獲取訊息失敗:', err);
+      if (err.code === 'ER_BAD_FIELD_ERROR') {
+        res.status(400).send({ error: '無效的字段', code: 'INVALID_FIELD' });
+      } else if (err.code === 'ER_NO_SUCH_TABLE') {
+        res.status(500).send({ error: '資料庫表不存在', code: 'TABLE_NOT_FOUND' });
+      } else {
+        res.status(500).send({ error: '伺服器錯誤', code: 'SERVER_ERROR' });
+      }
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).send({ error: '未找到消息', code: 'NO_MESSAGES_FOUND' });
+      return;
+    }
+
+    res.json({ messages: results });
+  });
+});
+
+
+app.post('/save_message', (req, res) => {
+  const user = req.body.user;
+  const match_id = req.body.match_id;
+  const message = req.body.message;
+  console.log('User: ', user);
+  console.log('Match ID: ', match_id);
+  console.log('Message: ', message);
+
+  if (!user || !match_id || !message) {
+    res.status(400).send('缺少必要的參數');
+    return;
+  }
+
+  const sql = 'INSERT INTO messages (match_id, sender_email, message_text) VALUES (?, ?, ?)';
+  const values = [match_id, user, message];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('訊息儲存失敗:', err);
+      res.status(500).send('訊息儲存失敗');
+      return;
+    }
+    res.send('訊息已成功儲存');
+  });
+});
+
+
 
 // start the server
 // 啟動伺服器
