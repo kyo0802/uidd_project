@@ -288,10 +288,13 @@ document.addEventListener('DOMContentLoaded', function () {
   
   function toggleDetails(button) {
     const details = button.querySelector('.record-details');
+    const summary = button.querySelector('.record-summary');
     if (details.style.display === 'none' || details.style.display === '') {
-        details.style.display = 'block';
+        details.style.display = 'flex';
+        summary.style.color = '#092844';
     } else {
         details.style.display = 'none';
+        summary.style.color = '';
     }
 }
 
