@@ -920,5 +920,253 @@ h6 {
     position: relative;
     justify-content: flex-end;
 }
+.timestamp {
+    font-size: 0.8em;
+    color: #999;
+    float: flex-end;
+}
+.feedback {
+    background-color: #FFC533;
+    width: 12rem;
+    height: 4.5rem;
+    border-radius: 3rem;
+    z-index: 100;
+    right: 1rem;
+    top: 5rem;
+    position: fixed;
+    float: right;
+}
+#feedbacksheet {
+    display: none;
+}
+.feedbacksheet {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+    height: 500px;
+    width: 400px;
+    border-radius: 1rem;
+    z-index: 1000;
+    right: 10rem;
+    top: 10.5rem;
+    position: fixed;
+    float: right;
+}
+.feedbacksheet p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #003466;
+    padding-top: 1rem;
+    justify-content: center;
+    text-align: center;
+}
+.feedbacksheet hr {
+    height: 0.1rem;
+    background: #2e2c2c;
+    width: 90%;
+    position: absolute;
+    left: 5%;
+}
+.feedbackcontent {
+    height: 440px;
+    padding: 1rem;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+}
+#routeend {
+    background-color: #FFC533;
+    color: white;
+    width: 20rem;
+    height: 4rem;
+    border-radius: 3rem;
+    font-size:xx-small;
+    text-align: center;
+    padding: 0.5rem;
+}
+#peer {
+    background-color: #FFC533;
+    color: white;
+    width: 15rem;
+    border-radius: 3rem;
+    font-size:medium;
+    text-align: center;
+    padding: 0.6rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#content2{
+    display: none;
+}
+.custom-range {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
 
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #FFC533;
+    cursor: pointer;
+}
 
+.fbimg {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    border: 0.3rem  solid white;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+.fbimg1 {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 100%;
+    border: 0.3rem solid #003466;
+    margin-top: 0.5rem;
+    /* margin-left: 0.5rem; */
+}
+.fbicon {
+    width: 4rem;
+    height: 4rem;
+    margin-top: 0.3rem;
+    /* margin-left: 0.5rem; */
+}
+.fbicon:hover {
+    cursor: pointer;
+}
+.fbtitle {
+    font-size: small;
+    color: #999;
+    padding-bottom: 1rem;
+}
+.fbsubtitle {
+    font-size: small;
+    color: #003466;
+    padding-bottom: 1rem;
+}
+.bigfont {
+    font-size: medium;
+    color: #003466;
+}
+.fbgray {
+    font-size: small;
+    color: #5e5e5e;
+}
+.fborg {
+    font-size: small;
+    color: #FFC553;
+}
+.fbedit {
+    height: 1rem;
+    width: auto;
+}
+.fbedit:hover {
+    height: 1rem;
+    width: auto;
+    cursor: pointer;
+}
+.fbbtn {
+    background-color: white;
+    border: 2px solid #FFC533;
+    border-radius: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: #FFC533;
+}
+.fbbtn:hover {
+    background-color: #FFC533;
+    color: white;
+    cursor: pointer;
+}
+.fbt {
+    font-size: small;
+    color: #999;
+}
+.star-rating {
+    display: flex;
+    direction: row;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.star {
+    color:  #ffcc00;
+}
+
+.star:hover,
+.star.hover,
+.star.selected {
+    color: #003466;
+}
+.star-rating1 {
+    padding-left: 1rem;
+    direction: row;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.star1 {
+    color:  white;
+}
+
+.star1:hover,
+.star1.hover,
+.star1.selected {
+    color: white;
+}
+.circle-rating {
+    display: flex;
+    direction: row;
+    cursor: pointer;
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    margin-left: 7px;
+    margin-right: 7px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.circle1 {
+    width: 10px;
+    height: 10px;
+    margin-top: 2px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle:hover,
+.circle.hover,
+.circle.selected {
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+}
+textarea {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: visible;
+}
