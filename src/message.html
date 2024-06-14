@@ -77,6 +77,114 @@
     </nav>
     <!-- navbar end -->
 
+    <div class="feedback" id="feedback">
+      <img class="fbimg" src="../images/doggy2.png">
+      <img class="fbimg1" src="../images/doggy3.png">
+      <img class="fbicon" onclick="showsheet()" src="../images/feedbackstart.png">
+    </div>
+    <div class="feedbacksheet" id="feedbacksheet">
+      <p>回饋表單</p><hr>
+      <div class="feedbackcontent">
+        <div class="feedbackcontent" id="content1">
+          <span class="fbt">本次行程</span><br>
+            <div id="routeend">
+            <span>家　　　　自強操場　　　　榕園　　　　　家</span><br>
+            <div class="line-arrow-container">
+            <div class="circle1"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="circle1"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="circle1"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="circle1"></div>
+            </div>
+          </div>
+          <div style="display: flex; padding-top: 1rem;">
+            <span class="fbgray">時長　　</span>
+            <span class="fborg"><b>1.5　小時</b></span>　　　
+            <span class="fbgray">距離　　</span>
+            <span class="fborg"><b>2　公里</b></span>　
+            <img class="fbedit" src="../images/edit.png">
+          </div><br>
+          <span class="bigfont">總體分數</span>
+          <div class="star-rating fbtitle">
+            <span class="star" data-value="1">&#9734;</span>
+            <span class="star" data-value="2">&#9734;</span>
+            <span class="star" data-value="3">&#9734;</span>
+            <span class="star" data-value="4">&#9734;</span>
+            <span class="star" data-value="5">&#9734;</span>
+          </div>
+          <span class="fbtitle">——————————散步規劃回饋——————————</span>
+          <span class="fbsubtitle">路線規劃</span>
+          <div class="circle-rating fbtitle">最不滿意　　
+            <span class="circle" data-value="1"></span>
+            <span class="circle" data-value="2"></span>
+            <span class="circle" data-value="3"></span>
+            <span class="circle" data-value="4"></span>
+            <span class="circle" data-value="5"></span>　　最滿意
+          </div>
+          <span class="fbsubtitle">停靠點A</span>
+          <div class="circle-rating fbtitle">最不滿意　　
+            <span class="circle" data-value="1"></span>
+            <span class="circle" data-value="2"></span>
+            <span class="circle" data-value="3"></span>
+            <span class="circle" data-value="4"></span>
+            <span class="circle" data-value="5"></span>　　最滿意
+          </div>
+          <span class="fbsubtitle">停靠點B</span>
+          <div class="circle-rating fbtitle">最不滿意　　
+            <span class="circle" data-value="1"></span>
+            <span class="circle" data-value="2"></span>
+            <span class="circle" data-value="3"></span>
+            <span class="circle" data-value="4"></span>
+            <span class="circle" data-value="5"></span>　　最滿意
+          </div>
+          <span class="fbtitle">——————————寵物狀態與其他——————————</span>
+          <span class="fbsubtitle">喝水量</span>
+          <span class="fbsubtitle">0　　　　　　　　　　　　　　　　　　400</span>
+          <input id="water" type="range" min="0" max="400" value="0" class="custom-range" oninput="updateWaterValue()">
+          <span class="fbsubtitle" id="water-display">0 ml</span><br>
+          <span class="fbsubtitle">備註</span>
+          <textarea rows="10" cols="35" ></textarea><br>
+          <button class="fbbtn" onclick="nextpage()">下一頁</button>
+        </div>
+        <div class="feedbackcontent" id="content2">
+          <span class="fbt">本次寵物夥伴</span><br>
+          <div id="peer">
+            <img class="fbimg1" src="../images/doggy3.png">
+            <div class="star-rating1">
+              <span>KUMA</span><br>
+              <span class="star1" data-value="1">&#9734;</span>
+              <span class="star1" data-value="2">&#9734;</span>
+              <span class="star1" data-value="3">&#9734;</span>
+              <span class="star1" data-value="4">&#9734;</span>
+              <span class="star1" data-value="5">&#9734;</span>
+            </div>
+          </div><br>
+          <span class="fbsubtitle">其他寵物主人</span>
+          <div class="circle-rating fbtitle">最不滿意　　
+            <span class="circle" data-value="1"></span>
+            <span class="circle" data-value="2"></span>
+            <span class="circle" data-value="3"></span>
+            <span class="circle" data-value="4"></span>
+            <span class="circle" data-value="5"></span>　　最滿意
+          </div>
+          <span class="fbsubtitle">遊玩狀態</span>
+          <div class="circle-rating fbtitle">最不滿意　　
+            <span class="circle" data-value="1"></span>
+            <span class="circle" data-value="2"></span>
+            <span class="circle" data-value="3"></span>
+            <span class="circle" data-value="4"></span>
+            <span class="circle" data-value="5"></span>　　最滿意
+          </div>
+          <span class="fbsubtitle">備註</span>
+          <textarea cols="35"></textarea><br>
+          <div style="display: flex;column-gap: 1rem;">
+            <button class="fbbtn" onclick="lastpage()">上一頁</button>
+            <button type="submit" class="fbbtn" onclick="submit()">提交</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
     <!-- login dialog begin -->
     <div
       class="modal fade"
@@ -229,7 +337,7 @@
     </div>
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog">
         <div class="modal-content shadow p-3 mb-5 bg-body rounded">
           <div class="modal-header">
             <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
@@ -291,11 +399,15 @@
               <div class="mb-3" style="position: relative;">
                   <h1 id="title">您的所在區域為?</h1>
                   <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
-                  <select id="region" class="form-control" onchange="populateAreas()">
-                    <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                  <select id="region" class="form-control">
+                      <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                      <option value="台北市">台北市</option>
+                      <option value="新北市">新北市</option>
                   </select>
                   <select id="district" class="form-control">
                       <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                      <option value="中正區">中正區</option>
+                      <option value="板橋區">板橋區</option>
                   </select>
           
                   <p id="service-notice">開啟定位服務</p>
@@ -317,49 +429,10 @@
             <!-- Step 3: end -->
             <div id="step3" class="inactive-step" style="display: none;">
               <p>註冊完成!</p>
-              <p>請先填寫您預期配對的寵物夥伴條件，皆可複選</p>
-              <div class="form-container">
-                <form>
-                    <div class="form-group">
-                        <label class="sub_title">寵物體型</label>
-                        <label class="sub_content"><input type="checkbox" name="size" value="small"> 小型犬</label>
-                        <label class="sub_content"><input type="checkbox" name="size" value="medium"> 中型犬</label>
-                        <label class="sub_content"><input type="checkbox" name="size" value="large"> 大型犬</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="sub_title">寵物年齡</label>
-                        <label class="sub_content"><input type="checkbox" name="age" value="puppy"> 幼年</label>
-                        <label class="sub_content"><input type="checkbox" name="age" value="adult"> 成年</label>
-                        <label class="sub_content"><input type="checkbox" name="age" value="senior"> 老年</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="sub_title">散步狀態</label>
-                        <label class="sub_content"><input type="checkbox" name="activity" value="calm"> 休閒平和</label>
-                        <label class="sub_content"><input type="checkbox" name="activity" value="active"> 激烈互動</label>
-                        <label class="sub_content"><input type="checkbox" name="activity" value="endurance"> 長續航力</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="sub_title">散步時長</label>
-                        <label class="sub_content"><input type="checkbox" name="duration" value="0.5"> 30分鐘</label>
-                        <label class="sub_content"><input type="checkbox" name="duration" value="1"> 1小時</label>
-                        <label class="sub_content"><input type="checkbox" name="duration" value="1.5"> 1.5小時</label>
-                        <label class="sub_content"><input type="checkbox" name="duration" value="2"> 2小時</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="sub_title">散步距離</label>
-                        <label class="sub_content"><input type="checkbox" name="distance" value="0.5"> 0.5公里</label>
-                        <label class="sub_content"><input type="checkbox" name="distance" value="1"> 1公里</label>
-                        <label class="sub_content"><input type="checkbox" name="distance" value="1.5"> 1.5公里</label>
-                        <label class="sub_content"><input type="checkbox" name="distance" value="2"> 2公里</label>
-                        <label class="sub_content"><input type="checkbox" name="distance" value="3"> 2公里以上</label>
-                    </div>
-                </form>
-              </div>
-              <div id="bottom_box">
-                <button id="submitBtn" type="submit" class="btn btn-blue reg_button" data-bs-toggle="modal"> 確認送出</button>
-                <img src="../images/dog1.png">
-              </div>
+              <p>使用PetPals<br>開始你的第一趟旅程</p>
+              <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
             </div>
+
           </div>
         </div> 
       </div>
@@ -374,23 +447,23 @@
             <img id="chatsign" src="../images/chat.png" alt="chat" />
             <h2>&nbsp;配對訊息</h2><br>
         </div><hr>
-        <div class="chatbox" id="chatbox" data-match-id="2">
+        <div class="chatbox" id="chatbox">
             <img class="doggy" src="../images/doggy2.png">
             <h6><span class="nameselected">BAGLE</span><br><span class="invitation" id="msgcontent">已傳送配對邀請！</span></h6>
         </div><hr>
-        <div class="chatbox" data-match-id="2">
+        <div class="chatbox">
             <img class="doggy" src="../images/doggy3.png">
             <h6><span class="name">Kuma</span><br><span class="invitation">已傳送配對邀請！</span></h6>
         </div><hr>
-        <div class="chatbox" data-match-id="3">
+        <div class="chatbox">
             <img class="doggy" src="../images/doggy1.png">
             <h6><span class="name">布丁</span><br><span class="invitation">已傳送配對邀請！</span></h6>
         </div><hr>
-        <div class="chatbox" data-match-id="4">
+        <div class="chatbox">
             <img class="doggy" src="../images/doggy4.png">
             <h6><span class="name">小虎</span><br><span class="invitation">已傳送配對邀請！</span></h6>
         </div><hr>
-        <div class="chatbox" data-match-id="5">
+        <div class="chatbox">
             <img class="doggy" src="../images/doggy5.png">
             <h6><span class="name">摩卡</span><br><span class="invitation">已傳送配對邀請！</span></h6>
         </div>
@@ -462,7 +535,7 @@
             <div class="route" id="route">
                 <p>以下是您的配對路線：</p>
                 <div id="map">
-                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3x0GSfyR_X5QtfPOdvXWEKyyuwBsNweA&callback=initMap"></script>
+                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-Sc4zdrS6YBw0zbD6OGj3s76vdX79524&callback=initMap"></script>
                 </div><br>
                 <span id="placeinfo">起始點　　　　　停靠點A<span id="stopb">　　　　　停靠點B</span>　　　　　目的地<br></span>
                 <div class="address_container">

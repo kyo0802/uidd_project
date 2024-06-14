@@ -684,3 +684,106 @@ $(document).ready(() => {
         // 滾動到最新消息
         textBox.scrollTop = textBox.scrollHeight;
     } 
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.star-rating .star');
+        let currentRating = 0;
+    
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function () {
+                resetStars();
+                highlightStars(this);
+            });
+    
+            star.addEventListener('mouseout', function () {
+                resetStars();
+                if (currentRating !== 0) {
+                    highlightStars(stars[currentRating - 1]);
+                }
+            });
+    
+            star.addEventListener('click', function () {
+                currentRating = this.getAttribute('data-value');
+                resetStars();
+                highlightStars(this, true);
+            });
+        });
+    
+        function resetStars() {
+            stars.forEach(star => {
+                star.classList.remove('hover');
+                star.classList.remove('selected');
+            });
+        }
+    
+        function highlightStars(star, selected = false) {
+            star.classList.add(selected ? 'selected' : 'hover');
+            let prevSibling = star.previousElementSibling;
+            while (prevSibling) {
+                prevSibling.classList.add(selected ? 'selected' : 'hover');
+                prevSibling = prevSibling.previousElementSibling;
+            }
+        }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const circles = document.querySelectorAll('.circle-rating .circle');
+        let currentRating = 0;
+    
+        circles.forEach(circle => {
+            circle.addEventListener('mouseover', function () {
+                resetCircles();
+                highlightCircles(this);
+            });
+    
+            circle.addEventListener('mouseout', function () {
+                resetCircles();
+                if (currentRating !== 0) {
+                    highlightCircles(circles[currentRating - 1]);
+                }
+            });
+    
+            circle.addEventListener('click', function () {
+                currentRating = this.getAttribute('data-value');
+                resetCircles();
+                highlightCircles(this, true);
+            });
+        });
+    
+        function resetCircles() {
+            circles.forEach(circle => {
+                circle.classList.remove('hover');
+                circle.classList.remove('selected');
+            });
+        }
+    
+        function highlightCircles(circle, selected = false) {
+            circle.classList.add(selected ? 'selected' : 'hover');
+            let prevSibling = circle.previousElementSibling;
+            while (prevSibling) {
+                prevSibling.classList.add(selected ? 'selected' : 'hover');
+                prevSibling = prevSibling.previousElementSibling;
+            }
+        }
+    });
+    function nextpage(){
+        document.getElementById('content1').style.display='none';
+        document.getElementById('content2').style.display='flex';
+    }
+    function lastpage(){
+        document.getElementById('content1').style.display='flex';
+        document.getElementById('content2').style.display='none';
+    }
+    function updateWaterValue() {
+        var waterValue = document.getElementById('water').value;
+        document.getElementById('water-display').textContent = waterValue + ' ml';
+    }
+    updateWaterValue();
+    
+    function showsheet(){
+        document.getElementById('feedbacksheet').style.display='inline';
+    }
+    function submit(){
+        document.getElementById('feedbacksheet').style.display='none';
+        document.getElementById('feedback').style.display='none';
+        alert('已收到本次回饋！');
+    }
