@@ -116,12 +116,17 @@ function showStep(stepNumber) {
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
         $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
         $("button[class='signback']").attr("data-bs-toggle", "modal");
-        }
-        else {
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
+    }
+    else {
         $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
         $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
-        }
-}
+        $(".modal-lg").css("width", "500px");
+    }
+} 
 
 var submitBtn = document.getElementById("submitBtn");
 submitBtn.addEventListener("click", redirectToHomepage);
@@ -177,7 +182,6 @@ $(".eye_open").click(function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const selects = document.querySelectorAll('.form-control');
-  
     selects.forEach(select => {
       styleSelectOption(select);
       select.addEventListener('change', function () {
@@ -187,9 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
     function styleSelectOption(select) {
       const selectedOption = select.options[select.selectedIndex];
-      const defaultText = '縣市' || '鄉、鎮、市、區'; 
-  
-
       if (selectedOption.disabled) {
         select.style.color = '#ADADAD'; 
       } else {
@@ -303,35 +304,6 @@ var account = "", user = "";
 user = localStorage.getItem("account")
 $(document).ready(function() {
 
-    $("#text_box").css("overflow", "auto")
-    $('#msg_input').on('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
-
-            let userInput = $(this).val();
-            if (userInput.trim() !== '') {
-                // 创建一个新的 message_box div
-                var messageBox = document.createElement('div');
-                messageBox.className = 'user_box';
-
-                // 创建一个新的 message div，并设置其类和内容
-                var newMessage = document.createElement('div');
-                newMessage.className = 'message user_msg';
-                newMessage.textContent = userInput;
-
-                // 将新创建的 message div 添加到 message_box 中
-                messageBox.appendChild(newMessage);
-
-                // 将新创建的 message_box div 添加到 #text_box 中
-                var textBox = document.getElementById('text_box');
-                textBox.appendChild(messageBox);
-
-                // 清空输入框
-                msg_input.value = '';
-            }
-        }
-    });
-
     let user = localStorage.getItem("account");
 
     if (user === null) {
@@ -374,13 +346,132 @@ $(document).ready(function() {
 });
 // login session end
 
-function initMap() {
-    var mapOptions = {
-        center: { lat: 22.99776836378852, lng: 120.21686402050172 }, 
-        zoom: 15 // 縮放級別
-    };
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
 
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
+
+
+function calculateAndDisplayRoute() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 22.99776836378852, lng: 120.21686402050172 },
+        zoom: 10
+    });
+    directionsRenderer.setMap(map);
+
+    document.getElementById('waiting').style.display='block';
+    document.getElementById('calculating').style.display='block';
+    document.getElementById('route').style.display='block';
+    document.getElementById('map').style.display='block';
+    document.getElementById('route').style.display='block';
+
+    if ( document.getElementById('stop').value == '1' ) {
+        document.getElementById('stop1').style.display = 'none';
+        document.getElementById('stopb').style.display = 'none';
+        document.getElementById('placeinfo3').style.display = 'none';
+    }
+    else{
+        document.getElementById('stop1').style.display = 'flex';
+    }
+
+    var start = document.getElementById('confirmPlace').textContent;
+    if (!start) {
+        alert('請輸入出發地點');
+        document.getElementById('waiting').style.display='none';
+        document.getElementById('calculating').style.display='none';
+        document.getElementById('route').style.display='none';
+        return;
+    }
+    var end = document.getElementById('confirmPlace').textContent;
+    var waypoints = [
+        {
+            location: "台南市北區勝利路206巷1號",
+            stopover: true
+        },
+        {
+            location: "台南市北區開元振興公園",
+            stopover: true
+        }
+    ];
+
+    document.getElementById('placeinfo1').innerText = document.getElementById('confirmPlace').textContent;
+    document.getElementById('placeinfo2').innerText = "台南市北區勝利路206巷1號";
+    if ( document.getElementById('stop').value == '1' ) {
+        document.getElementById('placeinfo3').innerText = '';
+    }
+    else{
+        document.getElementById('placeinfo3').innerText = "台南市北區開元振興公園";
+    }
+    document.getElementById('placeinfo4').innerText = document.getElementById('confirmPlace').textContent;
+    
+    directionsService.route({
+        origin: start,
+        destination: end,
+        waypoints: waypoints,
+        optimizeWaypoints: false,
+        travelMode: 'WALKING'
+    }, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+            var legs = response.routes[0].legs;
+                    var output = '';
+
+                    for (var i = 0; i < legs.length; i++) {
+                        var leg = legs[i];
+                        var duration = leg.duration.text;
+                        output += duration + '　　　';
+                    }
+
+                    document.getElementById('timeestimated').innerHTML = output;
+            // var route = response.routes[0].legs[0];
+            //         var duration = route.duration.text;
+            //         document.getElementById('timeestimated').innerText = duration;
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function pair(){
+    document.getElementById('mapreq').style.display = 'block';
 }
 
 function showConfirm() {
@@ -406,12 +497,97 @@ function showConfirm() {
 }
 
 function showMap(){
+    document.getElementById('waiting').style.display='block';
+    document.getElementById('calculating').style.display='block';
+    document.getElementById('route').style.display='block';
     document.getElementById('map').style.display='block';
-    document.getElementById('confirm').style.display='none';
+    document.getElementById('route').style.display='block';
 }
 
-$(document).ready(() => {
+function back(){
+    document.getElementById('confirm').style.display='none';
+    document.getElementById('waiting').style.display='none';
+    document.getElementById('route').style.display='none';
+    document.getElementById('calculating').style.display='none';
+    document.getElementById('mapreq').style.display = 'block';
+}
 
+document.querySelectorAll('.chatbox').forEach(chatbox => {
+    chatbox.addEventListener('click', function() {
+      const matchId = this.getAttribute('data-match-id');
+      localStorage.setItem('match_id', matchId);
+    });
+  });
+  
+  $(document).ready(function() {
+    $('.chatbox').on('click', function() {
+        var matchId = $(this).data('match-id'); // 假設每個聊天框有一個匹配 ID
+
+        // 發送請求獲取聊天記錄
+        $.get('/get_messages', { match_id: matchId }, function(response) {
+            // 清空當前聊天框的訊息
+            $('#chat-box').empty();
+        
+            // 遍歷返回的消息並動態生成聊天氣泡
+            response.messages.forEach(function(message) {
+                var messageText = message.message_text.trim(); // 去掉首尾空白字符
+
+                // 檢查消息文本是否為空
+                if (messageText) {
+                    var messageElement = $('<div>').addClass('chat-message');
+                    var bubbleElement = $('<div>').addClass('chat-bubble').text(messageText);
+            
+                    if (message.sender_email === localStorage.getItem("account")) {
+                        messageElement.addClass('my-message'); // 如果是自己發的消息，添加特定樣式
+                    } else {
+                        messageElement.addClass('other-message'); // 如果是對方發的消息，添加特定樣式
+                    }
+            
+                    messageElement.append(bubbleElement);
+                    $('#chat-box').append(messageElement);
+                }
+            });
+        });
+    });
+
+    $('#send').on('click', send);
+});
+
+function send() {
+    var message = $('#mymsg').val().trim(); // 去掉首尾空白字符
+    var chatBox = $('#chat-box');
+
+    // 檢查消息文本是否為空
+    if (message) {
+        var messageElement = $('<div>').addClass('chat-message my-message');
+        var bubbleElement = $('<div>').addClass('chat-bubble').text(message);
+        messageElement.append(bubbleElement);
+        chatBox.append(messageElement);
+        chatBox.scrollTop(chatBox.prop('scrollHeight'));
+        $('#msgcontent').text(message);
+
+        // 清空輸入框
+        $('#mymsg').val('');
+
+        // 獲取用戶和匹配對象的詳情
+        var user = localStorage.getItem("account");
+        var matchId = localStorage.getItem("match_id"); // 假設 match_id 存在 localStorage
+
+        // 使用 jQuery 發送訊息到伺服器
+        var data = {
+            user: user,
+            match_id: matchId,
+            message: message
+        };
+
+        $.post('/save_message', data, function(response) {
+            console.log("訊息已存儲到資料庫");
+        }).fail(function(error) {
+            console.error('訊息儲存失敗:', error.responseText);
+        });
+    }
+}
+$(document).ready(() => {
 
     $('#submit-button').click((event) => {
       event.preventDefault(); 
@@ -451,4 +627,60 @@ $(document).ready(() => {
       });
     });
   });
-  
+
+  // chat gpt api
+    document.getElementById('msg_input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    async function sendMessage() {
+        const messageInput = document.getElementById('msg_input');
+        const userMessage = messageInput.value;
+        if (!userMessage.trim()) {
+            return;
+        }
+        // 顯示用戶的消息
+        var messageBox = document.createElement('div');
+        messageBox.className = 'user_box';
+        var newMessage = document.createElement('div');
+        newMessage.className = 'message user_msg';
+        newMessage.textContent = userMessage;
+        messageBox.appendChild(newMessage);
+        var textBox = document.getElementById('text_box');
+        textBox.appendChild(messageBox);
+
+        // 清空輸入框
+        messageInput.value = '';
+        try {
+            const response = await fetch('http://luffy.ee.ncku.edu.tw:5920/gpt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userMessage })
+            });
+
+            var messageBox = document.createElement('div');
+            messageBox.className = 'ai_box';
+            const aiMsgDiv = document.createElement('div');
+            aiMsgDiv.className = 'message ai_msg';
+            if (response.ok) {
+                const data = await response.json();           
+                aiMsgDiv.textContent = data;
+                messageBox.appendChild(aiMsgDiv);
+            } else {
+                aiMsgDiv.textContent = 'Error: ' + response.statusText;
+                messageBox.appendChild(aiMsgDiv);
+            }
+            var textBox = document.getElementById('text_box');
+            textBox.appendChild(messageBox);
+        } catch (error) {
+            aiMsgDiv.textContent = 'Error: ' + error.message;
+            messageBox.appendChild(aiMsgDiv);
+        }
+
+        // 滾動到最新消息
+        textBox.scrollTop = textBox.scrollHeight;
+    } 

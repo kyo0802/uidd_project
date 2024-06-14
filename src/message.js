@@ -11,8 +11,7 @@ function selectRole(role) {
     }
 }
 function setstep(idd){
-activeStepId=idd;
-
+    activeStepId=idd;
 }
 function goBack() {
     
@@ -111,12 +110,17 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
-    $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
     }
     else {
-    $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
     }
 }
 var submitBtn = document.getElementById("submitBtn");
@@ -173,41 +177,124 @@ $(".eye_open").click(function() {
 });
 
 // save account in local storage in login session
-var account = "", user = "";
-user = localStorage.getItem("account")
 $(document).ready(function() {
-    if(user === null) {
-        $("#profile_box").css("display", "none")
-        $("#profile").css("display", "inline")
-        $("#login_btn").click(function() {
-            account = $("#email").val();
-            localStorage.setItem("account", account);  
-            $("#login_btn").css("background-color", "#FFC533")  
-            $("#login_btn").css("color", "white")
-            /*
-            if(account == "database user data") {
-                is_login = true;
-                user = localStorage.getItem("account")
+            let user = localStorage.getItem("account");
+
+            if (user === null) {
+                $("#profile_box").css("display", "none");
+                $("#login_form").css("display", "block");
+
+                $('#login_btn').click(function(event) {
+                    event.preventDefault();
+
+                    const account = $('#email').val();
+                    const password = $('#password').val();
+
+                    const input_data = {
+                        account: account,
+                        password: password,
+                    };
+
+                    $.post('./login', input_data, function(data) {
+                        localStorage.setItem("account", account);
+                        $("#login_btn").css("background-color", "#FFC533");
+                        $("#login_btn").css("color", "white");
+                        alert('Login successful');
+                        location.reload();
+                    }).fail(function(error) {
+                        $("#wrong_account").html("帳號不存在或密碼錯誤");
+                        $("#email").css("border-color", "red");
+                        $("#password").css("border-color", "red");
+                        alert('Login failed: ' + error.responseText);
+                    });
+                });
+            } else {
+                $("#login_form").css("display", "none");
+                $("#profile_box").css("display", "inline");
+
+                $("#logout").click(function() {
+                    localStorage.clear();
+                    location.reload();
+                });
             }
-            else {
-                $("#wrong_account").html("帳號不存在或密碼錯誤")
-                $("#email").css("border-color", "red")
-                $("#password").css("border-color", "red")
-            }
-            */
-            user = localStorage.getItem("account")
-            location.reload()
+        });
+$(document).ready(() => {
+    $('#submit-button').click((event) => {
+      event.preventDefault(); 
+  
+      const account = $('#account').val();
+      const password = $('#register-pw').val();
+      const f_name = $('#f_name').val();
+      const l_name = $('#l_name').val();
+      const identity = $('input[name="who"]:checked').val();
+      const petname = $('#petName').val();
+      const petgender = $('#petGender').val();
+      const petsize = $('#petSize').val();
+      const petage = $('#petAge').val();
+      const region = $('#region').val();
+      const district = $('#district').val();
+      const gps = $('input[name="locationService"]:checked').val();
+  
+      const input_data = {
+        account: account,
+        password: password,
+        f_name: f_name,
+        l_name: l_name,
+        identity: identity,
+        petname: petname,
+        petgender: petgender,
+        petsize: petsize,
+        petage: petage,
+        region: region,
+        district: district,
+        gps: gps
+      };
+  
+      $.post('./register', input_data, (data) => {
+        alert('Registration successful');
+      }).fail((error) => {
+        alert('Registration failed: ' + error.responseText);
+      });
+    });
+});
+
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
         });
     }
-    else {
-        $("#profile").css("display", "none")
-        $("#profile_box").css("display", "inline")
-        $("#logout").click(function() {
-            // logout and clear local storage
-            localStorage.clear()
-            location.reload()
-            $("#profile_box").css("display", "none")
-            $("#profile").css("display", "inline")
-        })
-    }
-})
+}
+// city json end

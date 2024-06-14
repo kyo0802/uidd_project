@@ -111,12 +111,17 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
-    $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
     }
     else {
-    $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
     }
 }
 var submitBtn = document.getElementById("submitBtn");
@@ -217,12 +222,62 @@ $(document).ready(function() {
     }
 });
 
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
+
 document.addEventListener('DOMContentLoaded', function() {
     var prevButton = document.querySelector('.prev_button');
     var nextButton = document.querySelector('.next_button');
     var cardContainers = document.querySelectorAll('[class^="card_container_"]');
-
+    var allCardContents = [];
     var currentCardIndex = 0;
+
+    // 在页面加载时调用API获取所有卡片内容
+    fetch('/api/cards')
+        .then(response => response.json())
+        .then(data => {
+            allCardContents = data;
+            initializeCards();
+        })
+        .catch(error => console.error('Failed to fetch cards', error));
 
     prevButton.addEventListener('click', function() {
         updateCardContents(1);
@@ -232,31 +287,26 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCardContents(-1);
     });
 
+    function initializeCards() {
+        // 将初始卡片内容放入页面
+        for (var i = 0; i < cardContainers.length; i++) {
+            cardContainers[i].innerHTML = allCardContents[i % allCardContents.length];
+        }
+    }
+
     function updateCardContents(direction) {
         cardContainers = document.querySelectorAll('[class^="card_container_"]');
 
-        currentCardIndex = (currentCardIndex + direction + cardContainers.length) % cardContainers.length;
+        currentCardIndex = (currentCardIndex + direction + allCardContents.length) % allCardContents.length;
     
-        // 先將所有卡片的內容存入一個陣列
+        // 根据 currentCardIndex 和方向来更新卡片内容
         var contents = [];
         for (var i = 0; i < cardContainers.length; i++) {
-            contents.push(cardContainers[i].innerHTML);
+            var index = (currentCardIndex + i) % allCardContents.length;
+            contents.push(allCardContents[index]);
         }
-    
-        // 根據 currentCardIndex 和方向來更新陣列
-        if (direction === 1) {
-            var last = contents.pop();
-            contents.unshift(last);
-        } else if (direction === -1) {
-            var first = contents.shift();
-            contents.push(first);
-        }
-        console.log(contents[0]);
-        
-        console.log(contents[1]);
 
-        console.log(contents[2]);
-        // 將更新後的陣列內容放回卡片中
+        // 将更新后的内容放回卡片中
         for (var i = 0; i < cardContainers.length; i++) {
             var className = "card_container_" + (i);
             var cardContainer = document.querySelector("." + className);
@@ -265,11 +315,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // 移除或添加 overlay_image
             var overlayImage = cardContainer.querySelector('.overlay_image');
             if (className === "card_container_1") {
-                // 如果 overlay_image 存在且不是第二個卡片，則移除它
-                overlayImage.remove();
-            } 
-            else if (!overlayImage && (className !== "card_container_0" || className !== "card_container_2")) {
-                // 如果 overlay_image 不存在且是第一個或第三個卡片，則添加它
+                if (overlayImage) overlayImage.remove();
+            } else if (!overlayImage && (className === "card_container_0" || className === "card_container_2")) {
                 var img = document.createElement('img');
                 img.src = "../images/index/bg.png";
                 img.className = "overlay_image";
@@ -278,6 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
   $(document).ready(() => {
     $('#submit-button').click((event) => {
       event.preventDefault(); 
@@ -318,3 +366,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  function createMatch() {
+    var user1 = localStorage.getItem("account");
+    var user2 = "asdsa"; // 這個應該是被配對的另一個用戶的 email
+  
+    var data = {
+      user1_email: user1,
+      user2_email: user2
+    };
+  
+    $.post('/create_match', data, function(response) {
+      localStorage.setItem("match_id", response.match_id);
+      alert('配對成功，match_id: ' + response.match_id);
+    }).fail(function(error) {
+      console.error('配對失敗:', error.responseText);
+    });
+  }

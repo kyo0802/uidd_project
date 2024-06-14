@@ -186,46 +186,88 @@ document.querySelector('.navbar-toggler').addEventListener('click', function() {
     
 // save account in local storage in login session
 $(document).ready(function() {
-            let user = localStorage.getItem("account");
+    let user = localStorage.getItem("account");
 
-            if (user === null) {
-                $("#profile_box").css("display", "none");
-                $("#login_form").css("display", "block");
+    if (user === null) {
+        $("#profile_box").css("display", "none");
+        $("#login_form").css("display", "block");
 
-                $('#login_btn').click(function(event) {
-                    event.preventDefault();
+        $('#login_btn').click(function(event) {
+            event.preventDefault();
 
-                    const account = $('#email').val();
-                    const password = $('#password').val();
+            const account = $('#email').val();
+            const password = $('#password').val();
 
-                    const input_data = {
-                        account: account,
-                        password: password,
-                    };
+            const input_data = {
+                account: account,
+                password: password,
+            };
 
-                    $.post('./login', input_data, function(data) {
-                        localStorage.setItem("account", account);
-                        $("#login_btn").css("background-color", "#FFC533");
-                        $("#login_btn").css("color", "white");
-                        alert('Login successful');
-                        location.reload();
-                    }).fail(function(error) {
-                        $("#wrong_account").html("帳號不存在或密碼錯誤");
-                        $("#email").css("border-color", "red");
-                        $("#password").css("border-color", "red");
-                        alert('Login failed: ' + error.responseText);
-                    });
-                });
-            } else {
-                $("#login_form").css("display", "none");
-                $("#profile_box").css("display", "inline");
-
-                $("#logout").click(function() {
-                    localStorage.clear();
-                    location.reload();
-                });
-            }
+            $.post('./login', input_data, function(data) {
+                localStorage.setItem("account", account);
+                $("#login_btn").css("background-color", "#FFC533");
+                $("#login_btn").css("color", "white");
+                alert('Login successful');
+                location.reload();
+            }).fail(function(error) {
+                $("#wrong_account").html("帳號不存在或密碼錯誤");
+                $("#email").css("border-color", "red");
+                $("#password").css("border-color", "red");
+                alert('Login failed: ' + error.responseText);
+            });
         });
+    } else {
+        $("#login_form").css("display", "none");
+        $("#profile_box").css("display", "inline");
+
+        $("#logout").click(function() {
+            localStorage.clear();
+            location.reload();
+        });
+    }
+});
+
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
+
 $(document).ready(() => {
     $('#submit-button').click((event) => {
       event.preventDefault(); 
