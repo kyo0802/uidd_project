@@ -110,12 +110,17 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
-    $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
     }
     else {
-    $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
     }
 }
 var submitBtn = document.getElementById("submitBtn");
@@ -252,3 +257,44 @@ $(document).ready(() => {
       });
     });
 });
+
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
