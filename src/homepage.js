@@ -116,12 +116,17 @@ function showStep(stepNumber) {
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
         $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
         $("button[class='signback']").attr("data-bs-toggle", "modal");
-        }
-        else {
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
+    }
+    else {
         $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
         $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
-        }
-}
+        $(".modal-lg").css("width", "500px");
+    }
+} 
 
 var submitBtn = document.getElementById("submitBtn");
 submitBtn.addEventListener("click", redirectToHomepage);
@@ -177,7 +182,6 @@ $(".eye_open").click(function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const selects = document.querySelectorAll('.form-control');
-  
     selects.forEach(select => {
       styleSelectOption(select);
       select.addEventListener('change', function () {
@@ -187,9 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
     function styleSelectOption(select) {
       const selectedOption = select.options[select.selectedIndex];
-      const defaultText = '縣市' || '鄉、鎮、市、區'; 
-  
-
       if (selectedOption.disabled) {
         select.style.color = '#ADADAD'; 
       } else {
@@ -303,35 +304,6 @@ var account = "", user = "";
 user = localStorage.getItem("account")
 $(document).ready(function() {
 
-    $("#text_box").css("overflow", "auto")
-    $('#msg_input').on('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // 防止默认的Enter键行为（如表单提交）
-
-            let userInput = $(this).val();
-            if (userInput.trim() !== '') {
-                // 创建一个新的 message_box div
-                var messageBox = document.createElement('div');
-                messageBox.className = 'user_box';
-
-                // 创建一个新的 message div，并设置其类和内容
-                var newMessage = document.createElement('div');
-                newMessage.className = 'message user_msg';
-                newMessage.textContent = userInput;
-
-                // 将新创建的 message div 添加到 message_box 中
-                messageBox.appendChild(newMessage);
-
-                // 将新创建的 message_box div 添加到 #text_box 中
-                var textBox = document.getElementById('text_box');
-                textBox.appendChild(messageBox);
-
-                // 清空输入框
-                msg_input.value = '';
-            }
-        }
-    });
-
     let user = localStorage.getItem("account");
 
     if (user === null) {
@@ -375,8 +347,8 @@ $(document).ready(function() {
 // login session end
 
 // city json begin
-const jsonUrl = './CityCountyData.json';
-fetch(jsonUrl)
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
     .then(response => response.json())
     .then(data => {
         // 全域變數儲存 JSON 資料
@@ -490,3 +462,60 @@ $(document).ready(() => {
       });
     });
   });
+
+  // chat gpt api
+    document.getElementById('msg_input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    async function sendMessage() {
+        const messageInput = document.getElementById('msg_input');
+        const userMessage = messageInput.value;
+        if (!userMessage.trim()) {
+            return;
+        }
+        // 顯示用戶的消息
+        var messageBox = document.createElement('div');
+        messageBox.className = 'user_box';
+        var newMessage = document.createElement('div');
+        newMessage.className = 'message user_msg';
+        newMessage.textContent = userMessage;
+        messageBox.appendChild(newMessage);
+        var textBox = document.getElementById('text_box');
+        textBox.appendChild(messageBox);
+
+        // 清空輸入框
+        messageInput.value = '';
+        try {
+            const response = await fetch('http://luffy.ee.ncku.edu.tw:5920/gpt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userMessage })
+            });
+
+            var messageBox = document.createElement('div');
+            messageBox.className = 'ai_box';
+            const aiMsgDiv = document.createElement('div');
+            aiMsgDiv.className = 'message ai_msg';
+            if (response.ok) {
+                const data = await response.json();           
+                aiMsgDiv.textContent = data;
+                messageBox.appendChild(aiMsgDiv);
+            } else {
+                aiMsgDiv.textContent = 'Error: ' + response.statusText;
+                messageBox.appendChild(aiMsgDiv);
+            }
+            var textBox = document.getElementById('text_box');
+            textBox.appendChild(messageBox);
+        } catch (error) {
+            aiMsgDiv.textContent = 'Error: ' + error.message;
+            messageBox.appendChild(aiMsgDiv);
+        }
+
+        // 滾動到最新消息
+        textBox.scrollTop = textBox.scrollHeight;
+    } 

@@ -521,17 +521,16 @@ font-size: 12px;
 }
 
 #step3 {
-  color: blue; 
-  font-family: 'Arial', sans-serif; 
-  
+  font-family: 'GenYoGothic', sans-serif;
+  position: relative; 
+  width: 100%;
 }
 
 #step3 p:first-of-type {
-  
   position: relative;
   font-weight: bold; 
   top: 15px;
-  left: 78%;
+  left: 84%;
   font-size: 30px;
   transform: translateX(-50%);
   color: #003466;
@@ -544,31 +543,45 @@ font-size: 12px;
   position: relative;
   font-weight: bold; 
   font-size: 20px;
-  top:40px;  
+  top:30px;  
   line-height: 1.5;
   text-align: center; 
 }
-#step3 img {
+
+#bottom_box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#bottom_box img {
   width: 300px; 
   height: 180px; 
-  cursor: pointer; 
+  margin-top: 20px;
 }
 
-#step3 {
-  font-family: 'GenYoGothic', sans-serif;
-  position: relative; 
-  padding: 20px; 
+#bottom_box button {
+  width: 400px; 
 }
 
-#step3 button {
-  padding: 0; 
-  border: none;
-  background: none; 
-  cursor: pointer;
+.form-container {
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
-#step3 button img {
-  padding-top: 20%;
-  width: 100%; 
-  height: auto;
+.form-group {
+  margin-bottom: 10px;
 }
+
+.sub_title {
+  color: #003466;
+  font-family: 'GenYoGothic';
+  margin-right: 10px;
+}
+
+.sub_content {
+  color: #999999;
+  font-family: 'GenYoGothic';
+  margin-right: 5px;
+}
+

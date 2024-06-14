@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./homepage.css" />
   </head>
   <body>
-    <!-- JavaScript Bundle with Popper -->
+    <!-- navbar begin -->
     <nav class="navbar navbar-dark" style="background-color: #003466;" >
       <div class="container-fluid">
         <div class="icon-container">
@@ -27,26 +27,6 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div id="overlay" style="display:none;"></div>
-
-
-
-
-        <!--暫時不使用 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <span class="nav-item">
-          <a
-            id="login-btn"
-            class="btn button btn-outline-success"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            href="#login"
-            >Login</a
-
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -56,16 +36,16 @@
                 <li><a class="dropdown-item" href="./friends.html">我的配對</a></li>
                 <li><a class="dropdown-item" href="./message.html">配對訊息</a></li>
               </ul>
-            </li>
+          </li>
         </div>
         
         <div></div>
         <div class="navbar-items">
-          <a class="navbar-brand ms-5  nav-link active" aria-current="page" href="./homepage.html">主頁</a>
+          <a class="navbar-brand ms-5" href="./homepage.html">主頁</a>
           <a class="navbar-brand ms-3" href="./news.html">動態消息</a>
           <a href="./index.html"><img class="icon" src="../images/icon.png"  ></a>
           <a class="navbar-brand ms-8" href="./market.html">專屬推薦</a>
-          <a class="navbar-brand ms-8" href="./aboutus.html">About Us</a>
+          <a class="navbar-brand ms-8 nav-link active" aria-current="page" href="./aboutus.html">About Us</a>
         </div>
         <div class="icon-container">
           <a href="#">
@@ -90,176 +70,9 @@
             </ul>
           </li>
         </div>
-      </div>-->
+      </div>
     </nav>
-
-
-
-     <!--個人檔案-->
-    <div class="interactive-history">
-      <div class="background-layer"></div>
-      <div class="tab-buttons">
-          <button class="tab-button active" data-target="tab1">平均</button>
-          <button class="tab-button" data-target="tab2">分次紀錄</button>
-      </div>
-      <div class="content-box">
-          <div id="tab1" class="tab-content active">
-              <div class="header">
-                <!-- profile picture-->
-                  <img src="../images/BAGLE.png" alt="Dog Image" class="dog-image">
-                  <div class="dog-info">
-                      <div class="dog-name">
-                          <h3 id="dog-name-text">BAGLE</h3>
-                          <input type="text" id="dog-name-input" style="display:none;" />
-                          <button class="edit-button" onclick="editDogName()">✏️</button>
-                      </div>
-                      <p>性別：公</p>
-                      <p>生日：2022.11 年齡：1歲6個月</p>
-                      <p>體重：30 公斤 體型：大型犬</p>
-                  </div>
-              </div>
-              <div class="average-info">
-                  <p>每日平均散步 <span class="highlight">2</span> 次</p>
-                  <div class="chart">圖表1</div>
-                  <p>散步平均時長 <span class="highlight">42 分</span></p>
-                  <div class="chart">圖表2</div>
-                  <p>散步平均距離 <span class="highlight">1.8 公里</span></p>
-              </div>
-          </div>
-          <div id="tab2" class="tab-content">
-            <h3>分次散步紀錄</h3>
-            <div class="walk-record-header">
-                <div class="record-date">日期</div>
-                <div class="record-time">時間</div>
-                <div class="record-duration">時長</div>
-                <div class="record-distance">距離</div>
-                <div class="record-note"></div>
-            </div>
-            <div class="walk-record">
-                <button class="record-item" onclick="toggleDetails(this)">
-                    <div class="record-summary">
-                        <div class="record-date">05/06</div>
-                        <div class="record-time">19:00</div>
-                        <div class="record-duration">1.5 小時</div>
-                        <div class="record-distance">2 公里</div>
-                        <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
-                    </div>
-                    <div class="record-details">
-                        <p>總體分數: ⭐⭐⭐⭐☆</p>
-                        <p>距離: 2公里</p>
-                        <p>喝水量: 200cc</p>
-                        <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
-                        <div class="owner-info">
-                            <img src="path/to/owner.png" alt="owner image" class="owner-image">
-                            <div>
-                                <p>KUMA</p>
-                                <p>寵物主人: ⭐⭐⭐⭐⭐</p>
-                                <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
-                                <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
-                            </div>
-                        </div>
-                    </div>
-                </button>
-                <button class="record-item" onclick="toggleDetails(this)">
-                  <div class="record-summary">
-                    <div class="record-date">05/06</div>
-                    <div class="record-time">19:00</div>
-                    <div class="record-duration">1.5 小時</div>
-                    <div class="record-distance">2 公里</div>
-                    <div class="record-note"><img src="path/to/icon.png" alt="note icon"></div>
-                  </div>
-                  <div class="record-details">
-                    <div class="total">
-                      <p>總體分數</p>
-                      <p>⭐⭐⭐⭐☆</p>
-                    </div>
-                    <div class="routebar">
-                      <div class="routesection">
-                        <span>家</span>
-                        <div class="home"></div>
-                      </div>
-                      <div class="routesection">
-                        <span>自強操場</span>
-                        <div class="loc1"></div>
-                      </div>
-                      <div class="routesection">
-                        <span>蠑螈</span>
-                        <div class="loc2"></div>
-                      </div>
-                      <div class="routesection">
-                        <span>家</span>
-                        <div class="home"></div>
-                      </div>
-                    </div>
-                    <div class="details">
-                      <div class="detail-bar">
-                        <span>距離</span>
-                        <div class="bar-container">
-                          <div class="bar" style="width: 40%;">2</div>
-                        </div>
-                        <span class="bar-label">2公里</span>
-                      </div>
-                      <div class="detail-bar">
-                        <span>喝水量</span>
-                        <div class="bar-container">
-                          <div class="bar" style="width: 50%;">200</div>
-                        </div>
-                        <span class="bar-label">200cc</span>
-                      </div>
-                      <div class="detail-ratings">
-                        <div class="detail-rating">
-                          <span>路線規劃</span>
-                          <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                        <div class="detail-rating">
-                          <span>停靠點 A</span>
-                          <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                        <div class="detail-rating">
-                          <span>停靠點 B</span>
-                          <div class="stars">⭐⭐⭐⭐</div>
-                        </div>
-                      </div>
-                      <p class="note-title">備註:</p>
-                      <p class="note-content">今天天氣特別熱，回家後有點身體不適</p>
-                      <div class="owner-info">
-                        <img src="path/to/owner.png" alt="owner image" class="owner-image">
-                        <div class="owner-text">
-                          <p>KUMA</p>
-                          <p>⭐⭐⭐⭐⭐</p>
-                        </div>
-                      </div>
-                      <div class="owner-rating">
-                        <p class="owner-rating-title">寵物主人: ⭐⭐⭐⭐⭐</p>
-                        <p class="owner-rating-status">遊玩狀態: ⭐⭐⭐⭐⭐</p>
-                        <p class="owner-rating-note">寵物夥伴備註</p> 
-                        <p class="owner-rating-note2">KUMA體型相當，很合得來！</p>
-                      </div>
-                    </div>
-                  </div>
-                </button>
-                
-             
-                <!-- More records as needed -->
-            </div>
-        </div>
-        
-                </tbody>
-            </table>
-        </div>
-      </div>
-  </div>
-  
-  
-        <script src="./script.js"></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-          crossorigin="anonymous"
-        ></script>
-      </body>
-    </html>
-    
+    <!-- navbar end -->
 
     <!-- login dialog begin -->
 
@@ -415,8 +228,8 @@
     </div>
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content shadow p-3 mb-5 bg-body rounded">
+      <div class="modal-dialog modal-lg">
+        <div id="table" class="modal-content shadow p-3 mb-5 bg-body rounded">
           <div class="modal-header">
             <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
             <img src="../images/dot2.png" id="progressicon2" style="display: none; width: 10px; height: 10px;">
@@ -475,14 +288,14 @@
             <!-- Step 2: location -->
             <div id="step2" class="inactive-step pet-registration-step" style="display: none;">
               <div class="mb-3" style="position: relative;">
-                  <h1 id="title">您的所在區域為?</h1>
-                  <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
-                  <select id="region" class="form-control" onchange="populateAreas()">
-                      <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
-                  </select>
-                  <select id="district" class="form-control">
-                      <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
-                  </select>
+                <h1 id="title">您的所在區域為?</h1>
+                <h2 id="subtitle">PetPals為您自動化推薦<br>附近區域與毛小孩接觸機會</h2>
+                <select id="region" class="form-control" onchange="populateAreas()">
+                    <option value="" disabled selected style="color: #ADADAD !important;">縣市</option>
+                </select>
+                <select id="district" class="form-control">
+                    <option value="" disabled selected style="color: #ADADAD;">鄉、鎮、市、區</option>
+                </select>
           
                   <p id="service-notice">開啟定位服務</p>
                   <p id="ss">自動更新位置即時推薦附近機會</p>
@@ -503,10 +316,49 @@
             <!-- Step 3: end -->
             <div id="step3" class="inactive-step" style="display: none;">
               <p>註冊完成!</p>
-              <p>使用PetPals<br>開始你的第一趟旅程</p>
-              <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
+              <p>請先填寫您預期配對的寵物夥伴條件，皆可複選</p>
+              <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label class="sub_title">寵物體型</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="small"> 小型犬</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="medium"> 中型犬</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="large"> 大型犬</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">寵物年齡</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="puppy"> 幼年</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="adult"> 成年</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="senior"> 老年</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步狀態</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="calm"> 休閒平和</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="active"> 激烈互動</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="endurance"> 長續航力</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步時長</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="0.5"> 30分鐘</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="1"> 1小時</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="1.5"> 1.5小時</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="2"> 2小時</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步距離</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="0.5"> 0.5公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="1"> 1公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="1.5"> 1.5公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="2"> 2公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="3"> 2公里以上</label>
+                    </div>
+                </form>
+              </div>
+              <div id="bottom_box">
+                <button id="submitBtn" type="submit" class="btn btn-blue reg_button" data-bs-toggle="modal"> 確認送出</button>
+                <img src="../images/dog1.png">
+              </div>
             </div>
-
           </div>
         </div> 
       </div>
@@ -517,8 +369,156 @@
 
     <div class="mainpage">
       <div id="left_box" class="content_box">
-
+        <!--個人檔案-->
+        <div class="interactive-history">
+          <div class="background-layer"></div>
+          <div class="tab-buttons">
+              <button class="tab-button active" data-target="tab1">平均</button>
+              <button class="tab-button" data-target="tab2">分次紀錄</button>
+          </div>
+          <div class="content-box">
+              <div id="tab1" class="tab-content active">
+                <div class="header">
+                  <!-- profile picture-->
+                    <img src="../images/BAGLE.png" alt="Dog Image" class="dog-image">
+                    <div class="dog-info">
+                        <div class="dog-name">
+                            <h3 id="dog-name-text">BAGLE</h3>
+                            <input type="text" id="dog-name-input" style="display:none;" />
+                            <button class="edit-button" onclick="editDogName()">✏️</button>
+                        </div>
+                        <p>性別：公</p>
+                        <p>生日：2022.11 年齡：1歲6個月</p>
+                        <p>體重：30 公斤 體型：大型犬</p>
+                    </div>
+                </div>
+                <div class="average-info">
+                    <p>每日平均散步 <span class="highlight">2</span> 次</p>
+                    <div class="chart">圖表1</div>
+                    <p>散步平均時長 <span class="highlight">42 分</span></p>
+                    <div class="chart">圖表2</div>
+                    <p>散步平均距離 <span class="highlight">1.8 公里</span></p>
+                </div>
+              </div>
+              <div id="tab2" class="tab-content">
+                <h3>分次散步紀錄</h3>
+                <div class="walk-record-header">
+                    <div class="record-date">日期</div>
+                    <div class="record-time">時間</div>
+                    <div class="record-duration">時長</div>
+                    <div class="record-distance">距離</div>
+                    <div class="record-note"></div>
+                </div>
+                <div class="walk-record">
+                  <button class="record-item" onclick="toggleDetails(this)">
+                    <div class="record-summary">
+                        <div class="record-date">05/06</div>
+                        <div class="record-time">19:00</div>
+                        <div class="record-duration">1.5 小時</div>
+                        <div class="record-distance">2 公里</div>
+                        <div class="record-note"><img src="" alt="note icon"></div>
+                    </div>
+                    <div class="record-details">
+                        <p>總體分數: ⭐⭐⭐⭐☆</p>
+                        <p>距離: 2公里</p>
+                        <p>喝水量: 200cc</p>
+                        <p>備註: 今天天氣特別熱，回家後有點身體不適</p>
+                        <div class="owner-info">
+                            <img src="" alt="owner image" class="owner-image">
+                            <div>
+                                <p>KUMA</p>
+                                <p>寵物主人: ⭐⭐⭐⭐⭐</p>
+                                <p>遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                                <p>寵物夥伴備註: KUMA體型相當，很合得來！</p>
+                            </div>
+                        </div>
+                    </div>
+                  </button>
+                  <button class="record-item" onclick="toggleDetails(this)">
+                    <div class="record-summary">
+                      <div class="record-date">05/06</div>
+                      <div class="record-time">19:00</div>
+                      <div class="record-duration">1.5 小時</div>
+                      <div class="record-distance">2 公里</div>
+                      <div class="record-note"><img src="" alt="note icon"></div>
+                    </div>
+                    <div class="record-details">
+                      <div class="total">
+                        <p>總體分數</p>
+                        <p>⭐⭐⭐⭐☆</p>
+                      </div>
+                      <div class="routebar">
+                        <div class="routesection">
+                          <span>家</span>
+                          <div class="home"></div>
+                        </div>
+                        <div class="routesection">
+                          <span>自強操場</span>
+                          <div class="loc1"></div>
+                        </div>
+                        <div class="routesection">
+                          <span>蠑螈</span>
+                          <div class="loc2"></div>
+                        </div>
+                        <div class="routesection">
+                          <span>家</span>
+                          <div class="home"></div>
+                        </div>
+                      </div>
+                      <div class="details">
+                        <div class="detail-bar">
+                          <span>距離</span>
+                          <div class="bar-container">
+                            <div class="bar" style="width: 40%;">2</div>
+                          </div>
+                          <span class="bar-label">2公里</span>
+                        </div>
+                        <div class="detail-bar">
+                          <span>喝水量</span>
+                          <div class="bar-container">
+                            <div class="bar" style="width: 50%;">200</div>
+                          </div>
+                          <span class="bar-label">200cc</span>
+                        </div>
+                        <div class="detail-ratings">
+                          <div class="detail-rating">
+                            <span>路線規劃</span>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                          </div>
+                          <div class="detail-rating">
+                            <span>停靠點 A</span>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                          </div>
+                          <div class="detail-rating">
+                            <span>停靠點 B</span>
+                            <div class="stars">⭐⭐⭐⭐</div>
+                          </div>
+                        </div>
+                        <p class="note-title">備註:</p>
+                        <p class="note-content">今天天氣特別熱，回家後有點身體不適</p>
+                        <div class="owner-info">
+                          <img src="path/to/owner.png" alt="owner image" class="owner-image">
+                          <div class="owner-text">
+                            <p>KUMA</p>
+                            <p>⭐⭐⭐⭐⭐</p>
+                          </div>
+                        </div>
+                        <div class="owner-rating">
+                          <p class="owner-rating-title">寵物主人: ⭐⭐⭐⭐⭐</p>
+                          <p class="owner-rating-status">遊玩狀態: ⭐⭐⭐⭐⭐</p>
+                          <p class="owner-rating-note">寵物夥伴備註</p> 
+                          <p class="owner-rating-note2">KUMA體型相當，很合得來！</p>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                <!-- More records as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      
       <div id="right_box" class="content_box">
         <div id="ai_content">
           <div id="aititle" class="text">
@@ -533,6 +533,7 @@
                 您好，我是您的智慧管家
               </div>
             </div>
+            <div id="response"></div>
           </div>
           <input type="text" id="msg_input" placeholder="輸入訊息">
         </div>
@@ -546,7 +547,8 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
-    ></script>
+    >
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./homepage.js"></script>
   </body>

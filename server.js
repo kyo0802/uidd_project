@@ -156,6 +156,73 @@ app.post('/login', (req, res) => {
   });
 });
 
+// get CityCounty data json
+app.get('/CityCountyData.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'CityCountyData.json'));
+});
+
+// chatgpt api
+import cors from 'cors';
+import axios from 'axios';
+// 要執行
+// npm install cors
+// npm install express axios
+// need to delete "node_modules/.bin/mime" file
+
+// 允許跨域請求
+app.use(cors());
+app.use(express.json());
+
+// 設定 OpenAI API 金鑰
+// free api : https://github.com/popjane/free_chatgpt_api?tab=readme-ov-file#%E5%B8%B8%E7%94%A8%E5%BA%94%E7%94%A8%E6%94%AF%E6%8C%81
+const apiKey = 'sk-XotdDMEEwDh8mZYE5e2aF7D2DeBc40EfB206E96e66E070F2';
+
+app.post('/gpt', async(req, res) => {
+  const message = req.body.userMessage;
+  const url = 'https://free.gpt.ge/v1/chat/completions';
+  const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+  };
+  const data = {
+      model: 'gpt-3.5-turbo-1106', // 或者你使用的其他模型
+      messages: [
+        {
+          role: 'system',
+          content: "預設成繁體中文，英文也可以，你要根據我以往的數據幫我分析最新的數據並提供健康的建議，回應盡量在20個字以內，不要一直給重複的建議，不要回答寵物相關以外的問題"
+        },
+        {
+          role: 'system',
+          content: "以下是我的寵物基本資料，年齡:1年6個月，體重:30公斤，體型:大型犬"
+        },
+        {
+          role: 'system',
+          content: "以下是我的平均紀錄，每日散步:2次，時長:42分鐘，距離:1.8公里"
+        },
+        {
+            role: 'user',
+            content: message
+        }
+      ],
+      temperature: 0.5
+  };
+
+  try {
+    const response = await axios.post(url, data, { headers });
+    if (response.data && response.data.choices && response.data.choices.length > 0) {
+        const chatResponse = response.data.choices[0].message.content;
+        res.json(chatResponse);
+    } else {
+        console.error('Unexpected API response structure:', response.data);
+        res.status(500).json({ error: 'Unexpected API response structure' });
+    }
+  } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+      res.status(500).json({ error: 'Failed to get response from ChatGPT' });
+  }
+}) 
+
+
 // start the server
 // 啟動伺服器
 app.listen(port, () => {
