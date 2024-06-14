@@ -10,7 +10,6 @@ const __dirname = dirname(__filename)
 // create an express, aka web server, instance
 // 建立一個 express (也就是網頁伺服器)實體
 
-
 const db = mysql.createConnection(config.mysql);
 
 db.connect(err => {
@@ -240,6 +239,62 @@ app.post('/save_message', (req, res) => {
     res.send('訊息已成功儲存');
   });
 });
+
+// 設置靜態文件夾
+app.use(express.static('public'));
+
+// 使用 express.json() 中間件來解析 JSON 請求
+app.use(express.json());
+
+// API 路由來獲取當前使用者的 pet 資料
+app.post('/api/petdata', (req, res) => {
+  const { email } = req.body;
+  console.log('Received email:', email); // Log the received email
+
+  if (!email) {
+    console.error('Email is required');
+    return res.status(400).json({ message: 'Email is required' });
+  }
+
+  // 查詢 pet
+  const petQuery = 'SELECT pet FROM account_data WHERE email = ?';
+  db.query(petQuery, [email], (err, petResults) => {
+    if (err) {
+      console.error('Error querying pet:', err);
+      return res.status(500).json({ message: 'Error querying pet' });
+    }
+
+    console.log('Pet query results:', petResults); // Log pet query results
+
+    if (petResults.length === 0) {
+      console.warn('Pet not found for the given email');
+      return res.status(404).json({ message: 'Pet not found for the given email' });
+    }
+
+    const pet = petResults[0].pet;
+
+    // 查詢 walk_data 和 pet_data
+    const query = `
+      SELECT wd.*, wid.rating, wid.water, wid.note, wid.master_rating, wid.happiness, pd.gender, pd.size, pd.age, pd.image
+      FROM walk_data wd
+      LEFT JOIN walk_id_data wid ON wd.walk_id = wid.walk_id
+      LEFT JOIN pet_data pd ON wd.pet = pd.pet
+      WHERE wd.pet = ?;
+    `;
+
+    db.query(query, [pet], (err, results) => {
+      if (err) {
+        console.error('Error querying walk data and pet data:', err);
+        return res.status(500).json({ message: 'Error querying walk data and pet data' });
+      }
+
+      console.log('Final query results:', results); // Log final query results
+      res.json(results);
+    });
+  });
+});
+
+
 
 // get CityCounty data json
 app.get('/CityCountyData.json', (req, res) => {

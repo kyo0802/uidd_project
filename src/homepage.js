@@ -206,69 +206,171 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let isAnimating = false;
 
-  document.querySelectorAll('.tab-button').forEach(button => {
+  document.addEventListener('DOMContentLoaded', () => {
+    let isAnimating = false;
+  
+    document.querySelectorAll('.tab-button').forEach(button => {
       button.addEventListener('click', () => {
-          if (isAnimating) return; 
+        if (isAnimating) return;
   
-          const target = button.getAttribute('data-target');
-          const activeContent = document.querySelector('.tab-content.active');
+        const target = button.getAttribute('data-target');
+        const activeContent = document.querySelector('.tab-content.active');
   
-
-          if (activeContent && activeContent.id === target) return;
+        if (activeContent && activeContent.id === target) return;
   
-          const contentBox = document.querySelector('.content-box');
-          const backgroundLayer = document.querySelector('.background-layer');
+        const contentBox = document.querySelector('.content-box');
+        const backgroundLayer = document.querySelector('.background-layer');
   
-
-          isAnimating = true;
-          document.querySelectorAll('.tab-button').forEach(btn => {
-              btn.disabled = true;
-          });
+        isAnimating = true;
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          btn.disabled = true;
+        });
   
-          document.querySelectorAll('.tab-button').forEach(btn => {
-              btn.classList.remove('active');
-              btn.style.zIndex = '0';
-          });
-          button.classList.add('active');
-          button.style.zIndex = '2';
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.zIndex = '0';
+        });
+        button.classList.add('active');
+        button.style.zIndex = '2';
   
-
-          if (activeContent) {
-              activeContent.classList.remove('active');
-              activeContent.classList.add('slide-out');
-              setTimeout(() => {
-                  activeContent.style.display = 'none';
-                  activeContent.classList.remove('slide-out');
-              }, 150); 
+        if (activeContent) {
+          activeContent.classList.remove('active');
+          activeContent.classList.add('slide-out');
+          setTimeout(() => {
+            activeContent.style.display = 'none';
+            activeContent.classList.remove('slide-out');
+          }, 150);
+        }
+  
+        const newContent = document.getElementById(target);
+        newContent.style.display = 'block';
+        setTimeout(() => {
+          newContent.classList.add('active');
+        }, 10);
+  
+        contentBox.classList.add('slide-out');
+        backgroundLayer.classList.add('bg-slide-out');
+        setTimeout(() => {
+          contentBox.classList.remove('slide-out');
+          contentBox.classList.add('slide-in');
+          backgroundLayer.classList.remove('bg-slide-out');
+          backgroundLayer.classList.add('bg-slide-in');
+          setTimeout(() => {
+            contentBox.classList.remove('slide-in');
+            backgroundLayer.classList.remove('bg-slide-in');
+  
+            isAnimating = false;
+            document.querySelectorAll('.tab-button').forEach(btn => {
+              btn.disabled = false;
+            });
+          }, 300);
+        }, 150);
+  
+        if (target === 'tab2') {
+          fetchWalkData();
+        }
+      });
+    });
+  
+    function fetchWalkData() {
+      const email = localStorage.getItem('account');
+      console.log('Retrieved email from localStorage:', email);
+  
+      if (!email) {
+        console.error('No account found in localStorage');
+        return;
+      }
+  
+      fetch('/api/petdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      })
+        .then(response => {
+          console.log('Response status:', response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('Received data:', data);
+          const walkRecordsContainer = document.getElementById('walk-records');
+          walkRecordsContainer.innerHTML = '';
+  
+          if (data.length === 0) {
+            walkRecordsContainer.innerHTML = '<p>No walk records found.</p>';
+            return;
           }
   
-
-          const newContent = document.getElementById(target);
-          newContent.style.display = 'block';
-          setTimeout(() => {
-              newContent.classList.add('active');
-          }, 10); 
+          data.forEach(walk => {
+            const walkRecord = document.createElement('div');
+            walkRecord.classList.add('walk-record');
+            const date = new Date(walk.walk_date);
+            const localDate = date.toLocaleDateString('en-US', { timeZone: 'Asia/Taipei' });
+            walkRecord.innerHTML = `
+              <button class="record-item" onclick="toggleDetails(this)">
+                <div class="record-summary">
+                  <div class="record-date">${localDate}</div>
+                  <div class="record-time">${walk.walk_time}</div>
+                  <div class="record-duration">${walk.duration} 小時</div>
+                  <div class="record-distance">${walk.distance} 公里</div>
+                  <div class="record-note"><img src="images/icon_y.png" alt="note icon"></div>
+                </div>
+                <div class="record-details" style="display: none;">
+                  <div class="total">
+                    <p>總體分數</p>
+                    <div class="stars">
+                      ${generateStars(walk.satisfaction)}
+                    </div>
+                  </div>
+                  <div class="routebar"></div>
+                  <div class="details">
+                    <div class="detail-bar">
+                      <span>距離</span>
+                      <div class="bar-container">
+                        <div class="bar" style="width: ${(walk.distance / 5) * 100}%;">${walk.distance}</div>
+                      </div>
+                      <span class="bar-label">${walk.distance} 公里</span>
+                    </div>
+                    <div class="detail-bar">
+                      <span>喝水量</span>
+                      <div class="bar-container">
+                        <div class="bar" style="width: ${walk.water}%;"></div>
+                      </div>
+                      <span class="bar-label">${walk.water} cc</span>
+                    </div>
+                    <div class="detail-ratings">
+                      <div class="detail-rating">
+                        <span>路線規劃</span>
+                        <div class="stars">
+                          ${generateStars(walk.route)}
+                        </div>
+                      </div>
+                      <div class="detail-rating">
+                        <span>停靠點 A</span>
+                        <div class="stars">
+                          ${generateStars(walk.A)}
+                        </div>
+                      </div>
+                      <div class="detail-rating">
+                        <span>停靠點 B</span>
+                        <div class="stars">
+                          ${generateStars(walk.B)}
+                        </div>
+                      </div>
+                    </div>
+                    <p class="note-title">備註:</p>
+                    <p class="note-content">${walk.note}</p>
+                  </div>
+                </div>
+              </button>
+            `;
   
-
-          contentBox.classList.add('slide-out');
-          backgroundLayer.classList.add('bg-slide-out');
-          setTimeout(() => {
-              contentBox.classList.remove('slide-out');
-              contentBox.classList.add('slide-in');
-              backgroundLayer.classList.remove('bg-slide-out');
-              backgroundLayer.classList.add('bg-slide-in');
-              setTimeout(() => {
-                  contentBox.classList.remove('slide-in');
-                  backgroundLayer.classList.remove('bg-slide-in');
-  
-     
-                  isAnimating = false;
-                  document.querySelectorAll('.tab-button').forEach(btn => {
-                      btn.disabled = false;
-                  });
-              }, 300); 
-          }, 150);
-      });
+            walkRecordsContainer.appendChild(walkRecord);
+          });
+        })
+        .catch(error => console.error('Error fetching walk data:', error));
+    }
   });
   function editDogInfo() {
     var nameText = document.getElementById('dog-name-text');
@@ -809,3 +911,19 @@ $(document).ready(() => {
         document.getElementById('feedback').style.display='none';
         alert('已收到本次回饋！');
     }
+/*生成資料*/
+  function toggleDetails(button) {
+    const details = button.querySelector('.record-details');
+    details.style.display = details.style.display === 'block' ? 'none' : 'block';
+  }
+  
+  function generateStars(rating) {
+    let stars = '';
+    for (let i = 0; i < rating; i++) {
+      stars += '<img src="images/黃星星滿.png" alt="star" class="star-icon">';
+    }
+    for (let i = rating; i < 5; i++) {
+      stars += '<img src="images/黃星星.png" alt="star" class="star-icon">';
+    }
+    return stars;
+  }
