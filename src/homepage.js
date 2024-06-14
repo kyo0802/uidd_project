@@ -270,22 +270,44 @@ document.addEventListener('DOMContentLoaded', function () {
           }, 150);
       });
   });
-  
-  function editDogName() {
-      var nameText = document.getElementById('dog-name-text');
-      var nameInput = document.getElementById('dog-name-input');
-  
-      if (nameText.style.display === 'none') {
-          nameText.innerText = nameInput.value;
-          nameText.style.display = 'block';
-          nameInput.style.display = 'none';
-      } else {
-          nameInput.value = nameText.innerText;
-          nameText.style.display = 'none';
-          nameInput.style.display = 'block';
-          nameInput.focus();
-      }
-  }
+  function editDogInfo() {
+    var nameText = document.getElementById('dog-name-text');
+    var genderText = document.getElementById('dog-gender-text');
+    var birthdayText = document.getElementById('dog-birthday-text');
+    var ageText = document.getElementById('dog-age-text');
+    var weightText = document.getElementById('dog-weight-text');
+    var sizeText = document.getElementById('dog-size-text');
+
+    if (nameText.contentEditable === 'true') {
+        // Save edited text
+        nameText.contentEditable = 'false';
+        genderText.contentEditable = 'false';
+        birthdayText.contentEditable = 'false';
+        ageText.contentEditable = 'false';
+        weightText.contentEditable = 'false';
+        sizeText.contentEditable = 'false';
+
+        // Change button icon to edit
+        document.querySelector('.edit-button img').src = '../images/編輯.png';
+    } else {
+        // Enable editing
+        nameText.contentEditable = 'true';
+        genderText.contentEditable = 'true';
+        birthdayText.contentEditable = 'true';
+        ageText.contentEditable = 'true';
+        weightText.contentEditable = 'true';
+        sizeText.contentEditable = 'true';
+
+        // Focus the first editable element
+        nameText.focus();
+
+        // Change button icon to save
+        document.querySelector('.edit-button img').src = '../images/save.png';
+    }
+}
+
+
+
   
   function toggleDetails(button) {
     const details = button.querySelector('.record-details');
