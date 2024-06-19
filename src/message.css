@@ -21,7 +21,7 @@
 }
 
 .mainpage{
-    display:grid;
+    display:none;
     grid-template-columns:50% 50%;
     height: auto;
 }
@@ -1169,4 +1169,12 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: visible;
+}
+
+#no_login {
+    display: none;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'GenYoGothic';
+    margin-top: 0px;
 }
