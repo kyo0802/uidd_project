@@ -181,41 +181,46 @@ $(".eye_open").click(function() {
 var account = "", user = "";
 user = localStorage.getItem("account")
 $(document).ready(function() {
-    if(user === null) {
-        $("#profile_box").css("display", "none")
-        $("#profile").css("display", "inline")
-        $("#login_btn").click(function() {
-            account = $("#email").val();
-            localStorage.setItem("account", account);  
-            $("#login_btn").css("background-color", "#FFC533")  
-            $("#login_btn").css("color", "white")
-            /*
-            if(account == "database user data") {
-                is_login = true;
-                user = localStorage.getItem("account")
-            }
-            else {
-                $("#wrong_account").html("帳號不存在或密碼錯誤")
-                $("#email").css("border-color", "red")
-                $("#password").css("border-color", "red")
-            }
-            */
-            user = localStorage.getItem("account")
-            location.reload()
+    let user = localStorage.getItem("account");
+
+    if (user === null) {
+        $("#profile_box").css("display", "none");
+        $("#profile").css("display", "block");
+
+        $('#login_btn').click(function(event) {
+            event.preventDefault();
+
+            const account = $('#email').val();
+            const password = $('#password').val();
+
+            const input_data = {
+                account: account,
+                password: password,
+            };
+
+            $.post('./login', input_data, function(data) {
+                localStorage.setItem("account", account);
+                $("#login_btn").css("background-color", "#FFC533");
+                $("#login_btn").css("color", "white");
+                alert('Login successful');
+                location.reload();
+            }).fail(function(error) {
+                $("#wrong_account").html("帳號不存在或密碼錯誤");
+                $("#email").css("border-color", "red");
+                $("#password").css("border-color", "red");
+                alert('Login failed: ' + error.responseText);
+            });
+        });
+    } else {
+        $("#profile").css("display", "none");
+        $("#profile_box").css("display", "inline");
+
+        $("#logout").click(function() {
+            localStorage.clear();
+            location.reload();
         });
     }
-    else {
-        $("#profile").css("display", "none")
-        $("#profile_box").css("display", "inline")
-        $("#logout").click(function() {
-            // logout and clear local storage
-            localStorage.clear()
-            location.reload()
-            $("#profile_box").css("display", "none")
-            $("#profile").css("display", "inline")
-        })
-    }
-})
+});
 
 // city json begin
 const cityjson = './CityCountyData.json';

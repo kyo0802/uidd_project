@@ -182,7 +182,7 @@ $(document).ready(function() {
 
             if (user === null) {
                 $("#profile_box").css("display", "none");
-                $("#login_form").css("display", "block");
+                $("#profile").css("display", "block");
 
                 $('#login_btn').click(function(event) {
                     event.preventDefault();
@@ -209,7 +209,7 @@ $(document).ready(function() {
                     });
                 });
             } else {
-                $("#login_form").css("display", "none");
+                $("#profile").css("display", "none");
                 $("#profile_box").css("display", "inline");
 
                 $("#logout").click(function() {

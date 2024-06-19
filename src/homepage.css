@@ -24,7 +24,7 @@ body {
 }
 
 .mainpage{
-    display:grid;
+    display:none;
     grid-template-columns:50% 50%;
     height: 80vh;
 }
@@ -1368,6 +1368,7 @@ h6 {
 #text_box {
     height: 90%;
     max-height: 90%;
+    overflow-y: scroll;
 }
 
 .content_box {
@@ -1441,4 +1442,12 @@ h6 {
     width: 100%;
     padding: 10px;
     margin: 10px;
+}
+
+#no_login {
+    display: none;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'GenYoGothic';
+    margin-top: 40px;
 }

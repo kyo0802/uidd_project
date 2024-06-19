@@ -111,12 +111,17 @@ function showStep(stepNumber) {
         console.error('Step not found: step' + stepNumber);
     }
     if(stepNumber == 1.5 || (stepNumber == 2 && userRole == 'b')) {
-    $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $("button[class='signback']").attr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").attr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
+    }
+    else if(stepNumber == 3) {
+        $(".modal-lg").css("width", "700px");
     }
     else {
-    $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
-    $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $("button[class='signback']").removeAttr("data-bs-target", "#exampleModal3");
+        $("button[class='signback']").removeAttr("data-bs-toggle", "modal");
+        $(".modal-lg").css("width", "500px");
     }
 }
 var submitBtn = document.getElementById("submitBtn");
@@ -190,7 +195,7 @@ $(document).ready(function() {
 
     if (user === null) {
         $("#profile_box").css("display", "none");
-        $("#login_form").css("display", "block");
+        $("#profile").css("display", "block");
 
         $('#login_btn').click(function(event) {
             event.preventDefault();
@@ -217,7 +222,7 @@ $(document).ready(function() {
             });
         });
     } else {
-        $("#login_form").css("display", "none");
+        $("#profile").css("display", "none");
         $("#profile_box").css("display", "inline");
 
         $("#logout").click(function() {
