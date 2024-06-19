@@ -298,3 +298,15 @@ function populateAreas() {
     }
 }
 // city json end
+
+// hide content
+$(document).ready(function() {
+    if(user != null) {
+        $(".mainpage").css("display", "grid");
+        $("#no_login").css("display", "none");
+    }
+    else {
+        $(".mainpage").css("display", "none");
+        $("#no_login").css("display", "block");
+    }
+})
