@@ -408,6 +408,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const records = document.querySelectorAll('.record-summary');
+    const walksPerDay = {};
+    const durationPerDay = {};
+    const distancePerDay = {};
+
+    records.forEach(function(record) {
+        const dateText = record.querySelector('.record-date').textContent.trim();
+        const durationText = record.querySelector('.record-duration').textContent.trim();
+        const distanceText = record.querySelector('.record-distance').textContent.trim();
+
+        // 提取数值部分
+        const duration = parseFloat(durationText.split(' ')[0]); // 将时长转换为浮点数
+        const distance = parseFloat(distanceText.split(' ')[0]); // 将距离转换为浮点数
+
+        if (!walksPerDay[dateText]) {
+            walksPerDay[dateText] = 0;
+            durationPerDay[dateText] = 0;
+            distancePerDay[dateText] = 0;
+        }
+
+        walksPerDay[dateText] += 1;
+        durationPerDay[dateText] += duration;
+        distancePerDay[dateText] += distance;
+    });
+
+    const totalDays = Object.keys(walksPerDay).length;
+    let totalWalks = 0;
+    let totalDuration = 0;
+    let totalDistance = 0;
+
+    for (const date in walksPerDay) {
+        totalWalks += walksPerDay[date];
+        totalDuration += durationPerDay[date];
+        totalDistance += distancePerDay[date];
+    }
+
+    const averageWalks = totalWalks / totalDays;
+    const averageDuration = totalDuration / totalWalks;
+    const averageDistance = totalDistance / totalWalks;
+
+    document.getElementById('average-walks').textContent = averageWalks.toFixed(1);
+    document.getElementById('average-duration').textContent = (averageDuration * 60).toFixed(1) + ' 分';
+    document.getElementById('average-distance').textContent = averageDistance.toFixed(1) + ' 公里';
+});
+
 
 
   
@@ -938,3 +984,5 @@ $(document).ready(() => {
     }
     return stars;
   }
+
+  
