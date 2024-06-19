@@ -658,6 +658,10 @@ font-size: 12px;
 
 #no_login {
     display: none;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'GenYoGothic';
+    margin-top: 5px;
 }
 
 .content_container {

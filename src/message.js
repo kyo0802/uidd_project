@@ -182,7 +182,7 @@ $(document).ready(function() {
 
             if (user === null) {
                 $("#profile_box").css("display", "none");
-                $("#login_form").css("display", "block");
+                $("#profile").css("display", "block");
 
                 $('#login_btn').click(function(event) {
                     event.preventDefault();
@@ -209,7 +209,7 @@ $(document).ready(function() {
                     });
                 });
             } else {
-                $("#login_form").css("display", "none");
+                $("#profile").css("display", "none");
                 $("#profile_box").css("display", "inline");
 
                 $("#logout").click(function() {
@@ -298,3 +298,15 @@ function populateAreas() {
     }
 }
 // city json end
+
+// hide content
+$(document).ready(function() {
+    if(user != null) {
+        $(".mainpage").css("display", "grid");
+        $("#no_login").css("display", "none");
+    }
+    else {
+        $(".mainpage").css("display", "none");
+        $("#no_login").css("display", "block");
+    }
+})

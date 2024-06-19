@@ -30,7 +30,7 @@
   }
   
 .mainpage {
-    display: flex;
+    display: none;
     height: calc(100vh - 65px); 
     margin: 0;
     padding: 0; 
@@ -743,4 +743,12 @@
     height: 100%; 
     object-fit: none; 
     z-index: 10;
+}
+
+#no_login {
+  display: none;
+  text-align: center;
+  font-size: 1rem;
+  font-family: 'GenYoGothic';
+  margin-top: 40px;
 }

@@ -103,15 +103,13 @@
               <div class="row justify-content-center">    
                 <input type="text" class="form-control" id="email" placeholder="電子郵件地址或手機號碼">
                 <div id="password_block">
-                  <div class="input_box">
-                    <input type="password" class="form-control" id="password" placeholder="密碼">
-                    <i id="checkeye">
-                      <a href="#">
-                        <img class="eye_icon eye_close" src="../images/login_register/invisible.png"/>
-                        <img class="eye_icon eye_open" src="../images/login_register/visible.png"/>
-                      </a>
-                    </i>
-                  </div>
+                  <input type="password" class="form-control" id="password" placeholder="密碼">
+                  <i id="checkeye">
+                    <a href="#">
+                      <img class="eye_icon eye_close" src="../images/login_register/invisible.png"/>
+                      <img class="eye_icon eye_open" src="../images/login_register/visible.png"/>
+                    </a>
+                  </i>
                 </div>
                 <div id="wrong_account" class="small_word"></div>
                 <div id="forget_password" class="small_word"><a href="#forget_password">忘記密碼?</a></div>
@@ -119,7 +117,7 @@
                   <button class="btn btn-yellow reg_button" id="login_btn">登入</button>
                 </a>                
                 <hr style="margin-top: 20px;">
-                <button class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
+                <button id="reg" class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">建立新帳號</button>
                 <div class="small_word" id="supplyment">為您的寵物建立屬於自己的社交帳號!</div>
               </div>
             </div>
@@ -153,36 +151,25 @@
                   並找到最適合牠的寵物玩伴。
                 </div>
                 
-                <div class="container-fluid" style="display: flex;">
-                  <form class="d-flex width_half" role="search">
-                    <input class="form-control me-2" type="search" placeholder="姓氏" aria-label="Search" id="f_name">
-                  </form>
-                  <form class="d-flex width_half" role="search">
-                    <input class="form-control me-2" type="search" placeholder="名字" aria-label="Search" id="l_name">
-                  </form>
-                </div>
-              
-                <div class="container-fluid">
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="電子郵件地址或手機號碼" aria-label="Search" id="account">
-                  </form>
-                  
-                </div>
-            
-                <div class="container-fluid">
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="設定密碼" aria-label="Search"  id="register-pw">
-                  </form>
-                </div>
-
-                <div class="container-fluid">
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="再次輸入密碼" aria-label="Search">
-                  </form>
-                </div>
-                
-               <button type="button" class="btn btn-blue reg_button" data-bs-target="#exampleModal3" data-bs-toggle="modal">繼續</button>
-                
+                <form class="row g-2 needs-validation">
+                  <div class="container-fluid" style="display: flex;">
+                      <input class="form-control me-2" placeholder="姓氏" id="f_name" required>
+                      <input class="form-control me-2" placeholder="名字" id="l_name" required>
+                  </div>
+                  <div class="container-fluid">
+                      <input class="form-control me-2" placeholder="電子郵件地址或手機號碼" id="account" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid zip.
+                      </div>
+                  </div>              
+                  <div class="container-fluid">
+                      <input class="form-control me-2" placeholder="設定密碼"  id="register-pw" required>
+                  </div>
+                  <div class="container-fluid">
+                      <input class="form-control me-2" placeholder="再次輸入密碼" required>
+                  </div>                  
+                  <button type="submit" id="continue1" class="btn btn-blue reg_button" data-bs-target="#exampleModal2" data-bs-toggle="modal">繼續</button>
+                </form>
               </div>
             </div>
           </div>
@@ -227,7 +214,7 @@
     </div>
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content shadow p-3 mb-5 bg-body rounded">
           <div class="modal-header">
             <img src="../images/dot1.png" id="progressicon1" style="display: none; width: 10px; height: 10px;">
@@ -315,10 +302,49 @@
             <!-- Step 3: end -->
             <div id="step3" class="inactive-step" style="display: none;">
               <p>註冊完成!</p>
-              <p>使用PetPals<br>開始你的第一趟旅程</p>
-              <button id="submitBtn" type="submit" class="btn btn-primary mt-3" data-bs-target="#exampleModal" data-bs-toggle="modal"> <img src="../images/dog1.png" alt="Submit"></button>
+              <p>請先填寫您預期配對的寵物夥伴條件，皆可複選</p>
+              <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label class="sub_title">寵物體型</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="small"> 小型犬</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="medium"> 中型犬</label>
+                        <label class="sub_content"><input type="checkbox" name="size" value="large"> 大型犬</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">寵物年齡</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="puppy"> 幼年</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="adult"> 成年</label>
+                        <label class="sub_content"><input type="checkbox" name="age" value="senior"> 老年</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步狀態</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="calm"> 休閒平和</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="active"> 激烈互動</label>
+                        <label class="sub_content"><input type="checkbox" name="activity" value="endurance"> 長續航力</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步時長</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="0.5"> 30分鐘</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="1"> 1小時</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="1.5"> 1.5小時</label>
+                        <label class="sub_content"><input type="checkbox" name="duration" value="2"> 2小時</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="sub_title">散步距離</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="0.5"> 0.5公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="1"> 1公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="1.5"> 1.5公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="2"> 2公里</label>
+                        <label class="sub_content"><input type="checkbox" name="distance" value="3"> 2公里以上</label>
+                    </div>
+                </form>
+              </div>
+              <div id="bottom_box">
+                <button id="submitBtn" type="submit" class="btn btn-blue reg_button" data-bs-toggle="modal"> 確認送出</button>
+                <img src="../images/dog1.png">
+              </div>
             </div>
-
           </div>
         </div> 
       </div>

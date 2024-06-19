@@ -185,7 +185,7 @@ $(document).ready(function() {
 
     if (user === null) {
         $("#profile_box").css("display", "none");
-        $("#login_form").css("display", "block");
+        $("#profile").css("display", "block");
 
         $('#login_btn').click(function(event) {
             event.preventDefault();
@@ -212,7 +212,7 @@ $(document).ready(function() {
             });
         });
     } else {
-        $("#login_form").css("display", "none");
+        $("#profile").css("display", "none");
         $("#profile_box").css("display", "inline");
 
         $("#logout").click(function() {
@@ -264,65 +264,73 @@ function populateAreas() {
 // city json end
 
 document.addEventListener('DOMContentLoaded', function() {
-    var prevButton = document.querySelector('.prev_button');
-    var nextButton = document.querySelector('.next_button');
-    var cardContainers = document.querySelectorAll('[class^="card_container_"]');
-    var allCardContents = [];
-    var currentCardIndex = 0;
+    if(user != null){
+        $(".mainpage").css("display", "flex");
+        $("#no_login").css("display", "none");
+        var prevButton = document.querySelector('.prev_button');
+        var nextButton = document.querySelector('.next_button');
+        var cardContainers = document.querySelectorAll('[class^="card_container_"]');
+        var allCardContents = [];
+        var currentCardIndex = 0;
 
-    // 在页面加载时调用API获取所有卡片内容
-    fetch('/api/cards')
-        .then(response => response.json())
-        .then(data => {
-            allCardContents = data;
-            initializeCards();
-        })
-        .catch(error => console.error('Failed to fetch cards', error));
+        // 在页面加载时调用API获取所有卡片内容
+        fetch('/api/cards')
+            .then(response => response.json())
+            .then(data => {
+                allCardContents = data;
+                initializeCards();
+            })
+            .catch(error => console.error('Failed to fetch cards', error));
 
-    prevButton.addEventListener('click', function() {
-        updateCardContents(1);
-    });
+        prevButton.addEventListener('click', function() {
+            updateCardContents(1);
+        });
 
-    nextButton.addEventListener('click', function() {
-        updateCardContents(-1);
-    });
+        nextButton.addEventListener('click', function() {
+            updateCardContents(-1);
+        });
 
-    function initializeCards() {
-        // 将初始卡片内容放入页面
-        for (var i = 0; i < cardContainers.length; i++) {
-            cardContainers[i].innerHTML = allCardContents[i % allCardContents.length];
-        }
-    }
-
-    function updateCardContents(direction) {
-        cardContainers = document.querySelectorAll('[class^="card_container_"]');
-
-        currentCardIndex = (currentCardIndex + direction + allCardContents.length) % allCardContents.length;
-    
-        // 根据 currentCardIndex 和方向来更新卡片内容
-        var contents = [];
-        for (var i = 0; i < cardContainers.length; i++) {
-            var index = (currentCardIndex + i) % allCardContents.length;
-            contents.push(allCardContents[index]);
-        }
-
-        // 将更新后的内容放回卡片中
-        for (var i = 0; i < cardContainers.length; i++) {
-            var className = "card_container_" + (i);
-            var cardContainer = document.querySelector("." + className);
-            cardContainer.innerHTML = contents[i];
-    
-            // 移除或添加 overlay_image
-            var overlayImage = cardContainer.querySelector('.overlay_image');
-            if (className === "card_container_1") {
-                if (overlayImage) overlayImage.remove();
-            } else if (!overlayImage && (className === "card_container_0" || className === "card_container_2")) {
-                var img = document.createElement('img');
-                img.src = "../images/index/bg.png";
-                img.className = "overlay_image";
-                cardContainer.appendChild(img);
+        function initializeCards() {
+            // 将初始卡片内容放入页面
+            for (var i = 0; i < cardContainers.length; i++) {
+                cardContainers[i].innerHTML = allCardContents[i % allCardContents.length];
             }
         }
+
+        function updateCardContents(direction) {
+            cardContainers = document.querySelectorAll('[class^="card_container_"]');
+
+            currentCardIndex = (currentCardIndex + direction + allCardContents.length) % allCardContents.length;
+        
+            // 根据 currentCardIndex 和方向来更新卡片内容
+            var contents = [];
+            for (var i = 0; i < cardContainers.length; i++) {
+                var index = (currentCardIndex + i) % allCardContents.length;
+                contents.push(allCardContents[index]);
+            }
+
+            // 将更新后的内容放回卡片中
+            for (var i = 0; i < cardContainers.length; i++) {
+                var className = "card_container_" + (i);
+                var cardContainer = document.querySelector("." + className);
+                cardContainer.innerHTML = contents[i];
+        
+                // 移除或添加 overlay_image
+                var overlayImage = cardContainer.querySelector('.overlay_image');
+                if (className === "card_container_1") {
+                    if (overlayImage) overlayImage.remove();
+                } else if (!overlayImage && (className === "card_container_0" || className === "card_container_2")) {
+                    var img = document.createElement('img');
+                    img.src = "../images/index/bg.png";
+                    img.className = "overlay_image";
+                    cardContainer.appendChild(img);
+                }
+            }
+        }
+    }
+    else {
+        $(".mainpage").css("display", "none");
+        $("#no_login").css("display", "block");
     }
 });
 
