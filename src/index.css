@@ -613,137 +613,100 @@
   margin-right: 5px;
 }
 
-
-.card_container_0 {
-    margin: 0;
-    padding: 0;
-    display:grid;
-    background-image: url('../images/card/mt/base.png');
-    background-size: cover; 
-    background-repeat: no-repeat;   
-    background-position: center;
-    position: relative;
-}
-.card_container_1 {
-    margin: 0;
-    padding: 0;
-    display:grid;
-    background-image: url('../images/card/mt/base.png');
-    background-size: cover; 
-    background-repeat: no-repeat;   
-    background-position: center;
-    position: relative;
-}
-.card_container_2 {
-    margin: 0;
-    padding: 0;
-    display:grid;
-    background-image: url('../images/card/mt/base.png');
-    background-size: cover; 
-    background-repeat: no-repeat;   
-    background-position: center;
-    position: relative; 
+.card_container_0, .card_container_1, .card_container_2 {
+  width: 28.3%; /* 固定寬度 */
+  height: 100%; /* 固定高度 */
+  margin: 0 auto; /* 中央對齊 */
+  padding: 0;
+  display: grid;
+  background-image: url('../images/card/mt/base.png');
+  background-size: contain; 
+  background-repeat: no-repeat;   
+  background-position: center;
+  position: relative;
+  border-radius: 10px; /* 圓角 */
+  overflow: hidden; /* 隱藏超出部分 */
 }
 
-.card_bg {
-    justify-content: center;
-    align-items: center;
-}
-.card_bg > * {
-    margin: 14px 0; 
+/* 確保狗的圖片在卡片內部正確顯示 */
+.card_dog_1, .card_dog_2, .card_dog_3 {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 40%;
+  width: 100%;
+  margin-top: 15%;
 }
 
-.card_dog_1{
-    margin-top:10%;
-    height: 40%;
-    width: auto;
-    background-image: url('../images/card/dog2.png');
-    background-size: contain;    
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.card_dog_2{
-    margin-top:10%;
-    height: 40%;
-    width: auto;
-    background-image: url('../images/card/dog1.png');
-    background-size: contain;    
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.card_dog_3{
-    margin-top:10%;
-    height: 40%;
-    width: auto;
-    background-image: url('../images/card/dog3.png');
-    background-size: contain;    
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.card_data{
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 25%;
-    font-family: 'GenYoGothic', sans-serif; 
-    font-weight: normal; 
+.card_data {
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25%;
+  font-family: 'GenYoGothic', sans-serif;
+  font-weight: normal;
 }
 
 .card_dis {
-    font-size: 14px;
-    display: grid;
-    justify-content: center;
-    place-items: center;
-    background-color: #8da9bf; 
-    height: 2rem; 
-    border-radius: 5px;
-    margin-left: 25%;  
-    margin-right: 25%;  
-    font-family: 'GenYoGothic', sans-serif; 
-    font-weight: normal; 
+  font-size: 14px;
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  background-color: #8da9bf;
+  height: 2rem;
+  border-radius: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  font-family: 'GenYoGothic', sans-serif;
+  font-weight: normal;
 }
 
-.dynamicText{
-    font-size: 28px;
-    display: grid;
-    place-items: center;
-    font-family: 'GenYoGothic', sans-serif; 
-    font-weight: normal; 
+.dynamicText {
+  font-size: 28px;
+  display: grid;
+  place-items: center;
+  font-family: 'GenYoGothic', sans-serif;
+  font-weight: normal;
 }
-.card_button { 
-    margin-top: 7.5%;
-    margin-bottom: 7.5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
+.card_button {
+  margin-top: 7.5%;
+  margin-bottom: 7.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+
 .card_button img {
-    margin: 0 10px;
-    cursor: pointer; 
+  margin: 0 10px;
+  cursor: pointer;
 }
 
-.prev_button, .next_button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    place-items: center;
+.prev_button, .next_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
 }
-.prev_button, .next_button img{
-    cursor: pointer; 
+
+.prev_button img, .next_button img {
+  cursor: pointer;
 }
 
 .overlay_image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%; 
-    object-fit: none; 
-    z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; /* 修改這裡以確保背景圖片覆蓋整個區域 */
+  z-index: 10;
 }
+
 
 #no_login {
   display: none;

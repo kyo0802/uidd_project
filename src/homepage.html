@@ -367,7 +367,7 @@
 
     <div id="no_login">請先登入以查看更多資訊</div>
     
-    <div class="mainpage">
+<div class="mainpage">
       <div id="left_box" class="content_box">
         <!--個人檔案-->
         <div class="interactive-history">
@@ -393,12 +393,23 @@
                     </div>
                 </div>
                 <div class="average-info">
-                    <p>每日平均散步 <span class="highlight">2</span> 次</p>
-                    <div class="chart">圖表1</div>
-                    <p>散步平均時長 <span class="highlight">42 分</span></p>
-                    <div class="chart">圖表2</div>
-                    <p>散步平均距離 <span class="highlight">1.8 公里</span></p>
-                </div>
+
+                  <p>每日平均散步 <span class="highlight" id="average-walks">10</span> 次</p>
+                  <div class="chart"> <img src="../images/plot1.png"  class="chart"></div>
+                  <p>散步平均時長 <span class="highlight" id="average-duration">0 分</span></p>
+                  <div class="chart"> <img src="../images/plot2.png"  class="chart"></div>
+                  <p>散步平均距離 <span class="highlight" id="average-distance">0 公里</span></p>
+              </div>
+              
+            </div>
+            <div id="tab2" class="tab-content">
+              <h3>分次散步紀錄</h3>
+              <div class="walk-record-header">
+                  <div class="record-date-header">日期</div>
+                  <div class="record-time-header">時間</div>
+                  <div class="record-duration-header">時長</div>
+                  <div class="record-distance-header">距離</div>
+                  <div class="record-note-header"></div>
               </div>
               <div id="tab2" class="tab-content">
                 <h3>分次散步紀錄</h3>
