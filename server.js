@@ -24,16 +24,6 @@ const app = express()//跑express function回傳app物件
 
 const port = 5920
 
-// handle `/step1` url
-// 處理 `/step1` 網址
-app.get('/step1', (req, res) => {
-  // response browser
-  // 回應瀏覽器
-  res.send('hello world')
-})
-
-
-
 // 設置靜態文件目錄
 app.use(express.static(`${__dirname}/src`, {
   dotfiles: 'ignore',
@@ -293,6 +283,41 @@ app.post('/api/petdata', (req, res) => {
     });
   });
 });
+
+app.get('/api/cards', (req, res) => {
+  const query = `
+    SELECT pet_data.pet, pet_data.gender, pet_data.size, pet_data.age, pet_data.image, account_data.email 
+    FROM pet_data
+    JOIN account_data ON pet_data.pet = account_data.pet
+  `;
+  
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Error fetching cards:', error);
+      res.status(500).json({ error: 'Failed to fetch cards' });
+      return;
+    }
+
+    // 假设图片存储在 '/images/card/' 文件夹下
+    const baseUrl = '..';
+    const dataWithImageUrls = results.map(row => {
+      return {
+        pet: row.pet,
+        gender: row.gender,
+        size: row.size,
+        age: row.age,
+        image: baseUrl + row.image,  // 组合图片的完整 URL
+        email: row.email  // 添加 email 信息
+      };
+    });
+
+    console.log('Data with image URLs:', dataWithImageUrls); // Log the data with image URLs
+    res.json(dataWithImageUrls);
+  });
+});
+
+
+
 
 
 

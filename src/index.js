@@ -262,60 +262,102 @@ function populateAreas() {
     }
 }
 // city json end
-
 document.addEventListener('DOMContentLoaded', function() {
-    if(user != null){
+    if (user != null) {
         $(".mainpage").css("display", "flex");
         $("#no_login").css("display", "none");
+
         var prevButton = document.querySelector('.prev_button');
         var nextButton = document.querySelector('.next_button');
         var cardContainers = document.querySelectorAll('[class^="card_container_"]');
         var allCardContents = [];
+        var shuffledCardContents = [];
         var currentCardIndex = 0;
 
-        // 在页面加载时调用API获取所有卡片内容
-        fetch('/api/cards')
-            .then(response => response.json())
-            .then(data => {
-                allCardContents = data;
-                initializeCards();
-            })
-            .catch(error => console.error('Failed to fetch cards', error));
+        function fetchCards() {
+            return fetch('/api/cards')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('Failed to fetch cards', error);
+                    return [];
+                });
+        }
 
-        prevButton.addEventListener('click', function() {
-            updateCardContents(1);
-        });
+        function createCardHtmlAndSetBackground(cardData, index) {
+            const image = cardData.image;
+            const email = cardData.email; 
+            const html = `
+                <div class="card_bg">
+                    <div class="card_dog" data-image="${image}">
+                    </div>
+                    <div class="dynamicText">${cardData.pet}</div>
+                    <div class="card_data">
+                        <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
+                        體型
+                        <img src="../images/card/mt/yes.png" style="width: 10px; height: 10px;">
+                        <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
+                        年齡
+                        <img src="../images/card/mt/mark.png" style="width: 10px; height: 10px;">
+                        <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
+                        性別
+                        <img src="../images/card/mt/yes.png" style="width: 10px; height: 10px;">
+                    </div>
+                    <div class="card_dis">現在在您附近</div>
+                    <div class="card_button">
+                        <img src="../images/card/mt/x.png" class="button_card" alt="Button 1" style="width: 60px; height: 60px;">
+                        <a href="./message.html"><img src="../images/card/mt/match.png" class="button_card" alt="Button 2" onclick="createMatch()" style="width: 80px; height: auto;"></a>
+                        <img src="../images/card/mt/like.png" class="button_card" alt="Button 3" style="width: 60px; height: 60px;">
+                    </div>
+                </div>
+            `;
+            return { html, image, email };
+        }
 
-        nextButton.addEventListener('click', function() {
-            updateCardContents(-1);
-        });
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
         function initializeCards() {
-            // 将初始卡片内容放入页面
-            for (var i = 0; i < cardContainers.length; i++) {
-                cardContainers[i].innerHTML = allCardContents[i % allCardContents.length];
-            }
+            fetchCards().then(data => {
+                allCardContents = data.map((cardData, index) => createCardHtmlAndSetBackground(cardData, index));
+                shuffledCardContents = shuffleArray([...allCardContents]);
+                updateCardContents(0);
+            });
         }
 
         function updateCardContents(direction) {
-            cardContainers = document.querySelectorAll('[class^="card_container_"]');
-
-            currentCardIndex = (currentCardIndex + direction + allCardContents.length) % allCardContents.length;
-        
-            // 根据 currentCardIndex 和方向来更新卡片内容
-            var contents = [];
+            currentCardIndex = (currentCardIndex + direction + shuffledCardContents.length) % shuffledCardContents.length;
             for (var i = 0; i < cardContainers.length; i++) {
-                var index = (currentCardIndex + i) % allCardContents.length;
-                contents.push(allCardContents[index]);
+                var index = (currentCardIndex + i) % shuffledCardContents.length;
+                var cardContent = shuffledCardContents[index];
+                cardContainers[i].innerHTML = cardContent.html;
+                var cardDog = cardContainers[i].querySelector('.card_dog');
+                if (cardDog) {
+                    cardDog.style.backgroundImage = `url(${cardContent.image})`;
+                    cardDog.style.backgroundSize = 'contain';
+                    cardDog.style.backgroundPosition = 'center';
+                    cardDog.style.backgroundRepeat = 'no-repeat';
+                    cardDog.style.height = '40%';
+                    cardDog.style.width = 'auto';
+                    cardDog.style.marginTop = '10%';
+                }
             }
+            updateOverlayImages();
+        }
 
-            // 将更新后的内容放回卡片中
+        function updateOverlayImages() {
             for (var i = 0; i < cardContainers.length; i++) {
-                var className = "card_container_" + (i);
+                var className = "card_container_" + i;
                 var cardContainer = document.querySelector("." + className);
-                cardContainer.innerHTML = contents[i];
-        
-                // 移除或添加 overlay_image
                 var overlayImage = cardContainer.querySelector('.overlay_image');
                 if (className === "card_container_1") {
                     if (overlayImage) overlayImage.remove();
@@ -327,12 +369,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    }
-    else {
-        $(".mainpage").css("display", "none");
-        $("#no_login").css("display", "block");
+
+        prevButton.addEventListener('click', function() {
+            updateCardContents(-1);
+        });
+
+        nextButton.addEventListener('click', function() {
+            updateCardContents(1);
+        });
+
+        initializeCards();
+    } else {
+        document.querySelector(".mainpage").style.display = "none";
+        document.getElementById("no_login").style.display = "block";
     }
 });
+
+
+
+
+
+
 
   $(document).ready(() => {
     $('#submit-button').click((event) => {
@@ -376,17 +433,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function createMatch() {
     var user1 = localStorage.getItem("account");
-    var user2 = "asdsa"; // 這個應該是被配對的另一個用戶的 email
-  
+
+    // 获取 card_container_1 中的 card_bg 元素并提取 data-email 属性
+    var cardContainer = document.querySelector('.card_container_1 .card_bg');
+    var user2 = cardContainer ? cardContainer.getAttribute('data-email') : "";
+
     var data = {
-      user1_email: user1,
-      user2_email: user2
+        user1_email: user1,
+        user2_email: user2
     };
-  
+
     $.post('/create_match', data, function(response) {
-      localStorage.setItem("match_id", response.match_id);
-      alert('配對成功，match_id: ' + response.match_id);
+        localStorage.setItem("match_id", response.match_id);
+        alert('配對成功，match_id: ' + response.match_id);
     }).fail(function(error) {
-      console.error('配對失敗:', error.responseText);
+        console.error('配對失敗:', error.responseText);
     });
-  }
+}
