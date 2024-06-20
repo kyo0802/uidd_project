@@ -27,7 +27,6 @@ connection.query('CREATE TABLE IF NOT EXISTS messages (message_id INT AUTO_INCRE
 connection.query('CREATE TABLE IF NOT EXISTS walk_data (walk_id INT AUTO_INCREMENT,pet VARCHAR(15), walk_date DATE,walk_time TIME,duration FLOAT,distance FLOAT, route TINYINT(1),A TINYINT(1),B TINYINT(1),satisfaction TINYINT(1),PRIMARY KEY(walk_id),FOREIGN KEY (pet) REFERENCES pet_data(pet)) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 connection.query('CREATE TABLE IF NOT EXISTS walk_id_data (walk_id INT,rating TINYINT(1),water INT,note VARCHAR(255),master_rating TINYINT(1),happiness TINYINT(1),FOREIGN KEY (walk_id) REFERENCES walk_data(walk_id)) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 
-
 const imagePath = path.join(__dirname, '../images/dogs/153.png');
 const query = 'INSERT INTO pet_data (pet, gender, size, age, image) VALUES (?, ?, ?, ?, ?)';
 const petData = ['Maxi', 'male', 'large', 'adult', imagePath];
@@ -49,15 +48,8 @@ connection.query(query_2, walkdata, (error, results) => {
   } else {
      console.log('Data inserted successfully');
    }
-});
-/*
-connection.query('DROP TABLE IF EXISTS account');
-connection.query('DROP TABLE IF EXISTS account_data');
-connection.query('DROP TABLE IF EXISTS pet_data');
+});// Drop tables in the correct order to handle foreign key constraint
 
-connection.query('DROP TABLE IF EXISTS walk_data');
-
-*/
 // Export the connection object
 
 module.exports = { connection };

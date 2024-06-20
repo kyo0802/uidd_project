@@ -263,6 +263,8 @@ function populateAreas() {
 }
 // city json end
 document.addEventListener('DOMContentLoaded', function() {
+    var user = localStorage.getItem("account");
+
     if (user != null) {
         $(".mainpage").css("display", "flex");
         $("#no_login").css("display", "none");
@@ -287,25 +289,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     return [];
                 });
         }
+        
+        function getRandomImage() {
+            return Math.random() < 0.5 ? "yes.png" : "mark.png";
+        }
 
         function createCardHtmlAndSetBackground(cardData, index) {
             const image = cardData.image;
-            const email = cardData.email; 
+            const email = cardData.email;
             const html = `
-                <div class="card_bg">
+                <div class="card_bg" data-email="${email}">
                     <div class="card_dog" data-image="${image}">
                     </div>
                     <div class="dynamicText">${cardData.pet}</div>
                     <div class="card_data">
                         <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
                         體型
-                        <img src="../images/card/mt/yes.png" style="width: 10px; height: 10px;">
+                        <img src="../images/card/mt/${getRandomImage()}" style="width: 10px; height: 10px;">
                         <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
                         年齡
-                        <img src="../images/card/mt/mark.png" style="width: 10px; height: 10px;">
+                        <img src="../images/card/mt/${getRandomImage()}" style="width: 10px; height: 10px;">
                         <img src="../images/card/mt/circle.png" style="width: 4px; height: 4px;">
                         性別
-                        <img src="../images/card/mt/yes.png" style="width: 10px; height: 10px;">
+                        <img src="../images/card/mt/${getRandomImage()}" style="width: 10px; height: 10px;">
                     </div>
                     <div class="card_dis">現在在您附近</div>
                     <div class="card_button">
@@ -318,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return { html, image, email };
         }
 
+
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -328,12 +335,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function initializeCards() {
             fetchCards().then(data => {
-                allCardContents = data.map((cardData, index) => createCardHtmlAndSetBackground(cardData, index));
+                allCardContents = data
+                    .map((cardData, index) => createCardHtmlAndSetBackground(cardData, index))
+                    .filter(cardContent => cardContent.email !== user); // Filter out current user's cards
                 shuffledCardContents = shuffleArray([...allCardContents]);
                 updateCardContents(0);
             });
         }
-
         function updateCardContents(direction) {
             currentCardIndex = (currentCardIndex + direction + shuffledCardContents.length) % shuffledCardContents.length;
             for (var i = 0; i < cardContainers.length; i++) {
@@ -430,23 +438,33 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
-  
   function createMatch() {
     var user1 = localStorage.getItem("account");
 
-    // 获取 card_container_1 中的 card_bg 元素并提取 data-email 属性
+    // Get the card_container_1 .card_bg element and extract the data-email attribute
     var cardContainer = document.querySelector('.card_container_1 .card_bg');
-    var user2 = cardContainer ? cardContainer.getAttribute('data-email') : "";
+    if (cardContainer) {
+        var user2 = cardContainer.getAttribute('data-email');
+        console.log('User2:', user2); // Debugging line to check if user2 is correctly fetched
 
-    var data = {
-        user1_email: user1,
-        user2_email: user2
-    };
+        if (!user2) {
+            alert('配對失敗: 缺少必要的參數');
+            return;
+        }
 
-    $.post('/create_match', data, function(response) {
-        localStorage.setItem("match_id", response.match_id);
-        alert('配對成功，match_id: ' + response.match_id);
-    }).fail(function(error) {
-        console.error('配對失敗:', error.responseText);
-    });
+        var data = {
+            user1_email: user1,
+            user2_email: user2
+        };
+
+        $.post('/create_match', data, function(response) {
+            localStorage.setItem("match_id", response.match_id);
+            alert('配對成功，match_id: ' + response.match_id);
+        }).fail(function(error) {
+            console.error('配對失敗:', error.responseText);
+            alert('配對失敗: ' + error.responseText);
+        });
+    } else {
+        alert('配對失敗: 缺少必要的參數');
+    }
 }
