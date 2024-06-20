@@ -521,6 +521,8 @@ $(document).ready(function() {
 })
 
 function calculateAndDisplayRoute() {
+    doucumnet.getElementById('feedback').style.display = 'block';
+
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -529,51 +531,53 @@ function calculateAndDisplayRoute() {
     });
     directionsRenderer.setMap(map);
 
-    document.getElementById('waiting').style.display='block';
-    document.getElementById('calculating').style.display='block';
-    document.getElementById('route').style.display='block';
-    document.getElementById('map').style.display='block';
-    document.getElementById('route').style.display='block';
+    var waiting = document.getElementById('waiting');
+    var calculating = document.getElementById('calculating');
+    var route = document.getElementById('route');
+    var stop = document.getElementById('stop');
+    var stop1 = document.getElementById('stop1');
+    var stopb = document.getElementById('stopb');
+    var placeinfo1 = document.getElementById('placeinfo1');
+    var placeinfo2 = document.getElementById('placeinfo2');
+    var placeinfo3 = document.getElementById('placeinfo3');
+    var placeinfo4 = document.getElementById('placeinfo4');
+    var mapElement = document.getElementById('map');
+    var timeestimated = document.getElementById('timeestimated');
+    var confirmPlace = document.getElementById('confirmPlace').textContent;
 
-    if ( document.getElementById('stop').value == '1' ) {
-        document.getElementById('stop1').style.display = 'none';
-        document.getElementById('stopb').style.display = 'none';
-        document.getElementById('placeinfo3').style.display = 'none';
-    }
-    else{
-        document.getElementById('stop1').style.display = 'flex';
+    waiting.style.display = 'block';
+    calculating.style.display = 'block';
+    route.style.display = 'block';
+    mapElement.style.display = 'block';
+
+    if (stop.value === '1') {
+        stop1.style.display = 'none';
+        stopb.style.display = 'none';
+        placeinfo3.style.display = 'none';
+    } else {
+        stop1.style.display = 'flex';
     }
 
-    var start = document.getElementById('confirmPlace').textContent;
-    if (!start) {
+    if (!confirmPlace) {
         alert('請輸入出發地點');
-        document.getElementById('waiting').style.display='none';
-        document.getElementById('calculating').style.display='none';
-        document.getElementById('route').style.display='none';
+        waiting.style.display = 'none';
+        calculating.style.display = 'none';
+        route.style.display = 'none';
         return;
     }
-    var end = document.getElementById('confirmPlace').textContent;
+
+    var start = confirmPlace;
+    var end = confirmPlace;
     var waypoints = [
-        {
-            location: "台南市北區勝利路206巷1號",
-            stopover: true
-        },
-        {
-            location: "台南市北區開元振興公園",
-            stopover: true
-        }
+        { location: "台南市北區勝利路206巷1號", stopover: true },
+        { location: "台南市北區開元振興公園", stopover: true }
     ];
 
-    document.getElementById('placeinfo1').innerText = document.getElementById('confirmPlace').textContent;
-    document.getElementById('placeinfo2').innerText = "台南市北區勝利路206巷1號";
-    if ( document.getElementById('stop').value == '1' ) {
-        document.getElementById('placeinfo3').innerText = '';
-    }
-    else{
-        document.getElementById('placeinfo3').innerText = "台南市北區開元振興公園";
-    }
-    document.getElementById('placeinfo4').innerText = document.getElementById('confirmPlace').textContent;
-    
+    placeinfo1.innerText = confirmPlace;
+    placeinfo2.innerText = "台南市北區勝利路206巷1號";
+    placeinfo3.innerText = stop.value === '1' ? '' : "台南市北區開元振興公園";
+    placeinfo4.innerText = confirmPlace;
+
     directionsService.route({
         origin: start,
         destination: end,
@@ -584,23 +588,26 @@ function calculateAndDisplayRoute() {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
             var legs = response.routes[0].legs;
-                    var output = '';
+            var output = '';
 
-                    for (var i = 0; i < legs.length; i++) {
-                        var leg = legs[i];
-                        var duration = leg.duration.text;
-                        output += duration + '　　　';
-                    }
+            for (var i = 0; i < legs.length; i++) {
+                var leg = legs[i];
+                var duration = leg.duration.text;
+                output += duration + '　　　';
+            }
 
-                    document.getElementById('timeestimated').innerHTML = output;
-            // var route = response.routes[0].legs[0];
-            //         var duration = route.duration.text;
-            //         document.getElementById('timeestimated').innerText = duration;
+            if (timeestimated) {
+                timeestimated.innerHTML = output;
+            } else {
+                console.warn('Element with id "timeestimated" not found.');
+            }
+
         } else {
             window.alert('Directions request failed due to ' + status);
         }
     });
 }
+
 
 function pair(){
     document.getElementById('mapreq').style.display = 'block';

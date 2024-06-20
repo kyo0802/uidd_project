@@ -936,10 +936,11 @@ h6 {
     height: 4.5rem;
     border-radius: 3rem;
     z-index: 100;
-    right: 1rem;
+    right: 5rem;
     top: 5rem;
     position: fixed;
     float: right;
+    display: none;
 }
 #feedbacksheet {
     display: none;
