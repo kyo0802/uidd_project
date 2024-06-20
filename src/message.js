@@ -123,9 +123,6 @@ function showStep(stepNumber) {
         $(".modal-lg").css("width", "500px");
     }
 }
-var submitBtn = document.getElementById("submitBtn");
-
-submitBtn.addEventListener("click", redirectToHomepage);
 
 function redirectToHomepage() {
 
@@ -178,46 +175,151 @@ $(".eye_open").click(function() {
 
 // save account in local storage in login session
 $(document).ready(function() {
-            let user = localStorage.getItem("account");
+    let user = localStorage.getItem("account");
 
-            if (user === null) {
-                $("#profile_box").css("display", "none");
-                $("#profile").css("display", "block");
+    if (user === null) {
+        $("#profile_box").css("display", "none");
+        $("#profile").css("display", "block");
 
-                $('#login_btn').click(function(event) {
-                    event.preventDefault();
+        $('#login_btn').click(function(event) {
+            event.preventDefault();
 
-                    const account = $('#email').val();
-                    const password = $('#password').val();
+            const account = $('#email').val();
+            const password = $('#password').val();
 
-                    const input_data = {
-                        account: account,
-                        password: password,
-                    };
+            const input_data = {
+                account: account,
+                password: password,
+            };
 
-                    $.post('./login', input_data, function(data) {
-                        localStorage.setItem("account", account);
-                        $("#login_btn").css("background-color", "#FFC533");
-                        $("#login_btn").css("color", "white");
-                        alert('Login successful');
-                        location.reload();
-                    }).fail(function(error) {
-                        $("#wrong_account").html("帳號不存在或密碼錯誤");
-                        $("#email").css("border-color", "red");
-                        $("#password").css("border-color", "red");
-                        alert('Login failed: ' + error.responseText);
-                    });
-                });
-            } else {
-                $("#profile").css("display", "none");
-                $("#profile_box").css("display", "inline");
-
-                $("#logout").click(function() {
-                    localStorage.clear();
-                    location.reload();
-                });
-            }
+            $.post('./login', input_data, function(data) {
+                localStorage.setItem("account", account);
+                $("#login_btn").css("background-color", "#FFC533");
+                $("#login_btn").css("color", "white");
+                alert('Login successful');
+                location.reload();
+            }).fail(function(error) {
+                $("#wrong_account").html("帳號不存在或密碼錯誤");
+                $("#email").css("border-color", "red");
+                $("#password").css("border-color", "red");
+                alert('Login failed: ' + error.responseText);
+            });
         });
+    } else {
+        $("#profile").css("display", "none");
+        $("#profile_box").css("display", "inline");
+
+        $("#logout").click(function() {
+            localStorage.clear();
+            location.reload();
+        });
+    }
+});
+
+
+// city json begin
+const cityjson = './CityCountyData.json';
+fetch(cityjson)
+    .then(response => response.json())
+    .then(data => {
+        // 全域變數儲存 JSON 資料
+        window.areaData = data;
+        populateCities();
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+const citySelect = document.getElementById('region');
+const areaSelect = document.getElementById('district');
+
+function populateCities() {
+    const data = window.areaData;
+    data.forEach(city => {
+        let option = document.createElement('option');
+        option.value = city.CityName;
+        option.textContent = city.CityName;
+        citySelect.appendChild(option);
+    });
+    citySelect.value = '臺北市';
+    populateAreas();
+    areaSelect.value = '108';
+}
+
+function populateAreas() {
+    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
+    let selectedCity = citySelect.value;
+    if (selectedCity) {
+        let city = window.areaData.find(c => c.CityName === selectedCity);
+        city.AreaList.forEach(area => {
+            let option = document.createElement('option');
+            option.value = area.ZipCode;
+            option.textContent = area.AreaName;
+            areaSelect.appendChild(option);
+        });
+    }
+}
+// city json end
+
+// hide content
+$(document).ready(function() {
+    if(user != null) {
+        $(".mainpage").css("display", "grid");
+        $("#no_login").css("display", "none");
+    }
+    else {
+        $(".mainpage").css("display", "none");
+        $("#no_login").css("display", "block");
+    }
+})
+
+// register form required
+function validateForm(formId) {
+    var form = document.getElementById(formId);
+    var inputs = form.querySelectorAll('input[required], select[required]');
+    var allValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            allValid = false;
+            input.classList.add('is-invalid'); // 添加 is-invalid 类
+        } else {
+            input.classList.remove('is-invalid'); // 移除 is-invalid 类
+        }
+    });
+
+    return allValid;
+}
+
+$(".back_btn").click(function() {
+    $("#continue1").removeAttr('data-bs-target');
+    $("#continue1").removeAttr('data-bs-toggle');
+})
+
+document.getElementById('continue1').addEventListener('click', function(event) {
+    var button = this;
+    if (validateForm("basic")) {
+        button.setAttribute('data-bs-target', '#exampleModal3');
+        button.setAttribute('data-bs-toggle', 'modal');
+        button.click();
+        button.style.backgroundColor = '#003466';
+    } 
+    else {
+        alert('請填寫所有必填項目');        
+    }
+});
+
+document.getElementById('continue15').addEventListener('click', function(event) {
+    if (validateForm("step1.5")) {
+        var button = this;
+        showStep('2')
+        setstep('2')
+    } 
+    else {  
+        alert('請填寫所有必填項目'); 
+    }
+});
+
 $(document).ready(() => {
     $('#submit-button').click((event) => {
       event.preventDefault(); 
@@ -252,61 +354,48 @@ $(document).ready(() => {
   
       $.post('./register', input_data, (data) => {
         alert('Registration successful');
+        showStep('3');
+        setstep('3');
       }).fail((error) => {
         alert('Registration failed: ' + error.responseText);
       });
     });
 });
 
-// city json begin
-const cityjson = './CityCountyData.json';
-fetch(cityjson)
-    .then(response => response.json())
-    .then(data => {
-        // 全域變數儲存 JSON 資料
-        window.areaData = data;
-        populateCities();
-    })
-    .catch(error => {
-        console.error('Error fetching JSON:', error);
+document.getElementById('petForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const categories = ['size', 'age', 'activity', 'duration', 'distance'];
+    let isValid = true;
+    var text = "";
+    const formData = {
+        petName: $('#petName').val(),
+        size: [],
+        age: [],
+        activity: [],
+        duration: [],
+        distance: []
+    };
+
+    categories.forEach(category => {
+        const checkboxes = document.querySelectorAll(`input[name="${category}"]:checked`);
+        if (checkboxes.length === 0) {
+            isValid = false;
+            text = text + "'" + document.querySelector(`input[name="${category}"]`).parentElement.parentElement.querySelector('.sub_title').textContent + "' ";
+        }
+        else {
+            formData[category] = Array.from(checkboxes).map(cb => cb.value);
+        }
     });
-
-const citySelect = document.getElementById('region');
-const areaSelect = document.getElementById('district');
-
-function populateCities() {
-    const data = window.areaData;
-    data.forEach(city => {
-        let option = document.createElement('option');
-        option.value = city.CityName;
-        option.textContent = city.CityName;
-        citySelect.appendChild(option);
-    });
-}
-
-function populateAreas() {
-    areaSelect.innerHTML = '<option value="">請選擇區域</option>';
-    let selectedCity = citySelect.value;
-    if (selectedCity) {
-        let city = window.areaData.find(c => c.CityName === selectedCity);
-        city.AreaList.forEach(area => {
-            let option = document.createElement('option');
-            option.value = area.ZipCode;
-            option.textContent = area.AreaName;
-            areaSelect.appendChild(option);
-        });
-    }
-}
-// city json end
-
-// hide content
-$(document).ready(function() {
-    if(user != null) {
-        $(".mainpage").css("display", "grid");
-        $("#no_login").css("display", "none");
+    
+    if (!isValid) {
+        alert("請至少選一個 "+text);
     }
     else {
-        $(".mainpage").css("display", "none");
-        $("#no_login").css("display", "block");
+        $.post('/favor', formData, function(data) {
+            alert('提交成功');
+            redirectToHomepage(); // 假設這個函數存在並且處理頁面重定向
+        }).fail(function(error) {
+            alert('提交失敗: ' + error.responseText);
+        });
     }
-})
+});

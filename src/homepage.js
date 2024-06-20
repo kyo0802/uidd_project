@@ -39,9 +39,7 @@ function goBack() {
     }
 }
 document.getElementById('loginModal').addEventListener('hidden.bs.modal', function () {
-
     showStep('1');
-    resetIcons();  
     userRole = 'none';  
     activeStepId = '1';  
 });
@@ -128,11 +126,7 @@ function showStep(stepNumber) {
     }
 } 
 
-var submitBtn = document.getElementById("submitBtn");
-submitBtn.addEventListener("click", redirectToHomepage);
-
 function redirectToHomepage() {
-
     window.location.href = "./index.html";
 }
 
@@ -158,7 +152,7 @@ $("input[name=who]").click( function(){
 })
 
 $("button[name='who']").click(function() {
-    if(who == "register_lover"){
+    if(who == "lover"){
         selectRole('b');showStep('2');setstep('2')
     }
     else{
@@ -408,52 +402,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const records = document.querySelectorAll('.record-summary');
-    const walksPerDay = {};
-    const durationPerDay = {};
-    const distancePerDay = {};
-
-    records.forEach(function(record) {
-        const dateText = record.querySelector('.record-date').textContent.trim();
-        const durationText = record.querySelector('.record-duration').textContent.trim();
-        const distanceText = record.querySelector('.record-distance').textContent.trim();
-
-        // 提取数值部分
-        const duration = parseFloat(durationText.split(' ')[0]); // 将时长转换为浮点数
-        const distance = parseFloat(distanceText.split(' ')[0]); // 将距离转换为浮点数
-
-        if (!walksPerDay[dateText]) {
-            walksPerDay[dateText] = 0;
-            durationPerDay[dateText] = 0;
-            distancePerDay[dateText] = 0;
-        }
-
-        walksPerDay[dateText] += 1;
-        durationPerDay[dateText] += duration;
-        distancePerDay[dateText] += distance;
-    });
-
-    const totalDays = Object.keys(walksPerDay).length;
-    let totalWalks = 0;
-    let totalDuration = 0;
-    let totalDistance = 0;
-
-    for (const date in walksPerDay) {
-        totalWalks += walksPerDay[date];
-        totalDuration += durationPerDay[date];
-        totalDistance += distancePerDay[date];
-    }
-
-    const averageWalks = totalWalks / totalDays;
-    const averageDuration = totalDuration / totalWalks;
-    const averageDistance = totalDistance / totalWalks;
-
-    document.getElementById('average-walks').textContent = averageWalks.toFixed(1);
-    document.getElementById('average-duration').textContent = (averageDuration * 60).toFixed(1) + ' 分';
-    document.getElementById('average-distance').textContent = averageDistance.toFixed(1) + ' 公里';
-});
-
 
 
   
@@ -540,6 +488,9 @@ function populateCities() {
         option.textContent = city.CityName;
         citySelect.appendChild(option);
     });
+    citySelect.value = '臺北市';
+    populateAreas();
+    areaSelect.value = '108';
 }
 
 function populateAreas() {
@@ -768,8 +719,55 @@ function send() {
         });
     }
 }
-$(document).ready(() => {
 
+// register form required
+function validateForm(formId) {
+    var form = document.getElementById(formId);
+    var inputs = form.querySelectorAll('input[required], select[required]');
+    var allValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            allValid = false;
+            input.classList.add('is-invalid'); // 添加 is-invalid 类
+        } else {
+            input.classList.remove('is-invalid'); // 移除 is-invalid 类
+        }
+    });
+
+    return allValid;
+}
+
+$(".back_btn").click(function() {
+    $("#continue1").removeAttr('data-bs-target');
+    $("#continue1").removeAttr('data-bs-toggle');
+})
+
+document.getElementById('continue1').addEventListener('click', function(event) {
+    var button = this;
+    if (validateForm("basic")) {
+        button.setAttribute('data-bs-target', '#exampleModal3');
+        button.setAttribute('data-bs-toggle', 'modal');
+        button.click();
+        button.style.backgroundColor = '#003466';
+    } 
+    else {
+        alert('請填寫所有必填項目');        
+    }
+});
+
+document.getElementById('continue15').addEventListener('click', function(event) {
+    if (validateForm("step1.5")) {
+        var button = this;
+        showStep('2')
+        setstep('2')
+    } 
+    else {  
+        alert('請填寫所有必填項目'); 
+    }
+});
+
+$(document).ready(() => {
     $('#submit-button').click((event) => {
       event.preventDefault(); 
   
@@ -803,11 +801,50 @@ $(document).ready(() => {
   
       $.post('./register', input_data, (data) => {
         alert('Registration successful');
-      }).fail((error) => {
+        showStep('3');
+        setstep('3');      }).fail((error) => {
         alert('Registration failed: ' + error.responseText);
       });
     });
-  });
+});
+
+document.getElementById('petForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const categories = ['size', 'age', 'activity', 'duration', 'distance'];
+    let isValid = true;
+    var text = "";
+    const formData = {
+        petName: $('#petName').val(),
+        size: [],
+        age: [],
+        activity: [],
+        duration: [],
+        distance: []
+    };
+
+    categories.forEach(category => {
+        const checkboxes = document.querySelectorAll(`input[name="${category}"]:checked`);
+        if (checkboxes.length === 0) {
+            isValid = false;
+            text = text + "'" + document.querySelector(`input[name="${category}"]`).parentElement.parentElement.querySelector('.sub_title').textContent + "' ";
+        }
+        else {
+            formData[category] = Array.from(checkboxes).map(cb => cb.value);
+        }
+    });
+    
+    if (!isValid) {
+        alert("請至少選一個 "+text);
+    }
+    else {
+        $.post('/favor', formData, function(data) {
+            alert('提交成功');
+            redirectToHomepage(); // 假設這個函數存在並且處理頁面重定向
+        }).fail(function(error) {
+            alert('提交失敗: ' + error.responseText);
+        });
+    }
+});
 
   // chat gpt api
     document.getElementById('msg_input').addEventListener('keypress', function(event) {
@@ -984,5 +1021,3 @@ $(document).ready(() => {
     }
     return stars;
   }
-
-  

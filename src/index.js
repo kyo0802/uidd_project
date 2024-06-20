@@ -124,9 +124,6 @@ function showStep(stepNumber) {
         $(".modal-lg").css("width", "500px");
     }
 }
-var submitBtn = document.getElementById("submitBtn");
-
-submitBtn.addEventListener("click", redirectToHomepage);
 
 function redirectToHomepage() {
 
@@ -155,7 +152,7 @@ $("input[name=who]").click( function(){
 })
 
 $("button[name='who']").click(function() {
-    if(who == "register_lover"){
+    if(who == "lover"){
         selectRole('b');showStep('2');setstep('2')
     }
     else{
@@ -246,6 +243,9 @@ function populateCities() {
         option.textContent = city.CityName;
         citySelect.appendChild(option);
     });
+    citySelect.value = '臺北市';
+    populateAreas();
+    areaSelect.value = '108';
 }
 
 function populateAreas() {
@@ -262,6 +262,55 @@ function populateAreas() {
     }
 }
 // city json end
+
+// register form required
+function validateForm(formId) {
+    var form = document.getElementById(formId);
+    var inputs = form.querySelectorAll('input[required], select[required]');
+    var allValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            allValid = false;
+            input.classList.add('is-invalid'); // 添加 is-invalid 类
+        } else {
+            input.classList.remove('is-invalid'); // 移除 is-invalid 类
+        }
+    });
+
+    return allValid;
+}
+
+$(".back_btn").click(function() {
+    $("#continue1").removeAttr('data-bs-target');
+    $("#continue1").removeAttr('data-bs-toggle');
+})
+
+document.getElementById('continue1').addEventListener('click', function(event) {
+    var button = this;
+    if (validateForm("basic")) {
+        button.setAttribute('data-bs-target', '#exampleModal3');
+        button.setAttribute('data-bs-toggle', 'modal');
+        button.click();
+        button.style.backgroundColor = '#003466';
+    } 
+    else {
+        alert('請填寫所有必填項目');        
+    }
+});
+
+document.getElementById('continue15').addEventListener('click', function(event) {
+    if (validateForm("step1.5")) {
+        var button = this;
+        showStep('2')
+        setstep('2')
+    } 
+    else {  
+        alert('請填寫所有必填項目'); 
+    }
+});
+
+// card
 document.addEventListener('DOMContentLoaded', function() {
     var user = localStorage.getItem("account");
 
@@ -433,11 +482,52 @@ document.addEventListener('DOMContentLoaded', function() {
   
       $.post('./register', input_data, (data) => {
         alert('Registration successful');
+        showStep('3');
+        setstep('3');
       }).fail((error) => {
         alert('Registration failed: ' + error.responseText);
       });
     });
   });
+
+document.getElementById('petForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const categories = ['size', 'age', 'activity', 'duration', 'distance'];
+    let isValid = true;
+    var text = "";
+    const formData = {
+        petName: $('#petName').val(),
+        size: [],
+        age: [],
+        activity: [],
+        duration: [],
+        distance: []
+    };
+
+    categories.forEach(category => {
+        const checkboxes = document.querySelectorAll(`input[name="${category}"]:checked`);
+        if (checkboxes.length === 0) {
+            isValid = false;
+            text = text + "'" + document.querySelector(`input[name="${category}"]`).parentElement.parentElement.querySelector('.sub_title').textContent + "' ";
+        }
+        else {
+            formData[category] = Array.from(checkboxes).map(cb => cb.value);
+        }
+    });
+    
+    if (!isValid) {
+        alert("請至少選一個 "+text);
+    }
+    else {
+        $.post('/favor', formData, function(data) {
+            alert('提交成功');
+            redirectToHomepage(); // 假設這個函數存在並且處理頁面重定向
+        }).fail(function(error) {
+            alert('提交失敗: ' + error.responseText);
+        });
+    }
+});
+
   function createMatch() {
     var user1 = localStorage.getItem("account");
 
